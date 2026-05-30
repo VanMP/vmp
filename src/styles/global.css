@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #E9E2D5;         /* Soft warm stone, elegant and clean frame */
+  --color-surface: #FAF6EF;    /* Warm, gentle off-white to block glare without looking dark */
+  --color-frost: #F6EFE4;      /* Soft warm cards background */
+  --color-border-soft: #E2DACF; /* Light warm border tone */
+  --color-txt-main: #2C2822;
+  --color-txt-muted: #756E63;
+  --color-olive: #4E5F2A;
+  --color-brand-green: #5C5E26;
+  --color-mustard: #9C8538;
+  --color-brown: #8A6535;
+  --color-terracotta: #774F4C;
+  --color-wine: #542E3B;
+  
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Base resets & typography */
+html {
+  background-color: var(--color-bg);
+  color: var(--color-txt-main);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-wine);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-wine);
+  outline-offset: 4px;
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 3rem;
+  padding-right: 3rem;
+  animation: marquee 40s linear infinite;
+  min-width: 100%;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Scrollbar styling matching the warm theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-frost);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-soft);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brown);
+}
+
+/* Soft transitions */
+.transition-soft {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}

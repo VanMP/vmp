@@ -1,0 +1,41 @@
+---
+import "../../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Vanessa Martins Pinto : Estatística e Experimentação", 
+  description = "Portfólio de Vanessa Martins Pinto, com casos de estudo em experimentação estatística, inferência causal, análise quantitativa, PLN e automação." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      /* Apply font family override if playfair is loaded */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', Georgia, serif;
+      }
+    </style>
+  </head>
+  <body class="bg-bg text-txt-main px-4 py-4 md:py-8 min-h-screen flex flex-col items-center justify-start">
+    <!-- Main Sheet Container -->
+    <div class="w-full max-w-[1280px] bg-surface border border-border-soft rounded-[24px] shadow-[0_8px_30px_rgba(44,40,34,0.03)] overflow-hidden flex flex-col gap-6 md:gap-8">
+      <slot />
+    </div>
+  </body>
+</html>
