@@ -9,7 +9,7 @@ export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps)
   return (
     <header className="px-6 pt-6 md:px-8 md:pt-8 flex flex-col md:flex-row justify-between items-stretch gap-6 w-full font-sans">
       {/* Left: Logo Box with Language Toggle */}
-      <div className="relative border border-border-soft bg-olive-tint p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
+      <div className="relative border border-border-soft bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
         
         {/* Discrete background autumn oak leaf ornament */}
         <div className="absolute bottom-1 right-1 w-16 h-16 text-terracotta/8 pointer-events-none select-none">
