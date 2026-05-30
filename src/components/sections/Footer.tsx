@@ -46,7 +46,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
       </div>
 
       {/* 2. Full-Width Light Elegant Footer Bar */}
-      <div className="relative bg-surface border-t border-border-soft px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden shadow-[0_-2px_10px_rgba(44,40,34,0.015)]">
+      <div className="relative bg-olive-tint border-t border-border-soft px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden shadow-[0_-2px_10px_rgba(44,40,34,0.015)]">
         
         {/* Wind-blown scattering of autumn leaves in the footer background */}
         <div className="absolute right-4 bottom-1 w-64 h-20 text-olive/5 pointer-events-none select-none overflow-hidden">
