@@ -10,7 +10,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
   return (
     <header className="px-6 pt-6 md:px-8 md:pt-8 flex flex-col md:flex-row justify-between items-stretch gap-6 w-full font-sans">
       {/* Left: Logo Box with Language Toggle */}
-      <div className="relative border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
+      <div className="relative border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
         
         {/* Discrete background autumn oak leaf ornament */}
         <div className="absolute bottom-1 right-1 w-16 h-16 text-terracotta/8 pointer-events-none select-none">
@@ -81,8 +81,8 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
       </div>
 
       {/* Right: Contact Box with high-contrast CV buttons */}
-      <div className="border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start md:items-end gap-3 rounded-xl min-w-[280px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
-        <div className="flex flex-col gap-1.5 w-full md:items-end">
+      <div className="border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start md:items-end gap-3 rounded-xl min-w-[280px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
+        <div className="flex flex-col gap-1 w-full md:items-end">
           <a href="mailto:vanessa.smartinsp@gmail.com" className="hover:text-wine transition-colors font-mono text-xs md:text-sm font-semibold text-txt-muted flex items-center gap-2">
             <svg width="16" height="16" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -97,32 +97,37 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
           </a>
         </div>
         
-        <div className="flex gap-2 w-full justify-start md:justify-end">
+        <div className="flex flex-col gap-2 w-full items-stretch md:items-end">
+          {/* Row 1: Message button */}
           <button
             onClick={onContactClick}
-            className="px-3 py-1 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center gap-1 shadow-xs cursor-pointer"
+            className="w-full px-3 py-1 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
             {lang === "pt" ? "Mensagem" : "Message"}
           </button>
-          <a
-            href="/files/vanessa-martins-pinto-cv-pt.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3.5 py-1 bg-[#542E3B] !text-[#FCFAF7] font-sans font-bold hover:bg-[#774F4C] transition-colors text-[10px] uppercase tracking-wider rounded-lg border border-[#542E3B]/10 flex items-center gap-1 shadow-xs"
-          >
-            CV (PT)
-          </a>
-          <a
-            href="/files/vanessa-martins-pinto-cv-en.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3.5 py-1 bg-[#4E5F2A] !text-[#FCFAF7] font-sans font-bold hover:bg-[#5C5E26] transition-colors text-[10px] uppercase tracking-wider rounded-lg border border-[#4E5F2A]/10 flex items-center gap-1 shadow-xs"
-          >
-            CV (EN)
-          </a>
+          
+          {/* Row 2: CV buttons side by side */}
+          <div className="flex gap-2 w-full">
+            <a
+              href="/files/vanessa-martins-pinto-cv-pt.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-1 bg-[#542E3B] !text-[#FCFAF7] font-sans font-bold hover:bg-[#774F4C] transition-colors text-[10px] uppercase tracking-wider rounded-lg border border-[#542E3B]/10 flex items-center justify-center gap-1 shadow-xs"
+            >
+              CV (PT)
+            </a>
+            <a
+              href="/files/vanessa-martins-pinto-cv-en.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center py-1 bg-[#4E5F2A] !text-[#FCFAF7] font-sans font-bold hover:bg-[#5C5E26] transition-colors text-[10px] uppercase tracking-wider rounded-lg border border-[#4E5F2A]/10 flex items-center justify-center gap-1 shadow-xs"
+            >
+              CV (EN)
+            </a>
+          </div>
         </div>
       </div>
     </header>
