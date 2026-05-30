@@ -50,7 +50,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
         </div>
 
         {/* Row 1: Call to Action (Phrase + Message Button) */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full pb-4 border-b border-border-soft/40 relative z-10">
+        <div className="flex flex-col sm:flex-row justify-start items-center gap-4 sm:gap-6 w-full pb-4 border-b border-border-soft/40 relative z-10">
           <div className="flex items-center gap-3">
             <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
               <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
@@ -65,7 +65,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           </div>
           <button
             onClick={onContactClick}
-            className="px-5 py-2 bg-[#542E3B] hover:bg-[#774F4C] text-[#FCFAF7] font-sans font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-soft flex items-center justify-center gap-1.5 cursor-pointer flex-shrink-0 w-full sm:w-auto"
+            className="px-3 py-1 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer flex-shrink-0"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
