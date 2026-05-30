@@ -48,7 +48,7 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
 
       {/* Scrolling Strip Container */}
       <div className="border border-border-soft bg-frost py-2 rounded-xl shadow-[0_1px_3px_rgba(44,40,34,0.01)] marquee-container select-none text-[11px] md:text-xs font-medium tracking-wide text-txt-main font-sans">
-        <div className="marquee-track flex items-center gap-12 pr-12">
+        <div className="marquee-track marquee-track-methods flex items-center gap-12 pr-12">
           {items.map((method, idx) => (
             <span key={`${method}-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
               <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">
@@ -59,7 +59,7 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
             </span>
           ))}
         </div>
-        <div className="marquee-track flex items-center gap-12 pr-12" aria-hidden="true">
+        <div className="marquee-track marquee-track-methods flex items-center gap-12 pr-12" aria-hidden="true">
           {items.map((method, idx) => (
             <span key={`${method}-dup-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
               <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">

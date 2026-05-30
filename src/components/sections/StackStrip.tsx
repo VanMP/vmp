@@ -38,7 +38,7 @@ export default function StackStrip({ lang = "pt" }: StackStripProps) {
 
       {/* Scrolling Strip Container */}
       <div className="border border-border-soft bg-frost py-2 rounded-xl shadow-[0_1px_3px_rgba(44,40,34,0.01)] marquee-container select-none text-[11px] md:text-xs font-medium tracking-wide text-txt-main font-sans">
-        <div className="marquee-track flex items-center gap-12 pr-12">
+        <div className="marquee-track marquee-track-stacks flex items-center gap-12 pr-12">
           {tools.map((tool, idx) => (
             <span key={`${tool}-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
               <svg width="9" height="9" className="text-wine flex-shrink-0 opacity-85 rotate-12" viewBox="0 0 24 24" fill="currentColor">
@@ -48,7 +48,7 @@ export default function StackStrip({ lang = "pt" }: StackStripProps) {
             </span>
           ))}
         </div>
-        <div className="marquee-track flex items-center gap-12 pr-12" aria-hidden="true">
+        <div className="marquee-track marquee-track-stacks flex items-center gap-12 pr-12" aria-hidden="true">
           {tools.map((tool, idx) => (
             <span key={`${tool}-dup-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
               <svg width="9" height="9" className="text-wine flex-shrink-0 opacity-85 rotate-12" viewBox="0 0 24 24" fill="currentColor">

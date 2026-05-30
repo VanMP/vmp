@@ -69,13 +69,26 @@ a:focus-visible {
   display: flex;
   flex-shrink: 0;
   width: max-content;
-  animation: marquee 25s linear infinite;
   will-change: transform;
 }
 
+.marquee-track-stacks {
+  animation: marquee 25s linear infinite;
+}
+
 @media (min-width: 768px) {
-  .marquee-track {
+  .marquee-track-stacks {
     animation: marquee 60s linear infinite;
+  }
+}
+
+.marquee-track-methods {
+  animation: marquee 58s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .marquee-track-methods {
+    animation: marquee 140s linear infinite;
   }
 }
 
