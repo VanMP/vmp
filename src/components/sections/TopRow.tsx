@@ -62,7 +62,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
       <div className="flex-1 flex flex-col items-center justify-center text-center p-4">
         <p className="font-serif text-xl md:text-2xl italic text-olive font-semibold leading-relaxed">
           {lang === "pt"
-            ? "Estatística applied para decisões mensuráveis."
+            ? "Estatística aplicada para decisões mensuráveis."
             : "Applied statistics for measurable decisions."}
         </p>
         
