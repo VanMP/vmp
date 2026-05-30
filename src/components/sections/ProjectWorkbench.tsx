@@ -335,7 +335,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
             <path d="M 12 22 C 16 16, 18 10, 13 8 C 8 6, 6 12, 12 22 Z" />
           </svg>
           <h2 className="font-serif text-base md:text-lg font-bold text-wine tracking-wide text-center">
-            {lang === "pt" ? "Projetos, Abordagens e Ferramentas" : "Projects, Approaches & Tools"}
+            {lang === "pt" ? "Projetos, Abordagens & Ferramentas" : "Projects, Approaches & Tools"}
           </h2>
           <svg width="16" height="16" className="w-4 h-4 text-olive -scale-x-100 rotate-45" viewBox="0 0 24 24" fill="currentColor">
             <path d="M 12 2 C 16 16, 18 10, 13 8 C 8 6, 6 12, 12 22 Z" />
