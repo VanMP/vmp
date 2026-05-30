@@ -3,9 +3,10 @@ import React from "react";
 interface TopRowProps {
   lang?: "pt" | "en";
   setLang?: (lang: "pt" | "en") => void;
+  onContactClick?: () => void;
 }
 
-export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps) {
+export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick = () => {} }: TopRowProps) {
   return (
     <header className="px-6 pt-6 md:px-8 md:pt-8 flex flex-col md:flex-row justify-between items-stretch gap-6 w-full font-sans">
       {/* Left: Logo Box with Language Toggle */}
@@ -61,7 +62,7 @@ export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps)
       <div className="flex-1 flex flex-col items-center justify-center text-center p-4">
         <p className="font-serif text-xl md:text-2xl italic text-olive font-semibold leading-relaxed">
           {lang === "pt"
-            ? "Estatística aplicada para decisões mensuráveis."
+            ? "Estatística applied para decisões mensuráveis."
             : "Applied statistics for measurable decisions."}
         </p>
         
@@ -97,6 +98,15 @@ export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps)
         </div>
         
         <div className="flex gap-2 w-full justify-start md:justify-end">
+          <button
+            onClick={onContactClick}
+            className="px-3 py-1 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center gap-1 shadow-xs cursor-pointer"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            {lang === "pt" ? "Mensagem" : "Message"}
+          </button>
           <a
             href="/files/vanessa-martins-pinto-cv-pt.pdf"
             target="_blank"

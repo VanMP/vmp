@@ -2,9 +2,10 @@ import React from "react";
 
 interface FooterProps {
   lang?: "pt" | "en";
+  onContactClick?: () => void;
 }
 
-export default function Footer({ lang = "pt" }: FooterProps) {
+export default function Footer({ lang = "pt", onContactClick = () => {} }: FooterProps) {
   return (
     <footer className="w-full flex flex-col mt-auto font-sans px-6 py-2 md:px-8 md:py-4 gap-6">
 
@@ -48,18 +49,29 @@ export default function Footer({ lang = "pt" }: FooterProps) {
           </svg>
         </div>
 
-        {/* Left Side: Call to Action with Autumn Branch Icon */}
-        <div className="flex items-center gap-3 relative z-10">
-          <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
-            <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-            <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
-            <path d="M19 22 C 22 18, 26 17, 29 16 C 24 19, 21 23, 19 22 Z" />
-            <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
-            <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
-          </svg>
-          <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine">
-            {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
-          </span>
+        {/* Left Side: Call to Action with Autumn Branch Icon & Trigger Button */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3.5 relative z-10">
+          <div className="flex items-center gap-3">
+            <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
+              <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+              <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
+              <path d="M19 22 C 22 18, 26 17, 29 16 C 24 19, 21 23, 19 22 Z" />
+              <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
+              <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
+            </svg>
+            <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine">
+              {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
+            </span>
+          </div>
+          <button
+            onClick={onContactClick}
+            className="px-4 py-1.5 bg-[#542E3B] hover:bg-[#774F4C] text-[#FCFAF7] font-sans font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-soft flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            {lang === "pt" ? "Mensagem" : "Message"}
+          </button>
         </div>
 
         {/* Right Side: Social / Contact Links with SVG Icons */}
