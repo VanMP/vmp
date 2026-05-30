@@ -49,20 +49,23 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           </svg>
         </div>
 
-        {/* Row 1: Call to Action (Phrase + Message Button) */}
-        <div className="flex flex-col sm:flex-row justify-start items-center gap-4 sm:gap-6 w-full pb-4 border-b border-border-soft/40 relative z-10">
-          <div className="flex items-center gap-3">
-            <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
-              <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-              <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
-              <path d="M19 22 C 22 18, 26 17, 29 16 C 24 19, 21 23, 19 22 Z" />
-              <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
-              <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
-            </svg>
-            <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine text-center sm:text-left">
-              {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
-            </span>
-          </div>
+        {/* Row 1: Call to Action (Phrase) - Perfectly Centered */}
+        <div className="flex justify-center items-center gap-3 w-full pb-4 border-b border-border-soft/40 relative z-10">
+          <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
+            <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
+            <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
+            <path d="M19 22 C 22 18, 26 17, 29 16 C 24 19, 21 23, 19 22 Z" />
+            <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
+            <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
+          </svg>
+          <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine text-center">
+            {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
+          </span>
+        </div>
+
+        {/* Row 2: Contact Info Links & Message Button - Centered */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xs font-mono relative z-10 w-full">
+          {/* Message button, perfectly in line with other contact links */}
           <button
             onClick={onContactClick}
             className="px-3 py-1 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer flex-shrink-0"
@@ -72,33 +75,28 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
             </svg>
             {lang === "pt" ? "Mensagem" : "Message"}
           </button>
-        </div>
 
-        {/* Row 2: Contact Info Links (Email, Phone, LinkedIn) */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono relative z-10 w-full">
-          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full justify-center md:justify-start">
-            {/* Email */}
-            <a
-              href="mailto:vanessa.smartinsp@gmail.com"
-              className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
-            >
-              <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              vanessa.smartinsp@gmail.com
-            </a>
+          {/* Email */}
+          <a
+            href="mailto:vanessa.smartinsp@gmail.com"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+          >
+            <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            vanessa.smartinsp@gmail.com
+          </a>
 
-            {/* Phone */}
-            <a
-              href="tel:+351922004270"
-              className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
-            >
-              <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              +351 922 004 270
-            </a>
-          </div>
+          {/* Phone */}
+          <a
+            href="tel:+351922004270"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+          >
+            <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            +351 922 004 270
+          </a>
 
           {/* LinkedIn */}
           <a
