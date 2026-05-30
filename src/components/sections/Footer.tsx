@@ -106,7 +106,7 @@ export default function Footer({
 
         {/* LinkedIn - Logo Only, placed in the far bottom-right corner of the parent card */}
         <a
-          href="https://www.linkedin.com/in/vanessa-martins-pinto"
+          href="https://www.linkedin.com/in/vanessasmp/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-wine transition-colors flex items-center text-txt-muted flex-shrink-0 absolute bottom-4 right-4 z-20"
