@@ -49,25 +49,28 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
       {/* Scrolling Strip Container */}
       <div className="border border-border-soft bg-frost py-2 rounded-xl shadow-[0_1px_3px_rgba(44,40,34,0.01)] marquee-container select-none">
         <div className="marquee-content text-[11px] md:text-xs font-medium tracking-wide text-txt-main font-sans">
-          {items.map((method, idx) => (
-            <span key={`${method}-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
-              <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 3 C15 3, 19 6, 19 9 C19 10, 17 11, 12 11 C7 11, 5 10, 5 9 C5 6, 9 3, 12 3 Z" fill="currentColor" />
-                <path d="M5.5 10.5 C5.5 14, 9 19, 12 21 C15 19, 18.5 14, 18.5 10.5 Z" fill="currentColor" />
-              </svg>
-              <span>{method}</span>
-            </span>
-          ))}
-          {/* Repeat list for infinite seamless loop */}
-          {items.map((method, idx) => (
-            <span key={`${method}-dup-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
-              <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 3 C15 3, 19 6, 19 9 C19 10, 17 11, 12 11 C7 11, 5 10, 5 9 C5 6, 9 3, 12 3 Z" fill="currentColor" />
-                <path d="M5.5 10.5 C5.5 14, 9 19, 12 21 C15 19, 18.5 14, 18.5 10.5 Z" fill="currentColor" />
-              </svg>
-              <span>{method}</span>
-            </span>
-          ))}
+          <div className="flex items-center gap-12 pr-12 flex-shrink-0">
+            {items.map((method, idx) => (
+              <span key={`${method}-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
+                <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3 C15 3, 19 6, 19 9 C19 10, 17 11, 12 11 C7 11, 5 10, 5 9 C5 6, 9 3, 12 3 Z" fill="currentColor" />
+                  <path d="M5.5 10.5 C5.5 14, 9 19, 12 21 C15 19, 18.5 14, 18.5 10.5 Z" fill="currentColor" />
+                </svg>
+                <span>{method}</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex items-center gap-12 pr-12 flex-shrink-0">
+            {items.map((method, idx) => (
+              <span key={`${method}-dup-${idx}`} className="flex-shrink-0 flex items-center gap-3.5">
+                <svg width="9" height="9" className="text-olive flex-shrink-0 opacity-80" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3 C15 3, 19 6, 19 9 C19 10, 17 11, 12 11 C7 11, 5 10, 5 9 C5 6, 9 3, 12 3 Z" fill="currentColor" />
+                  <path d="M5.5 10.5 C5.5 14, 9 19, 12 21 C15 19, 18.5 14, 18.5 10.5 Z" fill="currentColor" />
+                </svg>
+                <span>{method}</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

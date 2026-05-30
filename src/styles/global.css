@@ -67,10 +67,8 @@ a:focus-visible {
 
 .marquee-content {
   display: flex;
-  gap: 3rem;
-  padding-right: 3rem;
+  width: max-content;
   animation: marquee 12s linear infinite;
-  min-width: 100%;
   will-change: transform;
   transform: translate3d(0, 0, 0);
 }
