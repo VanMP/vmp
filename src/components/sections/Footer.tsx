@@ -63,7 +63,7 @@ export default function Footer({
             <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
             <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
           </svg>
-          <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine text-center">
+          <span className="font-serif text-xs sm:text-sm md:text-lg font-bold tracking-wide text-wine text-center whitespace-nowrap">
             {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
           </span>
         </div>
