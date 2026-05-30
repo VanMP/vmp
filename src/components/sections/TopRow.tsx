@@ -9,7 +9,7 @@ export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps)
   return (
     <header className="px-6 pt-6 md:px-8 md:pt-8 flex flex-col md:flex-row justify-between items-stretch gap-6 w-full font-sans">
       {/* Left: Logo Box with Language Toggle */}
-      <div className="relative border border-border-soft bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
+      <div className="relative border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
         
         {/* Discrete background autumn oak leaf ornament */}
         <div className="absolute bottom-1 right-1 w-16 h-16 text-terracotta/8 pointer-events-none select-none">
@@ -80,7 +80,7 @@ export default function TopRow({ lang = "pt", setLang = () => {} }: TopRowProps)
       </div>
 
       {/* Right: Contact Box with high-contrast CV buttons */}
-      <div className="border border-border-soft bg-surface p-5 flex flex-col justify-between items-start md:items-end gap-3 rounded-xl min-w-[280px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
+      <div className="border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start md:items-end gap-3 rounded-xl min-w-[280px] md:h-[135px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
         <div className="flex flex-col gap-1.5 w-full md:items-end">
           <a href="mailto:vanessa.smartinsp@gmail.com" className="hover:text-wine transition-colors font-mono text-xs md:text-sm font-semibold text-txt-muted flex items-center gap-2">
             <svg width="16" height="16" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
