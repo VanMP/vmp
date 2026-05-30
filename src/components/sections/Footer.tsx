@@ -7,43 +7,7 @@ interface FooterProps {
 export default function Footer({ lang = "pt" }: FooterProps) {
   return (
     <footer className="w-full flex flex-col mt-auto font-sans px-6 py-2 md:px-8 md:py-4 gap-6">
-      {/* 1. Confidentiality & Ethics Warning (styled elegantly before the main bar) */}
-      <div className="relative px-6 py-5 md:px-8 md:py-6 border border-border-soft/60 bg-surface/40 rounded-2xl text-center text-[10px] md:text-[11px] text-txt-muted leading-relaxed overflow-hidden shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
-        
-        {/* Detailed autumn branch overlays with berries flanking the disclaimer */}
-        <div className="absolute top-1/2 left-6 -translate-y-1/2 w-10 h-10 text-olive/35 pointer-events-none hidden md:block rotate-12">
-          <svg width="40" height="40" className="w-full h-full" viewBox="0 0 40 40" fill="currentColor">
-            <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
-            <path d="M20 22 C 23 18, 27 17, 30 16 C 25 19, 22 23, 20 22 Z" />
-            <circle cx="26" cy="17" r="3" fill="#774F4C" />
-            <circle cx="16" cy="24" r="2.5" fill="#774F4C" />
-          </svg>
-        </div>
-        <div className="absolute top-1/2 right-6 -translate-y-1/2 w-10 h-10 text-olive/35 pointer-events-none hidden md:block -scale-x-100 -rotate-12">
-          <svg width="40" height="40" className="w-full h-full" viewBox="0 0 40 40" fill="currentColor">
-            <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-            <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
-            <path d="M20 22 C 23 18, 27 17, 30 16 C 25 19, 22 23, 20 22 Z" />
-            <circle cx="26" cy="17" r="3" fill="#774F4C" />
-            <circle cx="16" cy="24" r="2.5" fill="#774F4C" />
-          </svg>
-        </div>
 
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-2.5 relative z-10">
-          <span className="font-bold text-wine uppercase tracking-wider flex items-center justify-center gap-1.5 flex-shrink-0">
-            <svg className="w-4 h-4 text-wine flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            {lang === "pt" ? "Nota de Confidencialidade:" : "Confidentiality Note:"}
-          </span>
-          <span>
-            {lang === "pt"
-              ? "Os estudos apresentados neste portfólio utilizam dados consolidados ou descaracterizados para preservar o sigilo comercial e a propriedade intelectual de clientes reais."
-              : "The case studies presented in this portfolio utilize aggregated or anonymized data to preserve the commercial secrets and intellectual property of actual clients."}
-          </span>
-        </div>
-      </div>
 
       {/* 2. Light Elegant Card Footer Bar */}
       <div className="relative bg-surface border border-[#3B4A28]/40 px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden rounded-2xl shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
