@@ -43,17 +43,12 @@ export default function PrivacyModal({ isOpen, onClose, lang = "pt" }: PrivacyMo
         </button>
 
         {/* Header */}
-        <div className="mb-4 pr-6 flex-shrink-0">
-          <div className="flex items-center gap-2">
-            <svg width="15" height="15" className="w-3.5 h-3.5 text-olive" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-            </svg>
-            <span className="text-xs uppercase tracking-wider font-extrabold text-olive font-mono">
-              {lang === "pt" ? "Privacidade & Termos" : "Privacy & Terms"}
-            </span>
-          </div>
-          <h3 className="font-serif text-xl md:text-2xl font-extrabold text-wine tracking-tight mt-1">
-            {lang === "pt" ? "Políticas de Privacidade" : "Privacy Policy"}
+        <div className="mb-4 pr-6 flex-shrink-0 flex items-center gap-2">
+          <svg width="20" height="20" className="w-5 h-5 text-olive flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+          </svg>
+          <h3 className="font-serif text-xl md:text-2xl font-extrabold text-wine tracking-tight">
+            {lang === "pt" ? "Termos de Privacidade" : "Privacy Terms"}
           </h3>
         </div>
 
