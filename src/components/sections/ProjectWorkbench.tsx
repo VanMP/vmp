@@ -1396,14 +1396,14 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
 
               {/* Revenue Scenario */}
               <path d="M 25 85 Q 110 25 190 85" fill="none" stroke="#4E5F2A" strokeWidth="2" />
-              <text x="155" y="58" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
+              <text x="155" y="48" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
                 {lang === "pt" ? "Receita Estimada" : "Estimated Revenue"}
               </text>
 
               {/* Optimal price point */}
-              <line x1="110" y1="40" x2="110" y2="85" stroke="#8A6535" strokeWidth="0.75" strokeDasharray="2,2" />
-              <circle cx="110" cy="40" r="3" fill="#9C8538" stroke="#2C2822" strokeWidth="0.5" />
-              <text x="110" y="32" textAnchor="middle" className="text-[6px] fill-brown font-bold font-sans">
+              <line x1="110" y1="55" x2="110" y2="85" stroke="#8A6535" strokeWidth="0.75" strokeDasharray="2,2" />
+              <circle cx="110" cy="55" r="3" fill="#9C8538" stroke="#2C2822" strokeWidth="0.5" />
+              <text x="110" y="47" textAnchor="middle" className="text-[6px] fill-brown font-bold font-sans">
                 {lang === "pt" ? "Ótimo: R$ 38" : "Optimal: R$ 38"}
               </text>
             </svg>
