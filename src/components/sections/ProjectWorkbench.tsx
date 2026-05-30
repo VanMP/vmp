@@ -738,20 +738,20 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
       )}
 
       {true && (
-        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] md:h-[680px] relative">
+        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto md:h-[680px] relative">
         
-        {/* Left Navigation Sidebar */}
-        <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-4 flex flex-col justify-between gap-6 overflow-y-auto transition-all duration-300 flex-shrink-0 ${
-          sidebarCollapsed ? "w-[64px] items-center px-2" : "w-[260px]"
+        {/* Left/Top Navigation Sidebar/Tabbar */}
+        <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-3 md:p-4 flex flex-row md:flex-col justify-between gap-2 md:gap-6 overflow-x-auto md:overflow-y-auto transition-all duration-300 flex-shrink-0 w-full ${
+          sidebarCollapsed ? "md:w-[64px] md:items-center md:px-2" : "md:w-[260px]"
         }`}>
-          <div className="flex flex-col gap-3 w-full">
+          <div className="flex flex-row md:flex-col gap-2 md:gap-3 w-full">
             {/* Collapse Toggle Button */}
             <button
               onClick={() => {
                 setSidebarCollapsed(!sidebarCollapsed);
                 setDrawerOpen(false);
               }}
-              className={`w-full py-1.5 px-2 rounded-lg border border-border-soft/60 hover:bg-surface hover:text-wine transition-soft text-left flex items-center justify-between text-[10px] font-bold text-txt-muted uppercase tracking-wider cursor-pointer ${
+              className={`hidden md:flex w-full py-1.5 px-2 rounded-lg border border-border-soft/60 hover:bg-surface hover:text-wine transition-soft text-left items-center justify-between text-[10px] font-bold text-txt-muted uppercase tracking-wider cursor-pointer ${
                 sidebarCollapsed ? "justify-center" : ""
               }`}
               title={sidebarCollapsed ? (lang === "pt" ? "Expandir menu" : "Expand menu") : (lang === "pt" ? "Recolher menu" : "Collapse menu")}
@@ -768,38 +768,36 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   setDrawerOpen(activeDrawer !== "projects" || !drawerOpen);
                 }
               }}
-              className={`w-full text-left p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer ${
+              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
                 activeDrawer === "projects"
                   ? "bg-olive border-olive text-white shadow-sm"
                   : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-              } ${sidebarCollapsed ? "justify-center px-1.5" : ""}`}
+              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
               title={lang === "pt" ? "Projetos" : "Projects"}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
                 <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                 </svg>
-                {!sidebarCollapsed && (
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold leading-tight">
-                      {lang === "pt" ? "Projetos" : "Projects"}
-                    </span>
-                    <span className={`text-[9px] font-medium ${activeDrawer === "projects" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "Casos de estudo" : "Case studies"}
-                    </span>
-                  </div>
-                )}
+                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                  <span className="text-[11px] md:text-xs font-bold leading-tight">
+                    {lang === "pt" ? "Projetos" : "Projects"}
+                  </span>
+                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "projects" ? "text-surface/80" : "text-txt-muted"}`}>
+                    {lang === "pt" ? "Casos de estudo" : "Case studies"}
+                  </span>
+                </div>
               </div>
               {!sidebarCollapsed && (
-                <span className={`text-xs transition-transform duration-200 ${activeDrawer === "projects" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "projects" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
                   ➔
                 </span>
               )}
             </button>
 
-            {/* List of projects inside sidebar (only when expanded) */}
+            {/* List of projects inside sidebar (only when expanded and on desktop) */}
             {!sidebarCollapsed && activeDrawer === "projects" && (
-              <div className="flex flex-col gap-1 pl-2 mt-1 max-h-[220px] overflow-y-auto border-l border-border-soft/60">
+              <div className="hidden md:flex flex-col gap-1 pl-2 mt-1 max-h-[220px] overflow-y-auto border-l border-border-soft/60">
                 {projects.map((p) => {
                   const isSelected = p.id === selectedProjectId;
                   return (
@@ -823,81 +821,73 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
             )}
 
             {/* Tab 2: Métodos */}
-            {true && (
-              <button
-                onClick={() => {
-                  setActiveDrawer("methods");
-                  setDrawerOpen(false);
-                }}
-                className={`w-full text-left p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer ${
-                  activeDrawer === "methods"
-                    ? "bg-wine border-wine text-white shadow-sm"
-                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-                } ${sidebarCollapsed ? "justify-center px-1.5" : ""}`}
-                title={lang === "pt" ? "Métodos" : "Methods"}
-              >
-                <div className="flex items-center gap-3">
-                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  {!sidebarCollapsed && (
-                    <div className="flex flex-col">
-                      <span className="text-xs font-bold leading-tight">
-                        {lang === "pt" ? "Métodos" : "Methods"}
-                      </span>
-                      <span className={`text-[9px] font-medium ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
-                        {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                {!sidebarCollapsed && (
-                  <span className={`text-xs transition-transform duration-200 ${activeDrawer === "methods" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                    ➔
+            <button
+              onClick={() => {
+                setActiveDrawer("methods");
+                setDrawerOpen(false);
+              }}
+              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
+                activeDrawer === "methods"
+                  ? "bg-wine border-wine text-white shadow-sm"
+                  : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+              title={lang === "pt" ? "Métodos" : "Methods"}
+            >
+              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                  <span className="text-[11px] md:text-xs font-bold leading-tight">
+                    {lang === "pt" ? "Métodos" : "Methods"}
                   </span>
-                )}
-              </button>
-            )}
+                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
+                    {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
+                  </span>
+                </div>
+              </div>
+              {!sidebarCollapsed && (
+                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "methods" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                  ➔
+                </span>
+              )}
+            </button>
 
             {/* Tab 3: Stack */}
-            {true && (
-              <button
-                onClick={() => {
-                  setActiveDrawer("stack");
-                  setDrawerOpen(false);
-                }}
-                className={`w-full text-left p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer ${
-                  activeDrawer === "stack"
-                    ? "bg-brown border-brown text-white shadow-sm"
-                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-                } ${sidebarCollapsed ? "justify-center px-1.5" : ""}`}
-                title="Stack"
-              >
-                <div className="flex items-center gap-3">
-                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {!sidebarCollapsed && (
-                    <div className="flex flex-col">
-                      <span className="text-xs font-bold leading-tight">Stack</span>
-                      <span className={`text-[9px] font-medium ${activeDrawer === "stack" ? "text-surface/80" : "text-txt-muted"}`}>
-                        {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                {!sidebarCollapsed && (
-                  <span className={`text-xs transition-transform duration-200 ${activeDrawer === "stack" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                    ➔
+            <button
+              onClick={() => {
+                setActiveDrawer("stack");
+                setDrawerOpen(false);
+              }}
+              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
+                activeDrawer === "stack"
+                  ? "bg-brown border-brown text-white shadow-sm"
+                  : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+              title="Stack"
+            >
+              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                  <span className="text-[11px] md:text-xs font-bold leading-tight">Stack</span>
+                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "stack" ? "text-surface/80" : "text-txt-muted"}`}>
+                    {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
                   </span>
-                )}
-              </button>
-            )}
+                </div>
+              </div>
+              {!sidebarCollapsed && (
+                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "stack" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                  ➔
+                </span>
+              )}
+            </button>
           </div>
 
-          {/* Sidebar Bottom Note (only when expanded) */}
+          {/* Sidebar Bottom Note (only when expanded and on desktop) */}
           {!sidebarCollapsed && (
-            <div className="bg-surface/80 border border-border-soft/80 p-4 rounded-xl flex gap-2.5 items-start shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
+            <div className="hidden md:flex bg-surface/80 border border-border-soft/80 p-4 rounded-xl gap-2.5 items-start shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
               <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -912,10 +902,10 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
           )}
         </nav>
 
-        {/* Floating Selector Drawer (Gaveta) */}
-        <div className={`absolute top-0 bottom-0 left-[64px] w-[320px] bg-frost border-r border-border-soft shadow-lg z-30 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col p-5 gap-4 overflow-y-auto ${
+        {/* Floating Selector Drawer (Gaveta) - Desktop Only */}
+        <div className={`hidden md:flex absolute top-0 bottom-0 left-[64px] w-[320px] bg-frost border-r border-border-soft shadow-lg z-30 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-col p-5 gap-4 overflow-y-auto ${
           sidebarCollapsed && drawerOpen && activeDrawer === "projects"
-            ? "translate-x-0 opacity-100" 
+            ? "translate-x-0 opacity-100 pointer-events-auto" 
             : "-translate-x-[390px] opacity-0 pointer-events-none"
         }`}>
           <div className="flex justify-between items-center pb-2 border-b border-border-soft/50">
@@ -958,12 +948,36 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
         </div>
 
         {/* Right Content Panel - Central workbench area */}
-        <main className="p-6 md:p-8 flex flex-col justify-between bg-surface/10 min-h-[500px] md:h-full overflow-hidden">
+        <main className="p-4 md:p-8 flex flex-col justify-between bg-surface/10 min-h-[500px] md:h-full md:overflow-hidden overflow-visible">
           
-          <div className="flex-1 w-full overflow-y-auto pr-1 md:pr-3 min-h-0">
+          <div className="flex-1 w-full md:overflow-y-auto pr-1 md:pr-3 min-h-0">
+            
+            {/* Mobile Project Selector: Beautiful horizontally scrollable list at the top on mobile */}
+            {activeDrawer === "projects" && (
+              <div className="md:hidden w-full overflow-x-auto pb-3 mb-4 flex gap-2 border-b border-border-soft/40 flex-nowrap scrollbar-none">
+                {projects.map((p) => {
+                  const isSelected = p.id === selectedProjectId;
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => setSelectedProjectId(p.id)}
+                      className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5 transition-soft flex-shrink-0 cursor-pointer ${
+                        isSelected
+                          ? "bg-olive border-olive text-white shadow-xs"
+                          : "bg-surface border-border-soft/60 text-txt-muted hover:text-txt-main"
+                      }`}
+                    >
+                      {getProjectIcon(p.id, isSelected ? "text-white" : "text-olive")}
+                      <span>{lang === "en" ? p.shortTitleEn : p.shortTitle}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
             {activeDrawer === "projects" && currentProject && (
               /* PROJECT VIEW */
-              <article className="grid grid-cols-1 xl:grid-cols-[1fr_1.1fr] gap-8 animate-fadeIn w-full relative">
+              <article className="grid grid-cols-1 xl:grid-cols-[1fr_1.1fr] gap-6 md:gap-8 animate-fadeIn w-full relative">
                 {/* Subtle chestnut leaf background watermark in the projects container */}
                 <div className="absolute bottom-2 right-[48%] w-24 h-24 text-olive/4 hidden md:block pointer-events-none select-none">
                   <svg width="96" height="96" className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
@@ -1085,7 +1099,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
             {activeDrawer === "methods" && (
               /* METHOD SELECTION VIEW */
-              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-8 animate-fadeIn">
+              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
                 {/* Method Category Lists */}
                 <div className="flex flex-col gap-4">
                   <div>
@@ -1098,7 +1112,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         : "Select a methodology below to see details and cases where it was applied."}
                     </p>
                   </div>
-                  <div className="space-y-4 max-h-[380px] overflow-y-auto pr-2">
+                  <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
                     {Object.entries(methodGroups).map(([groupName, items]) => (
                       <div key={groupName} className="flex flex-col gap-1.5">
                         <span className="text-xs font-extrabold text-brown uppercase tracking-widest block font-mono">
@@ -1111,7 +1125,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               <button
                                 key={m.id}
                                 onClick={() => setSelectedMethodId(m.id)}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft ${
+                                className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${
                                   isSelected
                                     ? "bg-wine text-white border-wine"
                                     : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
@@ -1128,7 +1142,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </div>
 
                 {/* Right Details Panel for Method */}
-                <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden">
+                <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
                   {/* Subtle Maple Leaf watermark */}
                   <div className="absolute bottom-2 right-2 w-20 h-20 text-wine/3 pointer-events-none select-none">
                     <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
@@ -1162,7 +1176,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               setSelectedProjectId(p.id);
                               setActiveDrawer("projects");
                             }}
-                            className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1"
+                            className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
                           >
                             <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
                               {lang === "en" ? p.categoryEn : p.category}
@@ -1180,7 +1194,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
             {activeDrawer === "stack" && (
               /* STACK SELECTION VIEW */
-              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-8 animate-fadeIn">
+              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
                 {/* Stack categories & list */}
                 <div className="flex flex-col gap-4">
                   <div>
@@ -1193,7 +1207,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         : "Select a tool from the stack to read practical notes on professional use."}
                     </p>
                   </div>
-                  <div className="space-y-4 max-h-[380px] overflow-y-auto pr-2">
+                  <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
                     {Object.entries(stackGroups).map(([catName, items]) => (
                       <div key={catName} className="flex flex-col gap-1.5">
                         <span className="text-xs font-extrabold text-wine uppercase tracking-widest block font-mono">
@@ -1206,7 +1220,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               <button
                                 key={item.name}
                                 onClick={() => setSelectedStackName(item.name)}
-                                className={`px-3 py-1.5 border rounded-lg text-xs md:text-sm font-mono transition-soft ${
+                                className={`px-3 py-1.5 border rounded-lg text-xs md:text-sm font-mono transition-soft cursor-pointer ${
                                   isSelected
                                     ? "bg-brown text-white border-brown"
                                     : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
@@ -1251,7 +1265,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
           {/* Carousel Slider Controls (Only visible in projects mode) */}
           {activeDrawer === "projects" && (
-            <div className="mt-8 pt-4 border-t border-border-soft/30 flex items-center justify-center gap-6">
+            <div className="mt-6 md:mt-8 pt-4 border-t border-border-soft/30 flex items-center justify-center gap-6">
               {/* Prev Button */}
               <button
                 onClick={handlePrevProject}
