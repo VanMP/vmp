@@ -45,11 +45,11 @@ export default function Footer({ lang = "pt" }: FooterProps) {
         </div>
       </div>
 
-      {/* 2. Full-Width Dark Olive Footer Bar */}
-      <div className="relative bg-olive text-surface px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden">
+      {/* 2. Full-Width Light Elegant Footer Bar */}
+      <div className="relative bg-surface border-t border-border-soft px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden shadow-[0_-2px_10px_rgba(44,40,34,0.015)]">
         
         {/* Wind-blown scattering of autumn leaves in the footer background */}
-        <div className="absolute right-4 bottom-1 w-64 h-20 text-white/12 pointer-events-none select-none overflow-hidden">
+        <div className="absolute right-4 bottom-1 w-64 h-20 text-olive/5 pointer-events-none select-none overflow-hidden">
           <svg width="256" height="80" className="w-full h-full opacity-80" viewBox="0 0 240 80" fill="currentColor">
             {/* Wind Swirls */}
             <path d="M10 50 C 60 40, 110 55, 160 35 C 190 23, 210 35, 220 30" stroke="currentColor" strokeWidth="0.75" strokeDasharray="3,4" fill="none" opacity="0.3" />
@@ -86,14 +86,14 @@ export default function Footer({ lang = "pt" }: FooterProps) {
 
         {/* Left Side: Call to Action with Autumn Branch Icon */}
         <div className="flex items-center gap-3 relative z-10">
-          <svg className="w-5 h-5 text-surface/95 flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
+          <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
             <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
             <path d="M12 28 C 15 24, 19 23, 22 22 C 17 25, 14 29, 12 28 Z" />
             <path d="M19 22 C 22 18, 26 17, 29 16 C 24 19, 21 23, 19 22 Z" />
-            <circle cx="26" cy="17" r="3" fill="#FAF6EF" />
-            <circle cx="16" cy="24" r="2.5" fill="#FAF6EF" />
+            <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
+            <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
           </svg>
-          <span className="font-serif text-base md:text-lg font-semibold tracking-wide text-surface/90">
+          <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine">
             {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
           </span>
         </div>
@@ -104,7 +104,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
           {/* Email */}
           <a
             href="mailto:vanessa.smartinsp@gmail.com"
-            className="hover:text-surface/80 transition-colors flex items-center gap-2 text-surface/90"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -115,7 +115,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
           {/* Phone */}
           <a
             href="tel:+351922004270"
-            className="hover:text-surface/80 transition-colors flex items-center gap-2 text-surface/90"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -128,7 +128,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
             href="https://www.linkedin.com/in/vanessa-martins-pinto"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-surface/80 transition-colors flex items-center gap-2 text-surface/90"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
               <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
@@ -140,7 +140,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
       </div>
 
       {/* 3. Small Bottom copyright */}
-      <div className="bg-[#2E361D] text-surface/50 text-[10px] text-center py-2.5 border-t border-white/5 font-mono">
+      <div className="bg-frost text-txt-muted/70 text-[10px] text-center py-2.5 border-t border-border-soft/60 font-mono">
         <span>
           {lang === "pt"
             ? `© ${new Date().getFullYear()} Vanessa Martins Pinto. Todos os direitos reservados.`
