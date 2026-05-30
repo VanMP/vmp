@@ -764,8 +764,10 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
             <button
               onClick={() => {
                 setActiveDrawer("projects");
+                // On desktop, clicking the projects tab should just uncollapse the sidebar if collapsed, or act normally.
+                // We do NOT toggle the confusing separate drawer overlay on desktop anymore.
                 if (sidebarCollapsed) {
-                  setDrawerOpen(activeDrawer !== "projects" || !drawerOpen);
+                  setSidebarCollapsed(false);
                 }
               }}
               className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
@@ -902,50 +904,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
           )}
         </nav>
 
-        {/* Floating Selector Drawer (Gaveta) - Desktop Only */}
-        <div className={`hidden md:flex absolute top-0 bottom-0 left-[64px] w-[320px] bg-frost border-r border-border-soft shadow-lg z-30 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-col p-5 gap-4 overflow-y-auto ${
-          sidebarCollapsed && drawerOpen && activeDrawer === "projects"
-            ? "translate-x-0 opacity-100 pointer-events-auto" 
-            : "-translate-x-[390px] opacity-0 pointer-events-none"
-        }`}>
-          <div className="flex justify-between items-center pb-2 border-b border-border-soft/50">
-            <span className="text-xs font-extrabold text-wine uppercase tracking-wider font-mono">
-              {lang === "pt" ? "Projetos" : "Projects"}
-            </span>
-            <button
-              onClick={() => setDrawerOpen(false)}
-              className="text-txt-muted hover:text-wine font-bold text-xs p-1 cursor-pointer"
-            >
-              ✕
-            </button>
-          </div>
 
-          {/* Drawer content: Projects List */}
-          <div className="flex flex-col gap-2">
-            {projects.map((p) => {
-              const isSelected = p.id === selectedProjectId;
-              return (
-                <button
-                  key={p.id}
-                  onClick={() => {
-                    setSelectedProjectId(p.id);
-                    setDrawerOpen(false);
-                  }}
-                  className={`text-left text-xs px-3.5 py-2.5 rounded-xl border transition-soft flex items-center gap-3.5 cursor-pointer ${
-                    isSelected
-                      ? "bg-olive border-olive text-white font-bold shadow-[0_2px_8px_rgba(78,95,42,0.15)]"
-                      : "bg-surface/60 border-border-soft/40 hover:bg-surface hover:border-border-soft text-txt-muted hover:text-txt-main font-medium"
-                  }`}
-                >
-                  {getProjectIcon(p.id, isSelected ? "text-white flex-shrink-0" : "text-olive flex-shrink-0")}
-                  <span className="block truncate">
-                    {lang === "en" ? p.shortTitleEn : p.shortTitle}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
 
         {/* Right Content Panel - Central workbench area */}
         <main className="p-4 md:p-8 flex flex-col justify-between bg-surface/10 min-h-[500px] md:h-full md:overflow-hidden overflow-visible">
