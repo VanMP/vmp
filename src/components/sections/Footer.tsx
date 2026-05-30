@@ -5,6 +5,7 @@ interface FooterProps {
 }
 
 export default function Footer({ lang = "pt" }: FooterProps) {
+  return (
     <footer className="w-full flex flex-col mt-auto font-sans px-6 py-2 md:px-8 md:py-4 gap-6">
       {/* 1. Confidentiality & Ethics Warning (styled elegantly before the main bar) */}
       <div className="relative px-6 py-5 md:px-8 md:py-6 border border-border-soft/60 bg-surface/40 rounded-2xl text-center text-[10px] md:text-[11px] text-txt-muted leading-relaxed overflow-hidden shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
