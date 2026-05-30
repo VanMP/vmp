@@ -5,10 +5,9 @@ interface FooterProps {
 }
 
 export default function Footer({ lang = "pt" }: FooterProps) {
-  return (
-    <footer className="w-full flex flex-col mt-auto font-sans">
+    <footer className="w-full flex flex-col mt-auto font-sans px-6 py-2 md:px-8 md:py-4 gap-6">
       {/* 1. Confidentiality & Ethics Warning (styled elegantly before the main bar) */}
-      <div className="relative px-6 py-5 md:px-8 md:py-6 border-t border-border-soft/40 bg-frost/30 text-center text-[10px] md:text-[11px] text-txt-muted leading-relaxed overflow-hidden">
+      <div className="relative px-6 py-5 md:px-8 md:py-6 border border-border-soft/60 bg-surface/40 rounded-2xl text-center text-[10px] md:text-[11px] text-txt-muted leading-relaxed overflow-hidden shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
         
         {/* Detailed autumn branch overlays with berries flanking the disclaimer */}
         <div className="absolute top-1/2 left-6 -translate-y-1/2 w-10 h-10 text-olive/35 pointer-events-none hidden md:block rotate-12">
@@ -45,8 +44,8 @@ export default function Footer({ lang = "pt" }: FooterProps) {
         </div>
       </div>
 
-      {/* 2. Full-Width Light Elegant Footer Bar */}
-      <div className="relative bg-surface border-t-2 border-[#3B4A28] px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden shadow-[0_-2px_10px_rgba(44,40,34,0.015)]">
+      {/* 2. Light Elegant Card Footer Bar */}
+      <div className="relative bg-surface border border-border-soft border-t-2 border-t-[#3B4A28] px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden rounded-2xl shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
         
         {/* Wind-blown scattering of autumn leaves in the footer background */}
         <div className="absolute right-4 bottom-1 w-64 h-20 text-olive/5 pointer-events-none select-none overflow-hidden">
@@ -140,7 +139,7 @@ export default function Footer({ lang = "pt" }: FooterProps) {
       </div>
 
       {/* 3. Small Bottom copyright */}
-      <div className="bg-frost text-txt-muted/70 text-[10px] text-center py-2.5 border-t border-border-soft/60 font-mono">
+      <div className="bg-frost border border-border-soft/60 text-txt-muted/70 text-[10px] text-center py-2.5 rounded-xl font-mono">
         <span>
           {lang === "pt"
             ? `© ${new Date().getFullYear()} Vanessa Martins Pinto. Todos os direitos reservados.`
