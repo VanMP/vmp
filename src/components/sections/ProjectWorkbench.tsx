@@ -1396,7 +1396,7 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
 
               {/* Revenue Scenario */}
               <path d="M 25 85 Q 110 25 190 85" fill="none" stroke="#4E5F2A" strokeWidth="2" />
-              <text x="162" y="60" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
+              <text x="165" y="50" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
                 {lang === "pt" ? "Receita Estimada" : "Estimated Revenue"}
               </text>
 
