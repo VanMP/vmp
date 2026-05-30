@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# VSMP Portfolio - Vanessa Schemes Martins Pinto
 
-```sh
-npm create astro@latest -- --template minimal
+This repository contains the source code for the professional portfolio website of **Vanessa Schemes Martins Pinto** (VSMP). The site is built with a focus on modern aesthetics, fluid layout, responsive interactive elements, and serverless direct-delivery communications.
+
+The production version of the portfolio is deployed and accessible at:  
+👉 **[vsmp.pages.dev](https://vsmp.pages.dev)**
+
+---
+
+## 📖 Documentation Guides
+
+To make development and updates as easy as possible, we have split our documentation into two target guides:
+
+1. **[Developer Guide (developer.md)](file:///p:/Web/vmp/developer.md)**
+   - Setup instructions, dependencies, and configuration.
+   - Configuring the email/contact form (Web3Forms access keys).
+   - Changing static assets (updating CV PDFs, Favicons).
+   - Deploying directly to Cloudflare Pages.
+
+2. **[AI Agents Guide (agents.md)](file:///p:/Web/vmp/agents.md)**
+   - Technical guidelines for AI Coding Assistants (Copilot, Cursor, Gemini).
+   - Theme variables and custom design tokens (Olive, Wine, Stone colors).
+   - Key architectural layout structures.
+   - Smooth continuous scrolling marquee loop mechanics.
+   - Non-interactive deploy command setups.
+
+---
+
+## 🛠️ Main Technologies
+
+- **[Astro v6](https://astro.build/)** – High-performance static site generator.
+- **[React](https://react.dev/)** – Interactive interfaces and state-driven components.
+- **[Tailwind CSS v4](https://tailwindcss.com/)** – Modern utility-first styling with native CSS variables.
+- **[Cloudflare Pages](https://pages.cloudflare.com/)** – Secure, globally distributed static hosting.
+- **[Web3Forms](https://web3forms.com/)** – Contact form emails without backend infrastructure.
+
+---
+
+## ⚡ Quick Commands
+
+Run these commands from the root directory of the project:
+
+```bash
+# Install dependencies
+npm install
+
+# Start local development server (http://localhost:4321)
+npm run dev
+
+# Build the static site production output (dist/)
+npm run build
+
+# Deploy output to Cloudflare Pages (requires wrangler login)
+npx wrangler pages deploy dist --project-name vsmp
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
