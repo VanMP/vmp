@@ -23,7 +23,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="h-3 mb-1"></div>
             <span className="font-serif text-3xl font-extrabold tracking-tight text-wine leading-none">VMP</span>
-            <span className="text-[9px] font-sans font-bold text-txt-muted tracking-tight mt-1">Vanessa Martins Pinto</span>
+            <span className="text-[9px] font-sans font-bold text-txt-muted tracking-tight mt-1">Vanessa Schemes Martins Pinto</span>
           </div>
           
           {/* Language Toggle */}

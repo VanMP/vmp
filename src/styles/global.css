@@ -69,8 +69,16 @@ a:focus-visible {
   display: flex;
   gap: 3rem;
   padding-right: 3rem;
-  animation: marquee 40s linear infinite;
+  animation: marquee 12s linear infinite;
   min-width: 100%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+  .marquee-content {
+    animation: marquee 45s linear infinite;
+  }
 }
 
 .marquee-container:hover .marquee-content {
