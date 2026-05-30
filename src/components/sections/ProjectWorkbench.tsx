@@ -1396,14 +1396,14 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
 
               {/* Revenue Scenario */}
               <path d="M 25 85 Q 110 25 190 85" fill="none" stroke="#4E5F2A" strokeWidth="2" />
-              <text x="110" y="38" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
+              <text x="155" y="58" textAnchor="middle" className="text-[6px] fill-olive font-bold font-sans">
                 {lang === "pt" ? "Receita Estimada" : "Estimated Revenue"}
               </text>
 
               {/* Optimal price point */}
               <line x1="110" y1="40" x2="110" y2="85" stroke="#8A6535" strokeWidth="0.75" strokeDasharray="2,2" />
               <circle cx="110" cy="40" r="3" fill="#9C8538" stroke="#2C2822" strokeWidth="0.5" />
-              <text x="115" y="35" className="text-[6px] fill-brown font-bold font-sans">
+              <text x="110" y="32" textAnchor="middle" className="text-[6px] fill-brown font-bold font-sans">
                 {lang === "pt" ? "Ótimo: R$ 38" : "Optimal: R$ 38"}
               </text>
             </svg>
@@ -1456,30 +1456,30 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
             {lang === "pt" ? "Fluxo PLN" : "NLP Pipeline"}
           </span>
           <div className="aspect-[2.2/1] w-full flex items-center justify-center py-1">
-            <svg width="220" height="100" viewBox="0 0 220 100" className="w-full h-full text-txt-main">
+            <svg width="280" height="100" viewBox="0 0 280 100" className="w-full h-full text-txt-main">
               {/* Box 1 */}
-              <rect x="10" y="35" width="45" height="25" rx="6" fill="#FAF5EB" stroke="#E3DCD0" strokeWidth="1" />
-              <text x="32.5" y="50" textAnchor="middle" className="text-[6px] fill-txt-main font-bold font-sans">
+              <rect x="10" y="35" width="60" height="25" rx="6" fill="#FAF5EB" stroke="#E3DCD0" strokeWidth="1" />
+              <text x="40" y="50" textAnchor="middle" className="text-[6px] fill-txt-main font-bold font-sans">
                 {lang === "pt" ? "Texto Bruto" : "Raw Text"}
               </text>
 
               {/* Arrow 1 */}
-              <path d="M 55 47.5 H 75" fill="none" stroke="#8A6535" strokeWidth="1" />
-              <polygon points="75,44.5 80,47.5 75,50.5" fill="#8A6535" />
+              <path d="M 70 47.5 H 90" fill="none" stroke="#8A6535" strokeWidth="1" />
+              <polygon points="90,44.5 95,47.5 90,50.5" fill="#8A6535" />
 
               {/* Box 2 */}
-              <rect x="80" y="35" width="50" height="25" rx="6" fill="#4E5F2A" stroke="#4E5F2A" strokeWidth="1" />
-              <text x="105" y="50" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
+              <rect x="95" y="35" width="80" height="25" rx="6" fill="#4E5F2A" stroke="#4E5F2A" strokeWidth="1" />
+              <text x="135" y="50" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
                 {lang === "pt" ? "Vetor / Modelagem" : "Vector / Modeling"}
               </text>
 
               {/* Arrow 2 */}
-              <path d="M 130 47.5 H 150" fill="none" stroke="#8A6535" strokeWidth="1" />
-              <polygon points="150,44.5 155,47.5 150,50.5" fill="#8A6535" />
+              <path d="M 175 47.5 H 195" fill="none" stroke="#8A6535" strokeWidth="1" />
+              <polygon points="195,44.5 200,47.5 195,50.5" fill="#8A6535" />
 
               {/* Box 3 */}
-              <rect x="155" y="35" width="55" height="25" rx="6" fill="#774F4C" stroke="#774F4C" strokeWidth="1" />
-              <text x="182.5" y="50" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
+              <rect x="200" y="35" width="70" height="25" rx="6" fill="#774F4C" stroke="#774F4C" strokeWidth="1" />
+              <text x="235" y="50" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
                 {lang === "pt" ? "Métricas / Tópicos" : "Metrics / Topics"}
               </text>
             </svg>
@@ -1494,35 +1494,35 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
             {lang === "pt" ? "Fluxo RAG" : "RAG Pipeline"}
           </span>
           <div className="aspect-[2.2/1] w-full flex items-center justify-center py-1">
-            <svg width="220" height="100" viewBox="0 0 220 100" className="w-full h-full text-txt-main">
+            <svg width="280" height="100" viewBox="0 0 280 100" className="w-full h-full text-txt-main">
               {/* Input */}
-              <rect x="5" y="38" width="40" height="22" rx="4" fill="#FAF5EB" stroke="#E3DCD0" strokeWidth="1" />
-              <text x="25" y="51" textAnchor="middle" className="text-[6px] fill-txt-main font-bold font-sans">Prompt</text>
+              <rect x="10" y="38" width="45" height="22" rx="4" fill="#FAF5EB" stroke="#E3DCD0" strokeWidth="1" />
+              <text x="32.5" y="51" textAnchor="middle" className="text-[6px] fill-txt-main font-bold font-sans">Prompt</text>
               
-              <path d="M 45 49 H 58" fill="none" stroke="#8A6535" strokeWidth="0.8" />
-              <polygon points="58,46.5 62,49 58,51.5" fill="#8A6535" />
+              <path d="M 55 49 H 70" fill="none" stroke="#8A6535" strokeWidth="0.8" />
+              <polygon points="70,46.5 74,49 70,51.5" fill="#8A6535" />
 
               {/* Vector Search */}
-              <rect x="62" y="38" width="44" height="22" rx="4" fill="#4E5F2A" stroke="#4E5F2A" strokeWidth="1" />
-              <text x="84" y="51" textAnchor="middle" className="text-[6.5px] fill-white font-bold font-sans">
+              <rect x="74" y="38" width="56" height="22" rx="4" fill="#4E5F2A" stroke="#4E5F2A" strokeWidth="1" />
+              <text x="102" y="51" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
                 {lang === "pt" ? "Busca Vetorial" : "Vector Search"}
               </text>
 
-              <path d="M 106 49 H 118" fill="none" stroke="#8A6535" strokeWidth="0.8" />
-              <polygon points="118,46.5 122,49 118,51.5" fill="#8A6535" />
+              <path d="M 130 49 H 145" fill="none" stroke="#8A6535" strokeWidth="0.8" />
+              <polygon points="145,46.5 149,49 145,51.5" fill="#8A6535" />
 
               {/* Context */}
-              <rect x="122" y="38" width="42" height="22" rx="4" fill="#9C8538" stroke="#9C8538" strokeWidth="1" />
-              <text x="143" y="51" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
+              <rect x="149" y="38" width="56" height="22" rx="4" fill="#9C8538" stroke="#9C8538" strokeWidth="1" />
+              <text x="177" y="51" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">
                 {lang === "pt" ? "Contexto" : "Context"}
               </text>
 
-              <path d="M 164 49 H 174" fill="none" stroke="#8A6535" strokeWidth="0.8" />
-              <polygon points="174,46.5 178,49 174,51.5" fill="#8A6535" />
+              <path d="M 205 49 H 220" fill="none" stroke="#8A6535" strokeWidth="0.8" />
+              <polygon points="220,46.5 224,49 220,51.5" fill="#8A6535" />
 
               {/* LLM Response */}
-              <rect x="178" y="38" width="37" height="22" rx="4" fill="#774F4C" stroke="#774F4C" strokeWidth="1" />
-              <text x="196.5" y="51" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">LLM Resp.</text>
+              <rect x="224" y="38" width="46" height="22" rx="4" fill="#774F4C" stroke="#774F4C" strokeWidth="1" />
+              <text x="247" y="51" textAnchor="middle" className="text-[6px] fill-white font-bold font-sans">LLM Resp.</text>
             </svg>
           </div>
         </div>
