@@ -68,7 +68,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           {/* Email */}
           <a
             href="mailto:vanessa.smartinsp@gmail.com"
-            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold order-2 sm:order-1"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -79,7 +79,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           {/* Message Button in-line with contacts */}
           <button
             onClick={onContactClick}
-            className="px-4 py-1.5 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer flex-shrink-0"
+            className="px-4 py-1.5 bg-surface border border-wine/40 hover:bg-[#542E3B] hover:border-[#542E3B] hover:text-[#FCFAF7] font-sans font-bold text-wine transition-colors text-[10px] uppercase tracking-wider rounded-lg flex items-center justify-center gap-1.5 shadow-xs cursor-pointer flex-shrink-0 order-1 sm:order-2"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -90,7 +90,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           {/* Phone */}
           <a
             href="tel:+351922004270"
-            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold order-3 sm:order-3"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
