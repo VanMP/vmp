@@ -3,9 +3,14 @@ import React from "react";
 interface FooterProps {
   lang?: "pt" | "en";
   onContactClick?: () => void;
+  onPrivacyClick?: () => void;
 }
 
-export default function Footer({ lang = "pt", onContactClick = () => {} }: FooterProps) {
+export default function Footer({ 
+  lang = "pt", 
+  onContactClick = () => {}, 
+  onPrivacyClick = () => {} 
+}: FooterProps) {
   return (
     <footer className="w-full flex flex-col mt-auto font-sans px-6 py-2 md:px-8 md:py-4 gap-6">
 
@@ -115,12 +120,22 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
       </div>
 
       {/* 3. Small Bottom copyright */}
-      <div className="bg-frost border border-border-soft/60 text-txt-muted/70 text-[10px] text-center py-2.5 rounded-xl font-mono">
-        <span>
-          {lang === "pt"
-            ? `© ${new Date().getFullYear()} Vanessa Martins Pinto. Todos os direitos reservados.`
-            : `© ${new Date().getFullYear()} Vanessa Martins Pinto. All rights reserved.`}
-        </span>
+      <div className="flex flex-col gap-2.5 items-center w-full">
+        {/* Privacy Policy Trigger Button */}
+        <button 
+          onClick={onPrivacyClick}
+          className="text-txt-muted/70 hover:text-wine font-mono text-[10px] font-bold underline transition-colors cursor-pointer"
+        >
+          {lang === "pt" ? "Termos de Privacidade" : "Privacy Policy"}
+        </button>
+
+        <div className="w-full bg-frost border border-border-soft/60 text-txt-muted/70 text-[10px] text-center py-2.5 rounded-xl font-mono">
+          <span>
+            {lang === "pt"
+              ? `© ${new Date().getFullYear()} Vanessa Schemes Martins Pinto. Todos os direitos reservados.`
+              : `© ${new Date().getFullYear()} Vanessa Schemes Martins Pinto. All rights reserved.`}
+          </span>
+        </div>
       </div>
     </footer>
   );
