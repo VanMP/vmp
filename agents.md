@@ -77,3 +77,32 @@ $env:CLOUDFLARE_ACCOUNT_ID="0d0f5ef82192385f622050bafa1bb383"; npx wrangler page
 1. **LinkedIn Profile Link**: Ensure social links point to: `https://www.linkedin.com/in/vanessasmp/`
 2. **Metadata Title**: Page title must always be `"Vanessa Schemes Martins Pinto"` or `"VSMP"`.
 3. **GDPR Compliance**: The `PrivacyModal` handles the cookie consent logic. If updated, ensure that `localStorage` key names are preserved to prevent repetitive prompts to existing users.
+
+---
+
+## 🐙 Git & Version Control Best Practices
+
+When committing code or managing branches in this repository, follow these guidelines:
+
+1. **Branch Naming Conventions**:
+   - `main`: Production branch. Keep it clean and compilable.
+   - `feature/description-of-feature`: For new features or layout blocks.
+   - `fix/issue-description`: For bug fixes or mobile alignment updates.
+   - `docs/updating-documentation`: For documentation changes (such as editing these markdown guides).
+
+2. **Commit Message Format (Conventional Commits)**:
+   - Use imperative style and lowercase prefixes:
+     - `feat: add new project display under portfolio`
+     - `fix: correct alignment of stack marquee on mobile`
+     - `docs: update deployment guidelines in developer.md`
+     - `style: adjust margin-top on main layout`
+     - `refactor: clean up ProjectWorkbench state hooks`
+   - Keep commits cohesive; avoid large commits changing unrelated parts of the layout.
+
+3. **Versioning & Tagging**:
+   - Create semantic tags (e.g., `v1.0.0`, `v1.1.0`) on `main` when stable, significant updates are successfully deployed to Cloudflare Pages.
+   - Example command: `git tag -a v1.1.0 -m "Release v1.1.0 - added privacy compliance and layout updates"` followed by `git push origin v1.1.0`.
+
+4. **Safety & Verification**:
+   - Always run `npm run build` locally to verify that TypeScript types, Astro routing, and Vite styling bundle cleanly before adding files to git.
+
