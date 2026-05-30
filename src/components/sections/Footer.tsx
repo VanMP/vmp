@@ -11,7 +11,7 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
 
 
       {/* 2. Light Elegant Card Footer Bar */}
-      <div className="relative bg-surface border border-[#3B4A28]/40 px-6 py-6 md:px-8 md:py-7 flex flex-col lg:flex-row justify-between items-center gap-5 w-full overflow-hidden rounded-2xl shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
+      <div className="relative bg-surface border border-[#3B4A28]/40 px-6 py-6 md:px-8 md:py-6 flex flex-col gap-5 w-full overflow-hidden rounded-2xl shadow-[0_2px_12px_rgba(44,40,34,0.015)]">
         
         {/* Wind-blown scattering of autumn leaves in the footer background */}
         <div className="absolute right-4 bottom-1 w-64 h-20 text-olive/5 pointer-events-none select-none overflow-hidden">
@@ -49,8 +49,8 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           </svg>
         </div>
 
-        {/* Left Side: Call to Action with Autumn Branch Icon & Trigger Button */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-3.5 relative z-10">
+        {/* Row 1: Call to Action (Phrase + Message Button) */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 w-full pb-4 border-b border-border-soft/40 relative z-10">
           <div className="flex items-center gap-3">
             <svg className="w-5 h-5 text-wine flex-shrink-0" width="20" height="20" viewBox="0 0 40 40" fill="currentColor">
               <path d="M5 32 C 12 27, 22 17, 32 12" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" />
@@ -59,13 +59,13 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
               <circle cx="26" cy="17" r="3" fill="#4E5F2A" />
               <circle cx="16" cy="24" r="2.5" fill="#4E5F2A" />
             </svg>
-            <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine">
+            <span className="font-serif text-base md:text-lg font-bold tracking-wide text-wine text-center sm:text-left">
               {lang === "pt" ? "Vamos conversar sobre o seu próximo projeto." : "Let's talk about your next project."}
             </span>
           </div>
           <button
             onClick={onContactClick}
-            className="px-4 py-1.5 bg-[#542E3B] hover:bg-[#774F4C] text-[#FCFAF7] font-sans font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-soft flex items-center justify-center gap-1.5 cursor-pointer"
+            className="px-5 py-2 bg-[#542E3B] hover:bg-[#774F4C] text-[#FCFAF7] font-sans font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-soft flex items-center justify-center gap-1.5 cursor-pointer flex-shrink-0 w-full sm:w-auto"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -74,44 +74,44 @@ export default function Footer({ lang = "pt", onContactClick = () => {} }: Foote
           </button>
         </div>
 
-        {/* Right Side: Social / Contact Links with SVG Icons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 text-xs font-mono relative z-10">
-          
-          {/* Email */}
-          <a
-            href="mailto:vanessa.smartinsp@gmail.com"
-            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
-          >
-            <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            vanessa.smartinsp@gmail.com
-          </a>
+        {/* Row 2: Contact Info Links (Email, Phone, LinkedIn) */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono relative z-10 w-full">
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full justify-center md:justify-start">
+            {/* Email */}
+            <a
+              href="mailto:vanessa.smartinsp@gmail.com"
+              className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+            >
+              <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              vanessa.smartinsp@gmail.com
+            </a>
 
-          {/* Phone */}
-          <a
-            href="tel:+351922004270"
-            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
-          >
-            <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-            </svg>
-            +351 922 004 270
-          </a>
+            {/* Phone */}
+            <a
+              href="tel:+351922004270"
+              className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+            >
+              <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              +351 922 004 270
+            </a>
+          </div>
 
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/vanessa-martins-pinto"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold"
+            className="hover:text-wine transition-colors flex items-center gap-2 text-txt-muted font-semibold flex-shrink-0"
           >
             <svg className="w-4 h-4 flex-shrink-0" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
               <path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" />
             </svg>
             linkedin.com/in/vanessa-martins-pinto
           </a>
-
         </div>
       </div>
 
