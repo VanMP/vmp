@@ -10,7 +10,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
   return (
     <header className="px-6 pt-6 md:px-8 md:pt-8 flex flex-col md:flex-row justify-between items-stretch gap-6 w-full font-sans">
       {/* Left: Logo Box with Language Toggle */}
-      <div className="relative border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start rounded-xl min-w-[220px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
+      <div className="relative border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-center md:items-start rounded-xl min-w-[220px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)] overflow-hidden">
         
         {/* Discrete background autumn oak leaf ornament */}
         <div className="absolute bottom-1 right-1 w-16 h-16 text-terracotta/8 pointer-events-none select-none">
@@ -19,8 +19,8 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
           </svg>
         </div>
 
-        <div className="flex justify-between items-start w-full relative z-10 gap-4">
-          <div className="flex flex-col">
+        <div className="flex flex-col items-center md:flex-row md:justify-between md:items-start w-full relative z-10 gap-4">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="h-3 mb-1"></div>
             <span className="font-serif text-3xl font-extrabold tracking-tight text-wine leading-none">VMP</span>
             <span className="text-[9px] font-sans font-bold text-txt-muted tracking-tight mt-1">Vanessa Martins Pinto</span>
@@ -51,7 +51,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
           </div>
         </div>
         
-        <span className="text-[10px] uppercase tracking-wider text-wine/85 mt-2.5 font-bold relative z-10 border-t border-border-soft/60 pt-2 w-full block">
+        <span className="text-[10px] uppercase tracking-wider text-wine/85 mt-2.5 font-bold relative z-10 border-t border-border-soft/60 pt-2 w-full block text-center md:text-left">
           {lang === "pt" ? "Estatística e Análise" : "Statistics & Analytics"}
         </span>
       </div>
@@ -78,9 +78,9 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
         </svg>
       </div>
 
-      {/* Right: Contact Box with high-contrast CV buttons */}
-      <div className="border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-start md:items-end gap-3 rounded-xl min-w-[280px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
-        <div className="flex flex-col gap-1 w-full md:items-end">
+      {/* Right: Contact Box with high-contrast CV CV buttons */}
+      <div className="border border-[#3B4A28]/40 bg-surface p-5 flex flex-col justify-between items-center md:items-end gap-3 rounded-xl min-w-[280px] md:h-[160px] shadow-[0_2px_8px_rgba(44,40,34,0.02)]">
+        <div className="flex flex-col gap-1 w-full items-center md:items-end">
           <a href="mailto:vanessa.smartinsp@gmail.com" className="hover:text-wine transition-colors font-mono text-xs md:text-sm font-semibold text-txt-muted flex items-center gap-2">
             <svg width="16" height="16" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
