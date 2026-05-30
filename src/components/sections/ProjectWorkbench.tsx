@@ -620,7 +620,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 <span className="font-mono text-[8px] uppercase tracking-wider font-extrabold text-olive block">
                                   {lang === "pt" ? "Métricas e Impacto Realizado" : "Outcome Summary"}
                                 </span>
-                                <p className="font-serif italic text-xs text-wine leading-relaxed font-semibold">
+                                <p className="font-serif italic text-xs md:text-sm text-wine leading-relaxed font-semibold">
                                   {lang === "en" ? activeProject.outcomeEn : activeProject.outcome}
                                 </p>
                               </div>
@@ -1046,7 +1046,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
                         {lang === "pt" ? "Resultado" : "Outcome"}
                       </span>
-                      <p className="text-[11px] font-serif italic text-txt-main leading-relaxed">
+                      <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
                         {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
                       </p>
                     </div>

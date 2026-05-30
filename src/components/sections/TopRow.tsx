@@ -21,9 +21,7 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
 
         <div className="flex justify-between items-start w-full relative z-10 gap-4">
           <div className="flex flex-col">
-            <span className="text-[8px] font-sans font-bold text-terracotta/90 uppercase tracking-widest mb-1">
-              {lang === "pt" ? "Identidade" : "Identity"}
-            </span>
+            <div className="h-3 mb-1"></div>
             <span className="font-serif text-3xl font-extrabold tracking-tight text-wine leading-none">VMP</span>
             <span className="text-[9px] font-sans font-bold text-txt-muted tracking-tight mt-1">Vanessa Martins Pinto</span>
           </div>
