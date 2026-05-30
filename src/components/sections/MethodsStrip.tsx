@@ -36,7 +36,7 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
             <path d="M12 16.5 L12 21" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
           </svg>
           <h3 className="font-serif text-sm md:text-base font-bold text-wine tracking-wide text-center">
-            {lang === "pt" ? "Métodos que utilizo" : "Methods I use"}
+            {lang === "pt" ? "Métodos" : "Methods"}
           </h3>
           <svg width="15" height="15" className="w-3.5 h-3.5 text-terracotta -rotate-12 -scale-x-100 hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3 C11.5 6, 9.5 6, 9 7.5 C8 7, 7 6, 6 6.5 C5 7, 6 8.5, 6 9.5 C4.5 9, 3 8.5, 2 9.5 C1 10.5, 2.5 12, 4 12.5 C3.5 13.5, 3 15, 4 16 C5 17, 6.5 15.5, 7.5 15 C7 16.5, 7 18.5, 8.5 19 C10 19.5, 10.5 17.5, 12 16.5 C13.5 17.5, 14 19.5, 15.5 19 C17 18.5, 17 16.5, 16.5 15 C17.5 15.5, 19 17, 20 16 C21 15, 20.5 13.5, 20 12.5 C21.5 12, 23 10.5, 22 9.5 C21 8.5, 19.5 9, 18 9.5 C18 8.5, 19 7, 18 6.5 C17 6, 16 7, 15 7.5 C14.5 6, 12.5 6, 12 3 Z" />

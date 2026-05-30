@@ -27,7 +27,7 @@ export default function StackStrip({ lang = "pt" }: StackStripProps) {
             <path d="M12 2 C11.5 5, 8.5 7, 6 8 C4.5 8.6, 3.5 10, 4.5 11.5 C5.8 13.5, 9.5 14, 12 15 C14.5 14, 18.2 13.5, 19.5 11.5 C20.5 10, 19.5 8.6, 18 8 C15.5 7, 12.5 5, 12 2 Z" />
           </svg>
           <h3 className="font-serif text-sm md:text-base font-bold text-wine tracking-wide text-center">
-            {lang === "pt" ? "Stack que utilizo" : "Stack I use"}
+            {lang === "pt" ? "Stacks" : "Stacks"}
           </h3>
           <svg width="15" height="15" className="w-3.5 h-3.5 text-mustard -rotate-45 -scale-x-100 hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2 C11.5 5, 8.5 7, 6 8 C4.5 8.6, 3.5 10, 4.5 11.5 C5.8 13.5, 9.5 14, 12 15 C14.5 14, 18.2 13.5, 19.5 11.5 C20.5 10, 19.5 8.6, 18 8 C15.5 7, 12.5 5, 12 2 Z" />
