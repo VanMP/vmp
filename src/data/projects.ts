@@ -96,14 +96,14 @@ export const projects: Project[] = [
           {
             title: "💰 Lucratividade Esperada",
             titleEn: "💰 Expected Profitability",
-            text: "A Campanha A entrega um lucro esperado de R$ 69.996,10 contra R$ 66.247,90 da B. A probabilidade de dominância financeira absoluta de A é de 64.99%.",
-            textEn: "Campaign A delivers an expected profit of R$ 69,996.10 versus R$ 66,247.90 for B. The probability of absolute financial dominance for A is 64.99%."
+            text: "A Campanha A entrega um lucro esperado de R$69.996 contra R$66.247 da B. A probabilidade de dominância financeira absoluta de A é de 64.99%.",
+            textEn: "Campaign A delivers an expected profit of R$69,996 versus R$66,247 for B. The probability of absolute financial dominance for A is 64.99%."
           },
           {
             title: "🚨 Avaliação de Risco",
             titleEn: "🚨 Risk Evaluation",
-            text: "O risco de perda esperada ao escolher a Campanha A é de apenas R$ 2.336,15, enquanto o erro ao escolher a Campanha B carrega um risco de R$ 6.084,36 (quase 3 vezes maior).",
-            textEn: "The expected loss risk when choosing Campaign A is only R$ 2,336.15, whereas the error in choosing Campaign B carries a risk of R$ 6,084.36 (nearly 3 times higher)."
+            text: "O risco de perda esperada ao escolher a Campanha A é de apenas R$2.336, enquanto o erro ao escolher a Campanha B carrega um risco de R$6.084 (quase 3 vezes maior).",
+            textEn: "The expected loss risk when choosing Campaign A is only R$2,336, whereas the error in choosing Campaign B carries a risk of R$6,084 (nearly 3 times higher)."
           }
         ]
       }

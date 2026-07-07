@@ -1260,7 +1260,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                       <h5 className="text-xs md:text-sm font-extrabold text-wine font-sans flex items-center gap-1.5 leading-tight">
                                         {lang === "en" && block.titleEn ? block.titleEn : block.title}
                                       </h5>
-                                      <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium">
+                                      <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
                                         {lang === "en" && block.textEn ? block.textEn : block.text}
                                       </p>
                                     </div>
