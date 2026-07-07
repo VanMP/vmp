@@ -96,8 +96,10 @@ export const projects: Project[] = [
           {
             title: "💰 Lucratividade Esperada",
             titleEn: "💰 Expected Profitability",
-            text: "A Campanha A entrega um lucro esperado de R$69.996 contra R$66.247 da B. A probabilidade de dominância financeira absoluta de A é de 64.99%.",
-            textEn: "Campaign A delivers an expected profit of R$69,996 versus R$66,247 for B. The probability of absolute financial dominance for A is 64.99%."
+            text: `A Campanha A entrega um lucro esperado de R$69.996 contra R$66.247 da B.
+A probabilidade de dominância financeira absoluta de A é de 64.99%.`,
+            textEn: `Campaign A delivers an expected profit of R$69,996 versus R$66,247 for B.
+The probability of absolute financial dominance for A is 64.99%.`
           },
           {
             title: "🚨 Avaliação de Risco",
