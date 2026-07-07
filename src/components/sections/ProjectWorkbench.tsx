@@ -740,7 +740,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
       )}
 
       {true && (
-        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto md:h-[680px] relative">
+        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto md:h-[820px] relative">
 
           {/* Left/Top Navigation Sidebar/Tabbar */}
           <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-3 md:p-4 flex flex-row md:flex-col justify-between gap-2 md:gap-6 overflow-x-auto md:overflow-y-auto transition-all duration-300 flex-shrink-0 w-full ${sidebarCollapsed ? "md:w-[64px] md:items-center md:px-2" : "md:w-[260px]"
@@ -1036,8 +1036,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                             </div>
                           </div>
 
-                          <div className="border-t border-border-soft/30 pt-2 flex items-center gap-2">
-                            <span className="text-[9px] uppercase font-mono font-bold text-txt-main w-20 flex-shrink-0">
+                          <div className="border-t border-border-soft/30 pt-2 flex flex-col gap-1">
+                            <span className="text-[9px] uppercase font-mono font-bold text-txt-main">
                               {lang === "pt" ? "Ferramentas:" : "Tools:"}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
