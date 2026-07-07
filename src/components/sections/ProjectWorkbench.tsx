@@ -1238,6 +1238,37 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               </div>
                             )}
 
+                            {activeSlide.layout === "image-three-blocks" && (
+                              <div className="flex flex-col gap-4 flex-1 justify-between">
+                                {/* Top Image Section */}
+                                <div className="border border-border-soft bg-surface p-3.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] flex justify-center items-center">
+                                  {activeSlide.imagePath ? (
+                                    <img
+                                      src={activeSlide.imagePath}
+                                      alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                                      className="w-full h-auto max-h-[260px] md:max-h-[300px] object-contain rounded-lg"
+                                    />
+                                  ) : (
+                                    <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                                  )}
+                                </div>
+
+                                {/* Bottom Three Blocks Section */}
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                  {(activeSlide.textBlocks || []).map((block, idx) => (
+                                    <div key={idx} className="p-3.5 bg-frost border border-border-soft/60 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-1.5 transition-all hover:border-wine/20">
+                                      <h5 className="text-xs md:text-sm font-extrabold text-wine font-sans flex items-center gap-1.5 leading-tight">
+                                        {lang === "en" && block.titleEn ? block.titleEn : block.title}
+                                      </h5>
+                                      <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium">
+                                        {lang === "en" && block.textEn ? block.textEn : block.text}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
                             {activeSlide.layout === "chart-only" && (
                               <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
                                 {activeSlide.imagePath ? (

@@ -6,9 +6,16 @@ export type ProjectMetric = {
   noteEn?: string;
 };
 
+export type TextBlock = {
+  title: string;
+  titleEn?: string;
+  text: string;
+  textEn?: string;
+};
+
 export type ProjectSlide = {
   id: string;
-  layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only";
+  layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only" | "image-three-blocks";
   title?: string;
   titleEn?: string;
   imagePath?: string;
@@ -16,6 +23,7 @@ export type ProjectSlide = {
   text?: string;
   textEn?: string;
   metrics?: ProjectMetric[];
+  textBlocks?: TextBlock[];
 };
 
 export type Project = {
@@ -74,38 +82,29 @@ export const projects: Project[] = [
     slides: [
       {
         id: "bayesian-slide-1",
-        layout: "legacy",
-        title: "Modelo de Distribuição Beta",
-        titleEn: "Beta Distribution Model",
-        visualType: "ab-bars",
-        metrics: [
-          { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
-          { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Probabilidade Bayesiana", noteEn: "Bayesian Probability" },
-          { label: "Lucro esperado A", labelEn: "Expected profit A", value: "R$ 3.876" }
-        ]
-      },
-      {
-        id: "bayesian-slide-2",
-        layout: "image-text-metric",
-        title: "Análise do Efeito Acumulado",
-        titleEn: "Cumulative Effect Analysis",
-        imagePath: "/images/bayesian-dashboard.png",
-        text: "O dashboard analítico apresenta as curvas de densidade de probabilidade a posteriori para cada variante. Nota-se que, apesar de as médias estarem próximas, a massa de probabilidade de A estar à direita de B é de 90,9%, superando o limite de decisão estabelecido.",
-        textEn: "The analytical dashboard displays the posterior probability density curves for each variant. Although the means are close, the probability mass of A being greater than B is 90.9%, exceeding the established decision threshold.",
-        metrics: [
-          { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Probabilidade Bayes", noteEn: "Bayes Probability" }
-        ]
-      },
-      {
-        id: "bayesian-slide-3",
-        layout: "image-metrics-sidebar",
-        title: "Visão Geral dos Resultados",
-        titleEn: "Results Overview",
-        imagePath: "/images/bayesian-dashboard.png",
-        metrics: [
-          { label: "Conversão A", labelEn: "Conversion A", value: "2,04%", note: "Desconto Direto", noteEn: "Direct Discount" },
-          { label: "Conversão B", labelEn: "Conversion B", value: "1,68%", note: "Pacote Promocional", noteEn: "Bundle Offer" },
-          { label: "Ganho Estimado", labelEn: "Estimated Gain", value: "+21,4%", note: "Aumento relativo", noteEn: "Relative increase" }
+        layout: "image-three-blocks",
+        title: "Distribuições Posteriori e Risco de Decisão",
+        titleEn: "Posterior Distributions & Decision Risk",
+        imagePath: "/images/ab_test_plots.png",
+        textBlocks: [
+          {
+            title: "⚡ Maior Conversão",
+            titleEn: "⚡ Higher Conversion",
+            text: "A Campanha A apresenta 90.8% de probabilidade de ter uma taxa de conversão real superior à Campanha B.",
+            textEn: "Campaign A has a 90.8% probability of having a higher real conversion rate than Campaign B."
+          },
+          {
+            title: "💰 Lucratividade Esperada",
+            titleEn: "💰 Expected Profitability",
+            text: "A Campanha A entrega um lucro esperado de R$ 69.996,10 contra R$ 66.247,90 da B. A probabilidade de dominância financeira absoluta de A é de 64.99%.",
+            textEn: "Campaign A delivers an expected profit of R$ 69,996.10 versus R$ 66,247.90 for B. The probability of absolute financial dominance for A is 64.99%."
+          },
+          {
+            title: "🚨 Avaliação de Risco",
+            titleEn: "🚨 Risk Evaluation",
+            text: "O risco de perda esperada ao escolher a Campanha A é de apenas R$ 2.336,15, enquanto o erro ao escolher a Campanha B carrega um risco de R$ 6.084,36 (quase 3 vezes maior).",
+            textEn: "The expected loss risk when choosing Campaign A is only R$ 2,336.15, whereas the error in choosing Campaign B carries a risk of R$ 6,084.36 (nearly 3 times higher)."
+          }
         ]
       }
     ]
