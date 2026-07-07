@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { projects, type Project } from "../../data/projects";
 import { methods, type Method } from "../../data/methods";
 import { stackItems, type StackItem } from "../../data/stack";
@@ -159,8 +159,8 @@ const playDrawerSound = (type: "open" | "close") => {
 };
 
 export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps) {
-  // Main Tab/Drawer State
   const [activeDrawer, setActiveDrawer] = useState<"projects" | "methods" | "stack">("projects");
+  const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
   
   // Sidebar Collapse & Selector Drawer States
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true);
@@ -170,6 +170,10 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
   const [selectedProjectId, setSelectedProjectId] = useState<string>("bayesian-promotions");
   const [selectedMethodId, setSelectedMethodId] = useState<string>("ab-tests");
   const [selectedStackName, setSelectedStackName] = useState<string>("Python");
+
+  useEffect(() => {
+    setCurrentSlideIndex(0);
+  }, [selectedProjectId]);
 
   // Option A (Filing Cabinet Drawers) States
   const [openDrawerId, setOpenDrawerId] = useState<string | null>(null);
@@ -1002,55 +1006,185 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   </div>
                 </div>
 
-                {/* Right Side: Visual Graphic & KPI Stats */}
-                <div className="flex flex-col gap-5 justify-between">
-                  
-                  {/* Chart Card */}
-                  <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
-                    <MiniVisual type={currentProject.visualType} lang={lang} />
-                  </div>
+                {/* Right Side: Visual Graphic & KPI Stats (Slides Carousel) */}
+                <div className="flex flex-col gap-4 justify-between h-full">
+                  {(() => {
+                    const projectSlides = currentProject.slides && currentProject.slides.length > 0
+                      ? currentProject.slides
+                      : [
+                          {
+                            id: `${currentProject.id}-legacy-slide`,
+                            layout: "legacy" as const,
+                            title: lang === "pt" ? "Modelo Analítico" : "Analytical Model",
+                            titleEn: "Analytical Model",
+                            visualType: currentProject.visualType,
+                            metrics: currentProject.id === "bayesian-promotions"
+                              ? [
+                                  { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
+                                  { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Bayesiana", noteEn: "Bayesian" },
+                                  { label: "Lucro esperado A", labelEn: "Expected profit A", value: "R$ 3.876" }
+                                ]
+                              : currentProject.metrics.slice(0, 3)
+                          }
+                        ];
 
-                  {/* 3 Metric Cards */}
-                  <div className="grid grid-cols-3 gap-3">
-                    {/* Filter out first 2 metrics for project 1 since they are represented on the A/B chart */}
-                    {(currentProject.id === "bayesian-promotions" 
-                      ? [
-                          { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
-                          { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Probabilidade Bayesiana", noteEn: "Bayesian Probability" },
-                          { label: "Lucro esperado", labelEn: "Expected profit", value: "R$ 3.876", note: "A vs B: R$ 3.192", noteEn: "A vs B: R$ 3,192" }
-                        ]
-                      : currentProject.metrics.slice(0, 3)
-                    ).map((metric, idx) => (
-                      <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
-                        <span className="text-[9px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
-                          {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
-                        </span>
-                        <span className="text-xs md:text-sm font-bold text-wine font-serif py-1">
-                          {metric.value}
-                        </span>
-                        {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
-                          <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
-                            {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
-                          </span>
-                        )}
+                    const activeSlide = projectSlides[currentSlideIndex] || projectSlides[0];
+
+                    return (
+                      <div className="flex flex-col gap-4 justify-between h-full">
+                        {/* Slide Header with Local Navigation */}
+                        <div className="flex items-center justify-between border-b border-border-soft/40 pb-2">
+                          <h4 className="text-[11px] uppercase tracking-wider font-mono font-bold text-txt-main flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-olive animate-pulse"></span>
+                            {lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                          </h4>
+                          {projectSlides.length > 1 && (
+                            <div className="flex items-center gap-2 select-none">
+                              <button
+                                onClick={() => setCurrentSlideIndex(prev => (prev - 1 + projectSlides.length) % projectSlides.length)}
+                                className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
+                                title={lang === "pt" ? "Slide anterior" : "Previous slide"}
+                              >
+                                ◀
+                              </button>
+                              <span className="text-[10px] font-mono text-txt-muted">
+                                {currentSlideIndex + 1} / {projectSlides.length}
+                              </span>
+                              <button
+                                onClick={() => setCurrentSlideIndex(prev => (prev + 1) % projectSlides.length)}
+                                className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
+                                title={lang === "pt" ? "Próximo slide" : "Next slide"}
+                              >
+                                ▶
+                              </button>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Slide Layout Content */}
+                        <div className="flex-1 flex flex-col justify-between gap-4">
+                          {activeSlide.layout === "legacy" && (
+                            <div className="flex flex-col gap-4">
+                              <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
+                                <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                              </div>
+                              <div className="grid grid-cols-3 gap-3">
+                                {(activeSlide.metrics || []).map((metric, idx) => (
+                                  <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
+                                    <span className="text-[9px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
+                                      {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
+                                    </span>
+                                    <span className="text-xs md:text-sm font-bold text-wine font-serif py-1">
+                                      {metric.value}
+                                    </span>
+                                    {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
+                                      <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
+                                        {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                      </span>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex gap-3 items-start shadow-xs">
+                                <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div className="flex flex-col gap-0.5">
+                                  <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
+                                    {lang === "pt" ? "Resultado" : "Outcome"}
+                                  </span>
+                                  <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
+                                    {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {activeSlide.layout === "image-text-metric" && (
+                            <div className="flex flex-col gap-4">
+                              {activeSlide.imagePath && (
+                                <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
+                                  <img 
+                                    src={activeSlide.imagePath} 
+                                    alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
+                                    className="w-full h-auto max-h-[200px] md:max-h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                  />
+                                </div>
+                              )}
+                              <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-3.5 items-stretch">
+                                <div className="bg-frost border border-border-soft/60 p-4 rounded-xl flex flex-col justify-center">
+                                  <p className="text-xs text-txt-muted leading-relaxed font-sans">
+                                    {lang === "en" && activeSlide.textEn ? activeSlide.textEn : activeSlide.text}
+                                  </p>
+                                </div>
+                                {activeSlide.metrics && activeSlide.metrics[0] && (
+                                  <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-xs">
+                                    <span className="text-[8px] font-bold text-olive uppercase tracking-wider leading-none mb-1.5">
+                                      {lang === "en" && activeSlide.metrics[0].labelEn ? activeSlide.metrics[0].labelEn : activeSlide.metrics[0].label}
+                                    </span>
+                                    <span className="text-lg font-bold text-wine font-serif mb-1">
+                                      {activeSlide.metrics[0].value}
+                                    </span>
+                                    {(lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note) && (
+                                      <span className="text-[8px] text-txt-muted italic font-serif leading-tight">
+                                        {lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note}
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          {activeSlide.layout === "image-metrics-sidebar" && (
+                            <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-4 items-stretch">
+                              {activeSlide.imagePath && (
+                                <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
+                                  <img 
+                                    src={activeSlide.imagePath} 
+                                    alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
+                                    className="w-full h-auto max-h-[220px] md:max-h-[300px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                  />
+                                </div>
+                              )}
+                              <div className="flex flex-col gap-3 justify-between">
+                                {(activeSlide.metrics || []).slice(0, 3).map((metric, idx) => (
+                                  <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex-1 min-h-[56px]">
+                                    <span className="text-[8px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
+                                      {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
+                                    </span>
+                                    <span className="text-xs md:text-sm font-bold text-wine font-serif py-0.5">
+                                      {metric.value}
+                                    </span>
+                                    {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
+                                      <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
+                                        {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                      </span>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {activeSlide.layout === "chart-only" && (
+                            <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
+                              {activeSlide.imagePath ? (
+                                <img 
+                                  src={activeSlide.imagePath} 
+                                  alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
+                                  className="w-full h-auto max-h-[300px] object-contain rounded-lg"
+                                />
+                              ) : (
+                                <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                              )}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    ))}
-                  </div>
-
-                  {/* Outcome Banner */}
-                  <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex gap-3 items-start shadow-xs">
-                    <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
-                        {lang === "pt" ? "Resultado" : "Outcome"}
-                      </span>
-                      <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
-                        {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
-                      </p>
-                    </div>
-                  </div>
+                    );
+                  })()}
                 </div>
 
               </article>

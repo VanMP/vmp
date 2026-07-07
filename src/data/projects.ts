@@ -6,6 +6,18 @@ export type ProjectMetric = {
   noteEn?: string;
 };
 
+export type ProjectSlide = {
+  id: string;
+  layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only";
+  title?: string;
+  titleEn?: string;
+  imagePath?: string;
+  visualType?: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
+  text?: string;
+  textEn?: string;
+  metrics?: ProjectMetric[];
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -25,6 +37,7 @@ export type Project = {
   outcomeEn: string;
   simulated: boolean;
   visualType: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
+  slides?: ProjectSlide[];
 };
 
 export const projects: Project[] = [
@@ -38,7 +51,7 @@ export const projects: Project[] = [
     categoryEn: "Experimentation",
     summary: "Avaliação de eficácia entre desconto direto e pacote promocional em campanha de e-commerce utilizando modelagem de eventos raros sob perspectiva de decisão bayesiana.",
     summaryEn: "Efficacy evaluation between a direct discount and a promotional bundle in an e-commerce campaign utilizing rare-event modeling under a Bayesian decision perspective.",
-    problem: "Necessidade de avaliar a rentabilidade líquida e taxa de conversão de duas mecânicas promocionais (desconto percentual direto versus pacote com brinde) sob cenários de tráfego controlado.",
+    problem: "Necessidade de avaliar a rentabilidade líquida e taxa de conversão de duas mecânicas promocionais (desconto percentual direto versus pacote com brinde) sob cenários de tráfego controlled.",
     problemEn: "Evaluating the net profitability and conversion rate of two promotional strategies (direct percentage discount versus bundle offer) under controlled traffic conditions.",
     methods: ["Testes A/B", "Eventos raros", "Inferência bayesiana", "Teste Z", "Intervalos de credibilidade", "Projeção de lucro"],
     tools: ["Python", "R", "SQL"],
@@ -53,7 +66,45 @@ export const projects: Project[] = [
     outcome: "A modelagem bayesiana calculou uma probabilidade de 90,9% de superioridade para a mecânica A, oferecendo suporte quantitativo para o lançamento da promoção mesmo diante de um p-valor frequentista estatisticamente inconclusivo para o tamanho amostral acumulado.",
     outcomeEn: "Bayesian modeling calculated a 90.9% probability of superiority for promotion strategy A, providing quantitative support for the rollout even with a frequentist p-value that remained statistically inconclusive due to current sample size limitations.",
     simulated: true,
-    visualType: "ab-bars"
+    visualType: "ab-bars",
+    slides: [
+      {
+        id: "bayesian-slide-1",
+        layout: "legacy",
+        title: "Modelo de Distribuição Beta",
+        titleEn: "Beta Distribution Model",
+        visualType: "ab-bars",
+        metrics: [
+          { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
+          { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Probabilidade Bayesiana", noteEn: "Bayesian Probability" },
+          { label: "Lucro esperado A", labelEn: "Expected profit A", value: "R$ 3.876" }
+        ]
+      },
+      {
+        id: "bayesian-slide-2",
+        layout: "image-text-metric",
+        title: "Análise do Efeito Acumulado",
+        titleEn: "Cumulative Effect Analysis",
+        imagePath: "/images/bayesian-dashboard.png",
+        text: "O dashboard analítico apresenta as curvas de densidade de probabilidade a posteriori para cada variante. Nota-se que, apesar de as médias estarem próximas, a massa de probabilidade de A estar à direita de B é de 90,9%, superando o limite de decisão estabelecido.",
+        textEn: "The analytical dashboard displays the posterior probability density curves for each variant. Although the means are close, the probability mass of A being greater than B is 90.9%, exceeding the established decision threshold.",
+        metrics: [
+          { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Probabilidade Bayes", noteEn: "Bayes Probability" }
+        ]
+      },
+      {
+        id: "bayesian-slide-3",
+        layout: "image-metrics-sidebar",
+        title: "Visão Geral dos Resultados",
+        titleEn: "Results Overview",
+        imagePath: "/images/bayesian-dashboard.png",
+        metrics: [
+          { label: "Conversão A", labelEn: "Conversion A", value: "2,04%", note: "Desconto Direto", noteEn: "Direct Discount" },
+          { label: "Conversão B", labelEn: "Conversion B", value: "1,68%", note: "Pacote Promocional", noteEn: "Bundle Offer" },
+          { label: "Ganho Estimado", labelEn: "Estimated Gain", value: "+21,4%", note: "Aumento relativo", noteEn: "Relative increase" }
+        ]
+      }
+    ]
   },
   {
     id: "time-series-impact",
