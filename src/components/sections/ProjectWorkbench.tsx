@@ -1246,7 +1246,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                                      className="w-full h-auto max-h-[320px] md:max-h-[460px] object-contain rounded-lg"
+                                      className="w-full h-auto max-h-[320px] md:max-h-[450px] object-contain rounded-lg"
                                     />
                                   ) : (
                                     <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
