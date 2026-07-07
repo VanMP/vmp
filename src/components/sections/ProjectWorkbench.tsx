@@ -1007,7 +1007,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </div>
 
                 {/* Right Side: Visual Graphic & KPI Stats (Slides Carousel) */}
-                <div className="flex flex-col gap-4 justify-between h-full">
+                <div className="flex flex-col gap-4 justify-between h-full min-h-[440px] md:min-h-[480px]">
                   {(() => {
                     const projectSlides = currentProject.slides && currentProject.slides.length > 0
                       ? currentProject.slides
@@ -1108,7 +1108,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                   <img 
                                     src={activeSlide.imagePath} 
                                     alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
-                                    className="w-full h-auto max-h-[200px] md:max-h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                    className="w-full h-[180px] md:h-[220px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
                                   />
                                 </div>
                               )}
@@ -1144,7 +1144,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                   <img 
                                     src={activeSlide.imagePath} 
                                     alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
-                                    className="w-full h-auto max-h-[220px] md:max-h-[300px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                    className="w-full h-[180px] md:h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
                                   />
                                 </div>
                               )}
