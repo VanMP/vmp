@@ -11,13 +11,13 @@ The production version of the portfolio is deployed and accessible at:
 
 To make development and updates as easy as possible, we have split our documentation into two target guides:
 
-1. **[Developer Guide (developer.md)](file:///p:/Web/vmp/developer.md)**
+1. **[Developer Guide (developer.md)](./developer.md)**
    - Setup instructions, dependencies, and configuration.
    - Configuring the email/contact form (Web3Forms access keys).
    - Changing static assets (updating CV PDFs, Favicons).
    - Deploying directly to Cloudflare Pages.
 
-2. **[AI Agents Guide (agents.md)](file:///p:/Web/vmp/agents.md)**
+2. **[AI Agents Guide (agents.md)](./agents.md)**
    - Technical guidelines for AI Coding Assistants (Copilot, Cursor, Gemini).
    - Theme variables and custom design tokens (Olive, Wine, Stone colors).
    - Key architectural layout structures.
