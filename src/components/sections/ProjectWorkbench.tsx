@@ -86,12 +86,12 @@ const playDrawerSound = (type: "open" | "close") => {
       }
     });
     activeGains = [];
-    
+
     // 2. Master gain control for very soft volume - increased for audibility
     const masterGain = audioCtx.createGain();
     masterGain.gain.setValueAtTime(type === "open" ? 0.22 : 0.28, now);
     masterGain.connect(audioCtx.destination);
-    
+
     // Track this new gain node
     activeGains.push(masterGain);
 
@@ -128,7 +128,7 @@ const playDrawerSound = (type: "open" | "close") => {
       clickOsc.type = "triangle";
       clickOsc.frequency.setValueAtTime(500, now + 0.7);
       clickOsc.frequency.exponentialRampToValueAtTime(60, now + 0.78);
-      
+
       clickGain.gain.setValueAtTime(0, now);
       clickGain.gain.setValueAtTime(0.30, now + 0.7);
       clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
@@ -161,11 +161,11 @@ const playDrawerSound = (type: "open" | "close") => {
 export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps) {
   const [activeDrawer, setActiveDrawer] = useState<"projects" | "methods" | "stack">("projects");
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
-  
+
   // Sidebar Collapse & Selector Drawer States
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-  
+
   // Selection States
   const [selectedProjectId, setSelectedProjectId] = useState<string>("bayesian-promotions");
   const [selectedMethodId, setSelectedMethodId] = useState<string>("ab-tests");
@@ -199,13 +199,13 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
       playDrawerSound("close");
       setDrawerTransition("push");
       setOpenDrawerId(null);
-      
+
       setTimeout(() => {
         playDrawerSound("open");
         setOpenDrawerId(id);
         setDisplayDrawerId(id);
         setDrawerTransition("pull");
-        
+
         setTimeout(() => {
           setIsTransitioning(false);
         }, 900);
@@ -221,7 +221,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
     playDrawerSound("close");
     setDrawerTransition("push");
     setOpenDrawerId(null);
-    
+
     setTimeout(() => {
       setDisplayDrawerId(null);
       setDrawerTransition(null);
@@ -298,7 +298,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
     return lang === "en" ? item.categoryEn : item.category;
   };
 
-  const stackCategories = lang === "en" 
+  const stackCategories = lang === "en"
     ? ["Analysis", "Visualization", "Machine Learning / NLP", "Automation / AI", "Infra / Organization"]
     : ["Análise", "Visualização", "Aprendizado de Máquina / PLN", "Automação / IA", "Infra / Organização"];
 
@@ -330,7 +330,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
   return (
     <section className="px-6 py-4 md:px-8 md:py-6 w-full font-sans flex flex-col gap-6">
-      
+
       {/* Title with Flanking Lines and Ornaments */}
       <div className="flex items-center justify-center gap-4 w-full select-none">
         <div className="h-px bg-gradient-to-r from-transparent to-border-soft flex-1"></div>
@@ -351,7 +351,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
       {false && (
         /* ==================== OPTION A: PHYSICAL FILING CABINET DRAWERS ==================== */
         <div className="w-full flex flex-col gap-6">
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             @keyframes drawerPull {
               0% { transform: translateX(-250px); opacity: 0; }
               100% { transform: translateX(0); opacity: 1; }
@@ -405,13 +406,13 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
           {/* Unified Two-Column Filing Cabinet Layout */}
           <div className="w-full flex flex-col lg:flex-row lg:items-stretch items-start gap-6 relative">
-            
+
             {/* 1. LEFT COLUMN: Contiguous Filing Cabinet Frame - overflow-visible to let drawers slide out */}
             <div className="w-full lg:w-[330px] bg-gradient-to-b from-[#FAF8F5] via-[#F4EFE6] to-[#EDE6D9] border border-[#DCD6C8] shadow-[0_12px_36px_rgba(138,101,53,0.05),inset_0_1px_0_white] p-4 md:p-5 rounded-2xl flex flex-col gap-4 flex-shrink-0 select-none relative overflow-visible">
-              
+
               {/* Cabinet Bevel Highlight */}
               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"></div>
-              
+
               {/* Cabinet Brass Plaque */}
               <div className="w-full py-2 bg-gradient-to-b from-[#774F4C] to-[#5F3E3B] border border-[#774F4C] rounded-lg shadow-md flex flex-col items-center justify-center text-center px-3 relative mb-1">
                 <div className="absolute left-1.5 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-stone-950 border border-stone-600 shadow-xs"></div>
@@ -429,24 +430,23 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 {projects.map((p, idx) => {
                   const isOpen = openDrawerId === p.id;
                   return (
-                    <div 
-                      key={p.id} 
+                    <div
+                      key={p.id}
                       className="relative h-[72px] flex-shrink-0 w-full overflow-visible"
                     >
                       {/* Empty Slot Cavity Inside Cabinet - exactly 72px high - Clickable to Close */}
                       <button
                         onClick={handleCloseDrawer}
                         disabled={!isOpen}
-                        className={`absolute inset-0 w-full h-full bg-[#E2DCD0]/30 border border-[#DCD5C5] shadow-[inset_0_4px_8px_rgba(0,0,0,0.06)] rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-[#E2DCD0]/45 ${
-                          isOpen ? "cursor-pointer" : "cursor-default pointer-events-none"
-                        }`}
+                        className={`absolute inset-0 w-full h-full bg-[#E2DCD0]/30 border border-[#DCD5C5] shadow-[inset_0_4px_8px_rgba(0,0,0,0.06)] rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-[#E2DCD0]/45 ${isOpen ? "cursor-pointer" : "cursor-default pointer-events-none"
+                          }`}
                         title={lang === "pt" ? "Fechar Gaveta (Clique na cavidade)" : "Close Drawer (Click empty slot)"}
                       >
                         {/* Silver metal runners inside empty slot */}
                         <div className="absolute left-1.5 top-1.5 bottom-1.5 w-1 bg-stone-400 rounded-sm shadow-inner"></div>
                         <div className="absolute right-1.5 top-1.5 bottom-1.5 w-1 bg-stone-400 rounded-sm shadow-inner"></div>
                         <div className="absolute left-3 right-3 h-1.5 bg-stone-400/60 top-1/2 -translate-y-1/2 rounded"></div>
-                        
+
                         {/* Subtle outline highlight to indicate clickability */}
                         <div className="absolute inset-0 border border-transparent hover:border-wine/10 rounded-xl transition-all"></div>
                       </button>
@@ -454,9 +454,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       {/* Closed Drawer Front Face - exactly 72px high - Horizontal Slide animation */}
                       <button
                         onClick={() => handleOpenDrawer(p.id)}
-                        className={`absolute inset-0 w-full h-full text-left rounded-xl transition-drawer-face flex items-center justify-between px-4 group bg-gradient-to-r from-[#FAF8F5] via-[#FAF6EE] to-[#F4EFE6] border border-[#DCD5C5] shadow-[inset_0_1px_0_white,0_2.5px_5px_rgba(0,0,0,0.025)] hover:from-white hover:to-[#FAF9F6] hover:shadow-[inset_0_1px_0_white,0_4px_8px_rgba(0,0,0,0.05)] hover:translate-x-0.5 active:translate-x-0 ${
-                          isOpen ? "drawer-face-open" : "drawer-face-closed cursor-pointer"
-                        }`}
+                        className={`absolute inset-0 w-full h-full text-left rounded-xl transition-drawer-face flex items-center justify-between px-4 group bg-gradient-to-r from-[#FAF8F5] via-[#FAF6EE] to-[#F4EFE6] border border-[#DCD5C5] shadow-[inset_0_1px_0_white,0_2.5px_5px_rgba(0,0,0,0.025)] hover:from-white hover:to-[#FAF9F6] hover:shadow-[inset_0_1px_0_white,0_4px_8px_rgba(0,0,0,0.05)] hover:translate-x-0.5 active:translate-x-0 ${isOpen ? "drawer-face-open" : "drawer-face-closed cursor-pointer"
+                          }`}
                       >
                         {/* Brass Index Card / Label Holder */}
                         <div className="flex items-center gap-3 flex-1 min-w-0 pr-2">
@@ -483,18 +482,17 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
             {/* 2. RIGHT COLUMN: Open Drawer Dossier Tray */}
             <div className="flex-1 w-full relative lg:self-stretch h-auto min-h-0 flex flex-col">
-              
+
               {/* Background Closed Cover - permanently in the background without animations on desktop, hidden when open on mobile */}
-              <div 
-                className={`w-full lg:h-full flex-1 min-h-[320px] h-auto bg-[#FAF7F0] border border-[#DCD5C5] rounded-2xl p-8 lg:flex flex-col items-center justify-center text-center gap-6 shadow-[0_8px_20px_rgba(138,101,53,0.015)] relative overflow-hidden ${
-                  displayDrawerId !== null ? "hidden lg:flex" : "flex"
-                }`}
+              <div
+                className={`w-full lg:h-full flex-1 min-h-[320px] h-auto bg-[#FAF7F0] border border-[#DCD5C5] rounded-2xl p-8 lg:flex flex-col items-center justify-center text-center gap-6 shadow-[0_8px_20px_rgba(138,101,53,0.015)] relative overflow-hidden ${displayDrawerId !== null ? "hidden lg:flex" : "flex"
+                  }`}
               >
                 <div className="absolute top-4 left-4 w-4 h-4 border-t border-l border-[#8A6535]/30"></div>
                 <div className="absolute top-4 right-4 w-4 h-4 border-t border-r border-[#8A6535]/30"></div>
                 <div className="absolute bottom-4 left-4 w-4 h-4 border-b border-l border-[#8A6535]/30"></div>
                 <div className="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-[#8A6535]/30"></div>
-                
+
                 {/* Decorative wine red wax seal */}
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#774F4C] to-[#553634] shadow-[0_4px_8px_rgba(0,0,0,0.15)] border border-[#774F4C] flex items-center justify-center text-[#FAF6EE] select-none scale-105">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -507,12 +505,12 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                     {lang === "pt" ? "Arquivo Científico de Vanessa" : "Vanessa's Scientific Archive"}
                   </h4>
                   <p className="font-serif italic text-xs text-stone-600 leading-relaxed">
-                    {lang === "pt" 
+                    {lang === "pt"
                       ? "Este gabinete digital contém relatórios detalhados, dados analíticos descaracterizados e métricas de impacto de negócios."
                       : "This digital archive houses detailed case reports, anonymized analytical data, and business impact metrics."}
                   </p>
                 </div>
-                
+
                 <div className="h-px w-20 bg-[#C5BCAE]/60"></div>
 
                 <p className="font-mono text-[9px] text-[#8A6535] leading-relaxed uppercase tracking-widest font-extrabold animate-pulse">
@@ -527,19 +525,18 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 (() => {
                   const activeProject = projects.find(p => p.id === displayDrawerId)!;
                   const projectIndex = projects.findIndex(p => p.id === displayDrawerId);
-                  
+
                   return (
-                    <div 
+                    <div
                       key={`${displayDrawerId}-${drawerTransition}`}
-                      className={`w-full lg:h-full flex-1 h-auto lg:absolute lg:inset-0 lg:w-full lg:h-full lg:z-10 flex flex-col lg:flex-row items-stretch bg-[#FAF7F0] border border-[#C8BFB0] rounded-2xl overflow-hidden shadow-2xl ${
-                        drawerTransition === "push" ? "animate-drawer-push" : "animate-drawer-pull"
-                      }`}
+                      className={`w-full lg:h-full flex-1 h-auto lg:absolute lg:inset-0 lg:w-full lg:h-full lg:z-10 flex flex-col lg:flex-row items-stretch bg-[#FAF7F0] border border-[#C8BFB0] rounded-2xl overflow-hidden shadow-2xl ${drawerTransition === "push" ? "animate-drawer-push" : "animate-drawer-pull"
+                        }`}
                     >
-                      
+
                       {/* Middle: Ivory dossier files spread inside the drawer */}
                       <div className="flex-1 p-6 md:p-8 lg:overflow-y-auto lg:paper-scroll overflow-visible h-auto bg-[#FCFBF8] border-r border-[#DCD5C5] animate-folder-content">
                         <div className="grid grid-cols-1 xl:grid-cols-[1.15fr_1fr] gap-8 h-full items-start">
-                          
+
                           {/* Dossier Left Page: Text description, Problem & tags */}
                           <div className="flex flex-col gap-4">
                             <div className="border-b border-dashed border-[#DCD5C5] pb-2 flex items-center justify-between">
@@ -603,7 +600,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
                           {/* Dossier Right Page: Interactive sketch graphic, Stamped metrics & Outcome */}
                           <div className="flex flex-col gap-5">
-                            
+
                             {/* Technical Sketch Graph - beautifully constrained */}
                             <div className="border border-[#E4DFD3] bg-[#FCFBF8] bg-[radial-gradient(#E8E2D5_1.2px,transparent_1.2px)] [background-size:16px_16px] p-5 rounded-xl shadow-inner relative max-h-[220px]">
                               <span className="font-mono text-[8px] font-extrabold text-[#756E63] uppercase tracking-wider block mb-2 border-b border-stone-200/60 pb-1">
@@ -632,12 +629,12 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
                             {/* 3 Metric Cards */}
                             <div className="grid grid-cols-3 gap-3">
-                              {(activeProject.id === "bayesian-promotions" 
+                              {(activeProject.id === "bayesian-promotions"
                                 ? [
-                                    { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
-                                    { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Bayesiana", noteEn: "Bayesian" },
-                                    { label: "Lucro esp.", labelEn: "Exp. profit", value: "R$ 3.876", note: "A vs B: R$ 3.192", noteEn: "A vs B: R$ 3.1k" }
-                                  ]
+                                  { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
+                                  { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Bayesiana", noteEn: "Bayesian" },
+                                  { label: "Lucro esp.", labelEn: "Exp. profit", value: "R$ 3.876", note: "A vs B: R$ 3.192", noteEn: "A vs B: R$ 3.1k" }
+                                ]
                                 : activeProject.metrics.slice(0, 3)
                               ).map((metric, idx) => (
                                 <div key={idx} className="p-3.5 bg-[#F2EDE2] border border-[#DCD6C9] rounded-xl flex flex-col justify-center text-center shadow-xs relative overflow-hidden">
@@ -675,9 +672,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               <button
                                 key={p.id}
                                 onClick={() => handleOpenDrawer(p.id)}
-                                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                                  p.id === activeProject.id ? "bg-wine scale-110" : "bg-stone-300 hover:bg-stone-400"
-                                }`}
+                                className={`w-2 h-2 rounded-full transition-all cursor-pointer ${p.id === activeProject.id ? "bg-wine scale-110" : "bg-stone-300 hover:bg-stone-400"
+                                  }`}
                                 title={lang === "en" ? p.shortTitleEn : p.shortTitle}
                               />
                             ))}
@@ -704,7 +700,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#EAD59E] to-[#B89F60] border border-stone-400 shadow-sm flex items-center justify-center flex-shrink-0">
                           <div className="w-1.5 h-0.5 bg-stone-700/60 rotate-45"></div>
                         </div>
-                        
+
                         {/* Vertical rotated label card & ring pull */}
                         <div className="flex flex-col items-center gap-6">
                           {/* Rotated gold index label card */}
@@ -743,275 +739,268 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
       {true && (
         <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto md:h-[680px] relative">
-        
-        {/* Left/Top Navigation Sidebar/Tabbar */}
-        <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-3 md:p-4 flex flex-row md:flex-col justify-between gap-2 md:gap-6 overflow-x-auto md:overflow-y-auto transition-all duration-300 flex-shrink-0 w-full ${
-          sidebarCollapsed ? "md:w-[64px] md:items-center md:px-2" : "md:w-[260px]"
-        }`}>
-          <div className="flex flex-row md:flex-col gap-2 md:gap-3 w-full">
-            {/* Collapse Toggle Button */}
-            <button
-              onClick={() => {
-                setSidebarCollapsed(!sidebarCollapsed);
-                setDrawerOpen(false);
-              }}
-              className={`hidden md:flex w-full py-1.5 px-2 rounded-lg border border-border-soft/60 hover:bg-surface hover:text-wine transition-soft text-left items-center justify-between text-[10px] font-bold text-txt-muted uppercase tracking-wider cursor-pointer ${
-                sidebarCollapsed ? "justify-center" : ""
-              }`}
-              title={sidebarCollapsed ? (lang === "pt" ? "Expandir menu" : "Expand menu") : (lang === "pt" ? "Recolher menu" : "Collapse menu")}
-            >
-              {!sidebarCollapsed && <span>{lang === "pt" ? "Recolher menu" : "Collapse menu"}</span>}
-              <span>{sidebarCollapsed ? "▶" : "◀"}</span>
-            </button>
 
-            {/* Tab 1: Projetos */}
-            <button
-              onClick={() => {
-                setActiveDrawer("projects");
-                // On desktop, clicking the projects tab should just uncollapse the sidebar if collapsed, or act normally.
-                // We do NOT toggle the confusing separate drawer overlay on desktop anymore.
-                if (sidebarCollapsed) {
-                  setSidebarCollapsed(false);
-                }
-              }}
-              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
-                activeDrawer === "projects"
-                  ? "bg-olive border-olive text-white shadow-sm"
-                  : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-              title={lang === "pt" ? "Projetos" : "Projects"}
-            >
-              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
-                <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                  <span className="text-[11px] md:text-xs font-bold leading-tight">
-                    {lang === "pt" ? "Projetos" : "Projects"}
-                  </span>
-                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "projects" ? "text-surface/80" : "text-txt-muted"}`}>
-                    {lang === "pt" ? "Casos de estudo" : "Case studies"}
-                  </span>
-                </div>
-              </div>
-              {!sidebarCollapsed && (
-                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "projects" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                  ➔
-                </span>
-              )}
-            </button>
+          {/* Left/Top Navigation Sidebar/Tabbar */}
+          <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-3 md:p-4 flex flex-row md:flex-col justify-between gap-2 md:gap-6 overflow-x-auto md:overflow-y-auto transition-all duration-300 flex-shrink-0 w-full ${sidebarCollapsed ? "md:w-[64px] md:items-center md:px-2" : "md:w-[260px]"
+            }`}>
+            <div className="flex flex-row md:flex-col gap-2 md:gap-3 w-full">
+              {/* Collapse Toggle Button */}
+              <button
+                onClick={() => {
+                  setSidebarCollapsed(!sidebarCollapsed);
+                  setDrawerOpen(false);
+                }}
+                className={`hidden md:flex w-full py-1.5 px-2 rounded-lg border border-border-soft/60 hover:bg-surface hover:text-wine transition-soft text-left items-center justify-between text-[10px] font-bold text-txt-muted uppercase tracking-wider cursor-pointer ${sidebarCollapsed ? "justify-center" : ""
+                  }`}
+                title={sidebarCollapsed ? (lang === "pt" ? "Expandir menu" : "Expand menu") : (lang === "pt" ? "Recolher menu" : "Collapse menu")}
+              >
+                {!sidebarCollapsed && <span>{lang === "pt" ? "Recolher menu" : "Collapse menu"}</span>}
+                <span>{sidebarCollapsed ? "▶" : "◀"}</span>
+              </button>
 
-            {/* List of projects inside sidebar (only when expanded and on desktop) */}
-            {!sidebarCollapsed && activeDrawer === "projects" && (
-              <div className="hidden md:flex flex-col gap-1 pl-2 mt-1 max-h-[220px] overflow-y-auto border-l border-border-soft/60">
-                {projects.map((p) => {
-                  const isSelected = p.id === selectedProjectId;
-                  return (
-                    <button
-                      key={p.id}
-                      onClick={() => setSelectedProjectId(p.id)}
-                      className={`text-left text-xs px-2 py-1.5 rounded-lg transition-soft border-l-2 cursor-pointer flex items-center gap-2 ${
-                        isSelected
-                          ? "bg-olive/15 border-olive text-olive font-bold"
-                          : "border-transparent hover:bg-surface/80 text-txt-muted font-medium"
-                      }`}
-                    >
-                      {getProjectIcon(p.id, isSelected ? "text-olive flex-shrink-0" : "text-txt-muted flex-shrink-0")}
-                      <span className="truncate block">
-                        {lang === "en" ? p.shortTitleEn : p.shortTitle}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* Tab 2: Métodos */}
-            <button
-              onClick={() => {
-                setActiveDrawer("methods");
-                setDrawerOpen(false);
-              }}
-              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
-                activeDrawer === "methods"
-                  ? "bg-wine border-wine text-white shadow-sm"
-                  : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-              title={lang === "pt" ? "Métodos" : "Methods"}
-            >
-              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
-                <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                  <span className="text-[11px] md:text-xs font-bold leading-tight">
-                    {lang === "pt" ? "Métodos" : "Methods"}
-                  </span>
-                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
-                    {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
-                  </span>
-                </div>
-              </div>
-              {!sidebarCollapsed && (
-                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "methods" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                  ➔
-                </span>
-              )}
-            </button>
-
-            {/* Tab 3: Stack */}
-            <button
-              onClick={() => {
-                setActiveDrawer("stack");
-                setDrawerOpen(false);
-              }}
-              className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${
-                activeDrawer === "stack"
-                  ? "bg-brown border-brown text-white shadow-sm"
-                  : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-              } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-              title="Stack"
-            >
-              <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
-                <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                  <span className="text-[11px] md:text-xs font-bold leading-tight">Stack</span>
-                  <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "stack" ? "text-surface/80" : "text-txt-muted"}`}>
-                    {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
-                  </span>
-                </div>
-              </div>
-              {!sidebarCollapsed && (
-                <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "stack" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                  ➔
-                </span>
-              )}
-            </button>
-          </div>
-
-          {/* Sidebar Bottom Note (only when expanded and on desktop) */}
-          {!sidebarCollapsed && (
-            <div className="hidden md:flex bg-surface/80 border border-border-soft/80 p-4 rounded-xl gap-2.5 items-start shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
-              <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div className="flex flex-col gap-1">
-                <p className="text-[10px] md:text-[11px] leading-relaxed text-txt-muted">
-                  {lang === "pt"
-                    ? "Todos os estudos utilizam dados públicos, consolidados ou descaracterizados para preservar sigilo comercial."
-                    : "All studies use public, consolidated, or anonymized data to preserve business confidentiality."}
-                </p>
-              </div>
-            </div>
-          )}
-        </nav>
-
-
-
-        {/* Right Content Panel - Central workbench area */}
-        <main className="p-4 md:p-8 flex flex-col justify-between bg-surface/10 min-h-[500px] md:h-full md:overflow-hidden overflow-visible">
-          
-          <div className="flex-1 w-full md:overflow-y-auto pr-1 md:pr-3 min-h-0">
-            
-            {/* Mobile Project Selector: Beautiful horizontally scrollable list at the top on mobile */}
-            {activeDrawer === "projects" && (
-              <div className="md:hidden w-full overflow-x-auto pb-3 mb-4 flex gap-2 border-b border-border-soft/40 flex-nowrap scrollbar-none">
-                {projects.map((p) => {
-                  const isSelected = p.id === selectedProjectId;
-                  return (
-                    <button
-                      key={p.id}
-                      onClick={() => setSelectedProjectId(p.id)}
-                      className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5 transition-soft flex-shrink-0 cursor-pointer ${
-                        isSelected
-                          ? "bg-olive border-olive text-white shadow-xs"
-                          : "bg-surface border-border-soft/60 text-txt-muted hover:text-txt-main"
-                      }`}
-                    >
-                      {getProjectIcon(p.id, isSelected ? "text-white" : "text-olive")}
-                      <span>{lang === "en" ? p.shortTitleEn : p.shortTitle}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-
-            {activeDrawer === "projects" && currentProject && (
-              /* PROJECT VIEW */
-              <article className="grid grid-cols-1 xl:grid-cols-[1fr_1.1fr] gap-6 md:gap-8 animate-fadeIn w-full relative">
-                {/* Subtle chestnut leaf background watermark in the projects container */}
-                <div className="absolute bottom-2 right-[48%] w-24 h-24 text-olive/4 hidden md:block pointer-events-none select-none">
-                  <svg width="96" height="96" className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2 C11.5 5, 8.5 7, 6 8 C4.5 8.6, 3.5 10, 4.5 11.5 C5.8 13.5, 9.5 14, 12 15 C14.5 14, 18.2 13.5, 19.5 11.5 C20.5 10, 19.5 8.6, 18 8 C15.5 7, 12.5 5, 12 2 Z" />
+              {/* Tab 1: Projetos */}
+              <button
+                onClick={() => {
+                  setActiveDrawer("projects");
+                  // On desktop, clicking the projects tab should just uncollapse the sidebar if collapsed, or act normally.
+                  // We do NOT toggle the confusing separate drawer overlay on desktop anymore.
+                  if (sidebarCollapsed) {
+                    setSidebarCollapsed(false);
+                  }
+                }}
+                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "projects"
+                    ? "bg-olive border-olive text-white shadow-sm"
+                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+                  } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+                title={lang === "pt" ? "Projetos" : "Projects"}
+              >
+                <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                   </svg>
+                  <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                    <span className="text-[11px] md:text-xs font-bold leading-tight">
+                      {lang === "pt" ? "Projetos" : "Projects"}
+                    </span>
+                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "projects" ? "text-surface/80" : "text-txt-muted"}`}>
+                      {lang === "pt" ? "Casos de estudo" : "Case studies"}
+                    </span>
+                  </div>
                 </div>
-                
-                {/* Left Side: Description, problem, techniques */}
-                <div className="flex flex-col gap-5 justify-between">
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-[10px] uppercase tracking-wider font-extrabold text-terracotta font-sans">
-                          {lang === "en" ? currentProject.categoryEn : currentProject.category}
+                {!sidebarCollapsed && (
+                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "projects" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                    ➔
+                  </span>
+                )}
+              </button>
+
+              {/* List of projects inside sidebar (only when expanded and on desktop) */}
+              {!sidebarCollapsed && activeDrawer === "projects" && (
+                <div className="hidden md:flex flex-col gap-1 pl-2 mt-1 max-h-[220px] overflow-y-auto border-l border-border-soft/60">
+                  {projects.map((p) => {
+                    const isSelected = p.id === selectedProjectId;
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => setSelectedProjectId(p.id)}
+                        className={`text-left text-xs px-2 py-1.5 rounded-lg transition-soft border-l-2 cursor-pointer flex items-center gap-2 ${isSelected
+                            ? "bg-olive/15 border-olive text-olive font-bold"
+                            : "border-transparent hover:bg-surface/80 text-txt-muted font-medium"
+                          }`}
+                      >
+                        {getProjectIcon(p.id, isSelected ? "text-olive flex-shrink-0" : "text-txt-muted flex-shrink-0")}
+                        <span className="truncate block">
+                          {lang === "en" ? p.shortTitleEn : p.shortTitle}
                         </span>
-                        {currentProject.simulated && (
-                          <span className="text-[8px] tracking-wider px-2 py-0.5 rounded border border-brown/30 bg-brown/5 text-brown font-extrabold font-mono">
-                            {lang === "pt" ? "DADOS DESCARACTERIZADOS" : "ANONYMIZED DATA"}
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
-                        {lang === "en" ? currentProject.titleEn : currentProject.title}
-                      </h3>
-                    </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
 
-                    <p className="text-xs md:text-sm text-txt-muted leading-relaxed">
-                      {lang === "en" ? currentProject.summaryEn : currentProject.summary}
-                    </p>
+              {/* Tab 2: Métodos */}
+              <button
+                onClick={() => {
+                  setActiveDrawer("methods");
+                  setDrawerOpen(false);
+                }}
+                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "methods"
+                    ? "bg-wine border-wine text-white shadow-sm"
+                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+                  } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+                title={lang === "pt" ? "Métodos" : "Methods"}
+              >
+                <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                    <span className="text-[11px] md:text-xs font-bold leading-tight">
+                      {lang === "pt" ? "Métodos" : "Methods"}
+                    </span>
+                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
+                      {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
+                    </span>
+                  </div>
+                </div>
+                {!sidebarCollapsed && (
+                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "methods" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                    ➔
+                  </span>
+                )}
+              </button>
 
-                    <div className="border-t border-border-soft/40 pt-3">
-                      <h4 className="text-[11px] uppercase font-mono font-bold text-txt-main mb-1">
-                        {lang === "pt" ? "O Problema" : "The Problem"}
-                      </h4>
-                      <p className="text-xs text-txt-muted leading-relaxed">
-                        {lang === "en" ? currentProject.problemEn : currentProject.problem}
-                      </p>
-                    </div>
+              {/* Tab 3: Stack */}
+              <button
+                onClick={() => {
+                  setActiveDrawer("stack");
+                  setDrawerOpen(false);
+                }}
+                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "stack"
+                    ? "bg-brown border-brown text-white shadow-sm"
+                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+                  } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+                title="Stack"
+              >
+                <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                    <span className="text-[11px] md:text-xs font-bold leading-tight">Stack</span>
+                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "stack" ? "text-surface/80" : "text-txt-muted"}`}>
+                      {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
+                    </span>
+                  </div>
+                </div>
+                {!sidebarCollapsed && (
+                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "stack" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                    ➔
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Sidebar Bottom Note (only when expanded and on desktop) */}
+            {!sidebarCollapsed && (
+              <div className="hidden md:flex bg-surface/80 border border-border-soft/80 p-4 rounded-xl gap-2.5 items-start shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
+                <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] md:text-[11px] leading-relaxed text-txt-muted">
+                    {lang === "pt"
+                      ? "Todos os estudos utilizam dados públicos, consolidados ou descaracterizados para preservar sigilo comercial."
+                      : "All studies use public, consolidated, or anonymized data to preserve business confidentiality."}
+                  </p>
+                </div>
+              </div>
+            )}
+          </nav>
+
+
+
+          {/* Right Content Panel - Central workbench area */}
+          <main className="p-4 md:p-8 flex flex-col justify-between bg-surface/10 min-h-[500px] md:h-full md:overflow-hidden overflow-visible">
+
+            <div className="flex-1 w-full md:overflow-y-auto pr-1 md:pr-3 min-h-0">
+
+              {/* Mobile Project Selector: Beautiful horizontally scrollable list at the top on mobile */}
+              {activeDrawer === "projects" && (
+                <div className="md:hidden w-full overflow-x-auto pb-3 mb-4 flex gap-2 border-b border-border-soft/40 flex-nowrap scrollbar-none">
+                  {projects.map((p) => {
+                    const isSelected = p.id === selectedProjectId;
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => setSelectedProjectId(p.id)}
+                        className={`whitespace-nowrap px-3.5 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5 transition-soft flex-shrink-0 cursor-pointer ${isSelected
+                            ? "bg-olive border-olive text-white shadow-xs"
+                            : "bg-surface border-border-soft/60 text-txt-muted hover:text-txt-main"
+                          }`}
+                      >
+                        {getProjectIcon(p.id, isSelected ? "text-white" : "text-olive")}
+                        <span>{lang === "en" ? p.shortTitleEn : p.shortTitle}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {activeDrawer === "projects" && currentProject && (
+                /* PROJECT VIEW */
+                <article className="grid grid-cols-1 xl:grid-cols-[1fr_1.1fr] gap-6 md:gap-8 animate-fadeIn w-full relative">
+                  {/* Subtle chestnut leaf background watermark in the projects container */}
+                  <div className="absolute bottom-2 right-[48%] w-24 h-24 text-olive/4 hidden md:block pointer-events-none select-none">
+                    <svg width="96" height="96" className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2 C11.5 5, 8.5 7, 6 8 C4.5 8.6, 3.5 10, 4.5 11.5 C5.8 13.5, 9.5 14, 12 15 C14.5 14, 18.2 13.5, 19.5 11.5 C20.5 10, 19.5 8.6, 18 8 C15.5 7, 12.5 5, 12 2 Z" />
+                    </svg>
                   </div>
 
-                  {/* Chips Grid */}
-                  <div className="space-y-3.5">
-                    <div className="flex flex-wrap gap-1.5">
-                      {currentProject.methods.map((m) => (
-                        <span key={m} className="px-2.5 py-1 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
-                          {getMethodName(m)}
-                        </span>
-                      ))}
+                  {/* Left Side: Description, problem, techniques */}
+                  <div className="flex flex-col gap-5 justify-between">
+                    <div className="flex flex-col gap-4">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-[10px] uppercase tracking-wider font-extrabold text-terracotta font-sans">
+                            {lang === "en" ? currentProject.categoryEn : currentProject.category}
+                          </span>
+                          {currentProject.simulated && (
+                            <span className="text-[8px] tracking-wider px-2 py-0.5 rounded border border-brown/30 bg-brown/5 text-brown font-extrabold font-mono">
+                              {lang === "pt" ? "DADOS DESCARACTERIZADOS" : "ANONYMIZED DATA"}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
+                          {lang === "en" ? currentProject.titleEn : currentProject.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-xs md:text-sm text-txt-muted leading-relaxed">
+                        {lang === "en" ? currentProject.summaryEn : currentProject.summary}
+                      </p>
+
+                      <div className="border-t border-border-soft/40 pt-3">
+                        <h4 className="text-[11px] uppercase font-mono font-bold text-txt-main mb-1">
+                          {lang === "pt" ? "O Problema" : "The Problem"}
+                        </h4>
+                        <p className="text-xs text-txt-muted leading-relaxed">
+                          {lang === "en" ? currentProject.problemEn : currentProject.problem}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="border-t border-border-soft/40 pt-3 flex items-center gap-2">
-                      <span className="text-[10px] uppercase font-mono font-bold text-txt-main">
-                        {lang === "pt" ? "Ferramentas:" : "Tools:"}
-                      </span>
+                    {/* Chips Grid */}
+                    <div className="space-y-3.5">
                       <div className="flex flex-wrap gap-1.5">
-                        {currentProject.tools.map((t) => (
-                          <span key={t} className="px-2.5 py-1 bg-frost text-wine text-[10px] rounded border border-border-soft/50 font-mono font-semibold">
-                            {t}
+                        {currentProject.methods.map((m) => (
+                          <span key={m} className="px-2.5 py-1 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
+                            {getMethodName(m)}
                           </span>
                         ))}
                       </div>
+
+                      <div className="border-t border-border-soft/40 pt-3 flex items-center gap-2">
+                        <span className="text-[10px] uppercase font-mono font-bold text-txt-main">
+                          {lang === "pt" ? "Ferramentas:" : "Tools:"}
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {currentProject.tools.map((t) => (
+                            <span key={t} className="px-2.5 py-1 bg-frost text-wine text-[10px] rounded border border-border-soft/50 font-mono font-semibold">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Right Side: Visual Graphic & KPI Stats (Slides Carousel) */}
-                <div className="flex flex-col gap-4 justify-between h-full min-h-[440px] md:min-h-[480px]">
-                  {(() => {
-                    const projectSlides = currentProject.slides && currentProject.slides.length > 0
-                      ? currentProject.slides
-                      : [
+                  {/* Right Side: Visual Graphic & KPI Stats (Slides Carousel) */}
+                  <div className="flex flex-col gap-4 justify-between h-full min-h-[460px] md:min-h-[480px]">
+                    {(() => {
+                      const projectSlides = currentProject.slides && currentProject.slides.length > 0
+                        ? currentProject.slides
+                        : [
                           {
                             id: `${currentProject.id}-legacy-slide`,
                             layout: "legacy" as const,
@@ -1020,380 +1009,377 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                             visualType: currentProject.visualType,
                             metrics: currentProject.id === "bayesian-promotions"
                               ? [
-                                  { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
-                                  { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Bayesiana", noteEn: "Bayesian" },
-                                  { label: "Lucro esperado A", labelEn: "Expected profit A", value: "R$ 3.876" }
-                                ]
+                                { label: "p-valor", labelEn: "p-value", value: "0,1828", note: "Frequentista", noteEn: "Frequentist" },
+                                { label: "P(A > B)", labelEn: "P(A > B)", value: "90,9%", note: "Bayesiana", noteEn: "Bayesian" },
+                                { label: "Lucro esperado A", labelEn: "Expected profit A", value: "R$ 3.876" }
+                              ]
                               : currentProject.metrics.slice(0, 3)
                           }
                         ];
 
-                    const activeSlide = projectSlides[currentSlideIndex] || projectSlides[0];
+                      const activeSlide = projectSlides[currentSlideIndex] || projectSlides[0];
 
-                    return (
-                      <div className="flex flex-col gap-4 justify-between h-full">
-                        {/* Slide Header with Local Navigation */}
-                        <div className="flex items-center justify-between border-b border-border-soft/40 pb-2">
-                          <h4 className="text-[11px] uppercase tracking-wider font-mono font-bold text-txt-main flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-olive animate-pulse"></span>
-                            {lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                          </h4>
-                          {projectSlides.length > 1 && (
-                            <div className="flex items-center gap-2 select-none">
-                              <button
-                                onClick={() => setCurrentSlideIndex(prev => (prev - 1 + projectSlides.length) % projectSlides.length)}
-                                className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
-                                title={lang === "pt" ? "Slide anterior" : "Previous slide"}
-                              >
-                                ◀
-                              </button>
-                              <span className="text-[10px] font-mono text-txt-muted">
-                                {currentSlideIndex + 1} / {projectSlides.length}
-                              </span>
-                              <button
-                                onClick={() => setCurrentSlideIndex(prev => (prev + 1) % projectSlides.length)}
-                                className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
-                                title={lang === "pt" ? "Próximo slide" : "Next slide"}
-                              >
-                                ▶
-                              </button>
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Slide Layout Content */}
-                        <div className="flex-1 flex flex-col justify-between gap-4">
-                          {activeSlide.layout === "legacy" && (
-                            <div className="flex flex-col gap-4">
-                              <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
-                                <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                      return (
+                        <div className="flex flex-col gap-4 justify-between h-full">
+                          {/* Slide Header with Local Navigation */}
+                          <div className="flex items-center justify-between border-b border-border-soft/40 pb-2">
+                            <h4 className="text-[11px] uppercase tracking-wider font-mono font-bold text-txt-main flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-olive animate-pulse"></span>
+                              {lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                            </h4>
+                            {projectSlides.length > 1 && (
+                              <div className="flex items-center gap-2 select-none">
+                                <button
+                                  onClick={() => setCurrentSlideIndex(prev => (prev - 1 + projectSlides.length) % projectSlides.length)}
+                                  className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
+                                  title={lang === "pt" ? "Slide anterior" : "Previous slide"}
+                                >
+                                  ◀
+                                </button>
+                                <span className="text-[10px] font-mono text-txt-muted">
+                                  {currentSlideIndex + 1} / {projectSlides.length}
+                                </span>
+                                <button
+                                  onClick={() => setCurrentSlideIndex(prev => (prev + 1) % projectSlides.length)}
+                                  className="w-6 h-6 rounded-full border border-border-soft/85 bg-surface text-txt-main flex items-center justify-center hover:bg-wine hover:text-white transition-soft text-[10px] font-bold cursor-pointer"
+                                  title={lang === "pt" ? "Próximo slide" : "Next slide"}
+                                >
+                                  ▶
+                                </button>
                               </div>
-                              <div className="grid grid-cols-3 gap-3">
-                                {(activeSlide.metrics || []).map((metric, idx) => (
-                                  <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
-                                    <span className="text-[9px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
-                                      {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
-                                    </span>
-                                    <span className="text-xs md:text-sm font-bold text-wine font-serif py-1">
-                                      {metric.value}
-                                    </span>
-                                    {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
-                                      <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
-                                        {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                            )}
+                          </div>
+
+                          {/* Slide Layout Content */}
+                          <div className="flex-1 flex flex-col justify-between gap-4">
+                            {activeSlide.layout === "legacy" && (
+                              <div className="flex flex-col gap-4">
+                                <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
+                                  <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                                </div>
+                                <div className="grid grid-cols-3 gap-3">
+                                  {(activeSlide.metrics || []).map((metric, idx) => (
+                                    <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
+                                      <span className="text-[9px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
+                                        {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
                                       </span>
-                                    )}
+                                      <span className="text-xs md:text-sm font-bold text-wine font-serif py-1">
+                                        {metric.value}
+                                      </span>
+                                      {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
+                                        <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
+                                          {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                        </span>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex gap-3 items-start shadow-xs">
+                                  <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                  <div className="flex flex-col gap-0.5">
+                                    <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
+                                      {lang === "pt" ? "Resultado" : "Outcome"}
+                                    </span>
+                                    <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
+                                      {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
+                                    </p>
                                   </div>
-                                ))}
-                              </div>
-                              <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex gap-3 items-start shadow-xs">
-                                <svg width="16" height="16" className="w-4 h-4 text-olive flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                <div className="flex flex-col gap-0.5">
-                                  <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
-                                    {lang === "pt" ? "Resultado" : "Outcome"}
-                                  </span>
-                                  <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
-                                    {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
-                                  </p>
                                 </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
-                          {activeSlide.layout === "image-text-metric" && (
-                            <div className="flex flex-col gap-4">
-                              {activeSlide.imagePath && (
-                                <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
-                                  <img 
-                                    src={activeSlide.imagePath} 
-                                    alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
-                                    className="w-full h-[180px] md:h-[220px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
-                                  />
-                                </div>
-                              )}
-                              <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-3.5 items-stretch">
-                                <div className="bg-frost border border-border-soft/60 p-4 rounded-xl flex flex-col justify-center">
-                                  <p className="text-xs text-txt-muted leading-relaxed font-sans">
-                                    {lang === "en" && activeSlide.textEn ? activeSlide.textEn : activeSlide.text}
-                                  </p>
-                                </div>
-                                {activeSlide.metrics && activeSlide.metrics[0] && (
-                                  <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-xs">
-                                    <span className="text-[8px] font-bold text-olive uppercase tracking-wider leading-none mb-1.5">
-                                      {lang === "en" && activeSlide.metrics[0].labelEn ? activeSlide.metrics[0].labelEn : activeSlide.metrics[0].label}
-                                    </span>
-                                    <span className="text-lg font-bold text-wine font-serif mb-1">
-                                      {activeSlide.metrics[0].value}
-                                    </span>
-                                    {(lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note) && (
-                                      <span className="text-[8px] text-txt-muted italic font-serif leading-tight">
-                                        {lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note}
-                                      </span>
-                                    )}
+                            {activeSlide.layout === "image-text-metric" && (
+                              <div className="flex flex-col gap-4">
+                                {activeSlide.imagePath && (
+                                  <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
+                                    <img
+                                      src={activeSlide.imagePath}
+                                      alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                                      className="w-full h-[180px] md:h-[220px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                    />
                                   </div>
                                 )}
-                              </div>
-                            </div>
-                          )}
-
-                          {activeSlide.layout === "image-metrics-sidebar" && (
-                            <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-4 items-stretch">
-                              {activeSlide.imagePath && (
-                                <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
-                                  <img 
-                                    src={activeSlide.imagePath} 
-                                    alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
-                                    className="w-full h-[180px] md:h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
-                                  />
-                                </div>
-                              )}
-                              <div className="flex flex-col gap-3 justify-between">
-                                {(activeSlide.metrics || []).slice(0, 3).map((metric, idx) => (
-                                  <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex-1 min-h-[56px]">
-                                    <span className="text-[8px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
-                                      {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
-                                    </span>
-                                    <span className="text-xs md:text-sm font-bold text-wine font-serif py-0.5">
-                                      {metric.value}
-                                    </span>
-                                    {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
-                                      <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
-                                        {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
-                                      </span>
-                                    )}
+                                <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-3.5 items-stretch">
+                                  <div className="bg-frost border border-border-soft/60 p-4 rounded-xl flex flex-col justify-center">
+                                    <p className="text-xs text-txt-muted leading-relaxed font-sans">
+                                      {lang === "en" && activeSlide.textEn ? activeSlide.textEn : activeSlide.text}
+                                    </p>
                                   </div>
-                                ))}
+                                  {activeSlide.metrics && activeSlide.metrics[0] && (
+                                    <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-xs">
+                                      <span className="text-[8px] font-bold text-olive uppercase tracking-wider leading-none mb-1.5">
+                                        {lang === "en" && activeSlide.metrics[0].labelEn ? activeSlide.metrics[0].labelEn : activeSlide.metrics[0].label}
+                                      </span>
+                                      <span className="text-lg font-bold text-wine font-serif mb-1">
+                                        {activeSlide.metrics[0].value}
+                                      </span>
+                                      {(lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note) && (
+                                        <span className="text-[8px] text-txt-muted italic font-serif leading-tight">
+                                          {lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note}
+                                        </span>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
-                          {activeSlide.layout === "chart-only" && (
-                            <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
-                              {activeSlide.imagePath ? (
-                                <img 
-                                  src={activeSlide.imagePath} 
-                                  alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} 
-                                  className="w-full h-auto max-h-[300px] object-contain rounded-lg"
-                                />
-                              ) : (
-                                <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
-                              )}
-                            </div>
-                          )}
+                            {activeSlide.layout === "image-metrics-sidebar" && (
+                              <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-4 items-stretch">
+                                {activeSlide.imagePath && (
+                                  <div className="border border-border-soft bg-surface p-2.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden flex items-center justify-center">
+                                    <img
+                                      src={activeSlide.imagePath}
+                                      alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                                      className="w-full h-[180px] md:h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                    />
+                                  </div>
+                                )}
+                                <div className="flex flex-col gap-3 justify-between">
+                                  {(activeSlide.metrics || []).slice(0, 3).map((metric, idx) => (
+                                    <div key={idx} className="p-3 bg-frost border border-border-soft/70 rounded-xl flex flex-col justify-center text-center shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex-1 min-h-[56px]">
+                                      <span className="text-[8px] font-bold text-txt-muted uppercase tracking-wider leading-none mb-1">
+                                        {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
+                                      </span>
+                                      <span className="text-xs md:text-sm font-bold text-wine font-serif py-0.5">
+                                        {metric.value}
+                                      </span>
+                                      {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
+                                        <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
+                                          {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                        </span>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {activeSlide.layout === "chart-only" && (
+                              <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
+                                {activeSlide.imagePath ? (
+                                  <img
+                                    src={activeSlide.imagePath}
+                                    alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                                    className="w-full h-auto max-h-[300px] object-contain rounded-lg"
+                                  />
+                                ) : (
+                                  <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })()}
-                </div>
-
-              </article>
-            )}
-
-            {activeDrawer === "methods" && (
-              /* METHOD SELECTION VIEW */
-              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
-                {/* Method Category Lists */}
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-wine font-serif">
-                      {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
-                    </h3>
-                    <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
-                      {lang === "pt"
-                        ? "Selecione uma metodologia abaixo para ver detalhes e casos em que foi aplicada."
-                        : "Select a methodology below to see details and cases where it was applied."}
-                    </p>
+                      );
+                    })()}
                   </div>
-                  <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
-                    {Object.entries(methodGroups).map(([groupName, items]) => (
-                      <div key={groupName} className="flex flex-col gap-1.5">
-                        <span className="text-xs font-extrabold text-brown uppercase tracking-widest block font-mono">
-                          {groupName}
-                        </span>
-                        <div className="flex flex-col gap-1">
-                          {items.map((m) => {
-                            const isSelected = m.id === selectedMethodId;
-                            return (
-                              <button
-                                key={m.id}
-                                onClick={() => setSelectedMethodId(m.id)}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${
-                                  isSelected
-                                    ? "bg-wine text-white border-wine"
-                                    : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
-                                }`}
-                              >
-                                {lang === "en" ? m.nameEn : m.name}
-                              </button>
-                            );
-                          })}
+
+                </article>
+              )}
+
+              {activeDrawer === "methods" && (
+                /* METHOD SELECTION VIEW */
+                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
+                  {/* Method Category Lists */}
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-wine font-serif">
+                        {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
+                      </h3>
+                      <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
+                        {lang === "pt"
+                          ? "Selecione uma metodologia abaixo para ver detalhes e casos em que foi aplicada."
+                          : "Select a methodology below to see details and cases where it was applied."}
+                      </p>
+                    </div>
+                    <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
+                      {Object.entries(methodGroups).map(([groupName, items]) => (
+                        <div key={groupName} className="flex flex-col gap-1.5">
+                          <span className="text-xs font-extrabold text-brown uppercase tracking-widest block font-mono">
+                            {groupName}
+                          </span>
+                          <div className="flex flex-col gap-1">
+                            {items.map((m) => {
+                              const isSelected = m.id === selectedMethodId;
+                              return (
+                                <button
+                                  key={m.id}
+                                  onClick={() => setSelectedMethodId(m.id)}
+                                  className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${isSelected
+                                      ? "bg-wine text-white border-wine"
+                                      : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
+                                    }`}
+                                >
+                                  {lang === "en" ? m.nameEn : m.name}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Details Panel for Method */}
+                  <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
+                    {/* Subtle Maple Leaf watermark */}
+                    <div className="absolute bottom-2 right-2 w-20 h-20 text-wine/3 pointer-events-none select-none">
+                      <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3 C11.5 6, 9.5 6, 9 7.5 C8 7, 7 6, 6 6.5 C5 7, 6 8.5, 6 9.5 C4.5 9, 3 8.5, 2 9.5 C1 10.5, 2.5 12, 4 12.5 C3.5 13.5, 3 15, 4 16 C5 17, 6.5 15.5, 7.5 15 C7 16.5, 7 18.5, 8.5 19 C10 19.5, 10.5 17.5, 12 16.5 C13.5 17.5, 14 19.5, 15.5 19 C17 18.5, 17 16.5, 16.5 15 C17.5 15.5, 19 17, 20 16 C21 15, 20.5 13.5, 20 12.5 C21.5 12, 23 10.5, 22 9.5 C21 8.5, 19.5 9, 18 9.5 C18 8.5, 19 7, 18 6.5 C17 6, 16 7, 15 7.5 C14.5 6, 12.5 6, 12 3 Z" />
+                        <path d="M12 16.5 L12 21" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span className="text-xs uppercase tracking-wider font-extrabold text-brown font-mono block mb-1">
+                        {lang === "en" ? currentMethod.groupEn : currentMethod.group}
+                      </span>
+                      <h4 className="text-xl md:text-2xl font-bold text-wine font-serif mb-2 leading-tight">
+                        {lang === "en" ? currentMethod.nameEn : currentMethod.name}
+                      </h4>
+                      <p className="text-sm md:text-base text-txt-muted leading-relaxed mb-6">
+                        {lang === "en" ? currentMethod.summaryEn : currentMethod.summary}
+                      </p>
+                    </div>
+
+                    <div className="border-t border-border-soft/60 pt-4 mt-2">
+                      <span className="text-xs uppercase font-mono font-bold text-txt-main block mb-2.5">
+                        {lang === "pt" ? "Projetos Relacionados" : "Related Projects"}
+                      </span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {projects
+                          .filter((p) => currentMethod.relatedProjectIds.includes(p.id))
+                          .map((p) => (
+                            <button
+                              key={p.id}
+                              onClick={() => {
+                                setSelectedProjectId(p.id);
+                                setActiveDrawer("projects");
+                              }}
+                              className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
+                            >
+                              <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
+                                {lang === "en" ? p.categoryEn : p.category}
+                              </span>
+                              <span className="text-xs md:text-sm font-bold text-wine line-clamp-2">
+                                {lang === "en" ? p.titleEn : p.title}
+                              </span>
+                            </button>
+                          ))}
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right Details Panel for Method */}
-                <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
-                  {/* Subtle Maple Leaf watermark */}
-                  <div className="absolute bottom-2 right-2 w-20 h-20 text-wine/3 pointer-events-none select-none">
-                    <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 3 C11.5 6, 9.5 6, 9 7.5 C8 7, 7 6, 6 6.5 C5 7, 6 8.5, 6 9.5 C4.5 9, 3 8.5, 2 9.5 C1 10.5, 2.5 12, 4 12.5 C3.5 13.5, 3 15, 4 16 C5 17, 6.5 15.5, 7.5 15 C7 16.5, 7 18.5, 8.5 19 C10 19.5, 10.5 17.5, 12 16.5 C13.5 17.5, 14 19.5, 15.5 19 C17 18.5, 17 16.5, 16.5 15 C17.5 15.5, 19 17, 20 16 C21 15, 20.5 13.5, 20 12.5 C21.5 12, 23 10.5, 22 9.5 C21 8.5, 19.5 9, 18 9.5 C18 8.5, 19 7, 18 6.5 C17 6, 16 7, 15 7.5 C14.5 6, 12.5 6, 12 3 Z" />
-                      <path d="M12 16.5 L12 21" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
-                    </svg>
-                  </div>
-                  <div>
-                    <span className="text-xs uppercase tracking-wider font-extrabold text-brown font-mono block mb-1">
-                      {lang === "en" ? currentMethod.groupEn : currentMethod.group}
-                    </span>
-                    <h4 className="text-xl md:text-2xl font-bold text-wine font-serif mb-2 leading-tight">
-                      {lang === "en" ? currentMethod.nameEn : currentMethod.name}
-                    </h4>
-                    <p className="text-sm md:text-base text-txt-muted leading-relaxed mb-6">
-                      {lang === "en" ? currentMethod.summaryEn : currentMethod.summary}
-                    </p>
-                  </div>
-
-                  <div className="border-t border-border-soft/60 pt-4 mt-2">
-                    <span className="text-xs uppercase font-mono font-bold text-txt-main block mb-2.5">
-                      {lang === "pt" ? "Projetos Relacionados" : "Related Projects"}
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {projects
-                        .filter((p) => currentMethod.relatedProjectIds.includes(p.id))
-                        .map((p) => (
-                          <button
-                            key={p.id}
-                            onClick={() => {
-                              setSelectedProjectId(p.id);
-                              setActiveDrawer("projects");
-                            }}
-                            className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
-                          >
-                            <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
-                              {lang === "en" ? p.categoryEn : p.category}
-                            </span>
-                            <span className="text-xs md:text-sm font-bold text-wine line-clamp-2">
-                              {lang === "en" ? p.titleEn : p.title}
-                            </span>
-                          </button>
-                        ))}
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {activeDrawer === "stack" && (
-              /* STACK SELECTION VIEW */
-              <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
-                {/* Stack categories & list */}
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-wine font-serif">
-                      {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
-                    </h3>
-                    <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
-                      {lang === "pt"
-                        ? "Selecione uma ferramenta da stack para ler notas práticas de uso profissional."
-                        : "Select a tool from the stack to read practical notes on professional use."}
-                    </p>
-                  </div>
-                  <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
-                    {Object.entries(stackGroups).map(([catName, items]) => (
-                      <div key={catName} className="flex flex-col gap-1.5">
-                        <span className="text-xs font-extrabold text-wine uppercase tracking-widest block font-mono">
-                          {catName}
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {items.map((item) => {
-                            const isSelected = item.name === selectedStackName;
-                            return (
-                              <button
-                                key={item.name}
-                                onClick={() => setSelectedStackName(item.name)}
-                                className={`px-3 py-1.5 border rounded-lg text-xs md:text-sm font-mono transition-soft cursor-pointer ${
-                                  isSelected
-                                    ? "bg-brown text-white border-brown"
-                                    : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
-                                }`}
-                              >
-                                {item.name}
-                              </button>
-                            );
-                          })}
+              {activeDrawer === "stack" && (
+                /* STACK SELECTION VIEW */
+                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
+                  {/* Stack categories & list */}
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-wine font-serif">
+                        {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
+                      </h3>
+                      <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
+                        {lang === "pt"
+                          ? "Selecione uma ferramenta da stack para ler notas práticas de uso profissional."
+                          : "Select a tool from the stack to read practical notes on professional use."}
+                      </p>
+                    </div>
+                    <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
+                      {Object.entries(stackGroups).map(([catName, items]) => (
+                        <div key={catName} className="flex flex-col gap-1.5">
+                          <span className="text-xs font-extrabold text-wine uppercase tracking-widest block font-mono">
+                            {catName}
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {items.map((item) => {
+                              const isSelected = item.name === selectedStackName;
+                              return (
+                                <button
+                                  key={item.name}
+                                  onClick={() => setSelectedStackName(item.name)}
+                                  className={`px-3 py-1.5 border rounded-lg text-xs md:text-sm font-mono transition-soft cursor-pointer ${isSelected
+                                      ? "bg-brown text-white border-brown"
+                                      : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
+                                    }`}
+                                >
+                                  {item.name}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Right Details Panel for Stack */}
+                  <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-center items-center shadow-[0_1px_4px_rgba(44,40,34,0.015)] text-center min-h-[220px] overflow-hidden">
+                    {/* Subtle Oak Leaf watermark */}
+                    <div className="absolute bottom-2 right-2 w-16 h-16 text-brown/4 pointer-events-none select-none">
+                      <svg width="64" height="64" className="w-full h-full rotate-12" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 2 C8 3.5 7.5 5.5 8 7.5 C6.5 8.2 5.5 9.8 6 11.5 C4.5 12.5 4 14.5 5.5 16.5 C4.8 17.8 5 19.2 6.5 20 C7.5 20.5 8.5 20.2 9 20.8 C9.5 21.5 9.2 22.8 9.5 24 L10.5 24 C10.8 22.8 10.5 21.5 11 20.8 C11.5 20.2 12.5 20.5 13.5 20 C15 19.2 15.2 17.8 14.5 16.5 C16 14.5 15.5 12.5 14 11.5 C14.5 9.8 13.5 8.2 12 7.5 C12.5 5.5 12 3.5 10 2 Z" />
+                      </svg>
+                    </div>
+                    <span className="text-xs uppercase tracking-wider font-extrabold text-wine font-mono block mb-1">
+                      {getStackCategory(currentStackItem)}
+                    </span>
+                    <h4 className="text-2xl md:text-3xl font-bold text-olive font-serif mb-4">
+                      {currentStackItem.name}
+                    </h4>
+                    <div className="bg-surface/60 p-4 border border-border-soft/40 rounded-xl max-w-sm">
+                      <span className="text-[10px] uppercase font-mono font-bold text-txt-muted block mb-1">
+                        {lang === "pt" ? "Nota Prática" : "Practical Note"}
+                      </span>
+                      <p className="text-sm md:text-base text-txt-main leading-relaxed italic">
+                        "{lang === "en" ? currentStackItem.noteEn : currentStackItem.note}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Carousel Slider Controls (Only visible in projects mode) */}
+            {activeDrawer === "projects" && (
+              <div className="mt-6 md:mt-8 pt-4 border-t border-border-soft/30 flex items-center justify-center gap-6">
+                {/* Prev Button */}
+                <button
+                  onClick={handlePrevProject}
+                  className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-wine hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
+                >
+                  ◀
+                </button>
+
+                {/* Dots */}
+                <div className="flex gap-2.5">
+                  {projects.map((p, idx) => (
+                    <button
+                      key={p.id}
+                      onClick={() => setSelectedProjectId(p.id)}
+                      className={`w-2.5 h-2.5 rounded-full transition-soft cursor-pointer ${idx === projectIndex
+                          ? "bg-wine scale-110"
+                          : "bg-border-soft hover:bg-brown/65"
+                        }`}
+                      title={lang === "en" ? p.shortTitleEn : p.shortTitle}
+                    />
+                  ))}
                 </div>
 
-                {/* Right Details Panel for Stack */}
-                <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-center items-center shadow-[0_1px_4px_rgba(44,40,34,0.015)] text-center min-h-[220px] overflow-hidden">
-                  {/* Subtle Oak Leaf watermark */}
-                  <div className="absolute bottom-2 right-2 w-16 h-16 text-brown/4 pointer-events-none select-none">
-                    <svg width="64" height="64" className="w-full h-full rotate-12" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M10 2 C8 3.5 7.5 5.5 8 7.5 C6.5 8.2 5.5 9.8 6 11.5 C4.5 12.5 4 14.5 5.5 16.5 C4.8 17.8 5 19.2 6.5 20 C7.5 20.5 8.5 20.2 9 20.8 C9.5 21.5 9.2 22.8 9.5 24 L10.5 24 C10.8 22.8 10.5 21.5 11 20.8 C11.5 20.2 12.5 20.5 13.5 20 C15 19.2 15.2 17.8 14.5 16.5 C16 14.5 15.5 12.5 14 11.5 C14.5 9.8 13.5 8.2 12 7.5 C12.5 5.5 12 3.5 10 2 Z" />
-                    </svg>
-                  </div>
-                  <span className="text-xs uppercase tracking-wider font-extrabold text-wine font-mono block mb-1">
-                    {getStackCategory(currentStackItem)}
-                  </span>
-                  <h4 className="text-2xl md:text-3xl font-bold text-olive font-serif mb-4">
-                    {currentStackItem.name}
-                  </h4>
-                  <div className="bg-surface/60 p-4 border border-border-soft/40 rounded-xl max-w-sm">
-                    <span className="text-[10px] uppercase font-mono font-bold text-txt-muted block mb-1">
-                      {lang === "pt" ? "Nota Prática" : "Practical Note"}
-                    </span>
-                    <p className="text-sm md:text-base text-txt-main leading-relaxed italic">
-                      "{lang === "en" ? currentStackItem.noteEn : currentStackItem.note}"
-                    </p>
-                  </div>
-                </div>
+                {/* Next Button */}
+                <button
+                  onClick={handleNextProject}
+                  className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-wine hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
+                >
+                  ▶
+                </button>
               </div>
             )}
-          </div>
-
-          {/* Carousel Slider Controls (Only visible in projects mode) */}
-          {activeDrawer === "projects" && (
-            <div className="mt-6 md:mt-8 pt-4 border-t border-border-soft/30 flex items-center justify-center gap-6">
-              {/* Prev Button */}
-              <button
-                onClick={handlePrevProject}
-                className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-wine hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
-              >
-                ◀
-              </button>
-
-              {/* Dots */}
-              <div className="flex gap-2.5">
-                {projects.map((p, idx) => (
-                  <button
-                    key={p.id}
-                    onClick={() => setSelectedProjectId(p.id)}
-                    className={`w-2.5 h-2.5 rounded-full transition-soft cursor-pointer ${
-                      idx === projectIndex
-                        ? "bg-wine scale-110"
-                        : "bg-border-soft hover:bg-brown/65"
-                    }`}
-                    title={lang === "en" ? p.shortTitleEn : p.shortTitle}
-                  />
-                ))}
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={handleNextProject}
-                className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-wine hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
-              >
-                ▶
-              </button>
-            </div>
-          )}
-        </main>
-      </div>
+          </main>
+        </div>
       )}
     </section>
   );
@@ -1439,7 +1425,7 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
           </div>
         </div>
       );
-    
+
     case "time-series":
       return (
         <div className="w-full flex flex-col gap-2 font-sans">
@@ -1451,13 +1437,13 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
               <line x1="20" y1="20" x2="200" y2="20" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
               <line x1="20" y1="50" x2="200" y2="50" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
               <line x1="20" y1="80" x2="200" y2="80" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
-              
+
               <line x1="20" y1="90" x2="200" y2="90" stroke="#2C2822" strokeWidth="0.75" />
               <line x1="20" y1="10" x2="20" y2="90" stroke="#2C2822" strokeWidth="0.75" />
 
               {/* Pre-intervention trend */}
               <path d="M 20 80 L 50 78 L 80 70 L 110 65" fill="none" stroke="#756E63" strokeWidth="1.5" />
-              
+
               {/* Intervention point */}
               <line x1="110" y1="10" x2="110" y2="90" stroke="#774F4C" strokeWidth="1" strokeDasharray="3,3" />
               <text x="114" y="16" className="text-[6px] fill-terracotta font-semibold font-sans">
@@ -1491,7 +1477,7 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
               <line x1="20" y1="20" x2="200" y2="20" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
               <line x1="20" y1="50" x2="200" y2="50" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
               <line x1="20" y1="80" x2="200" y2="80" stroke="#E3DCD0" strokeWidth="0.5" strokeDasharray="2,2" />
-              
+
               <line x1="20" y1="90" x2="200" y2="90" stroke="#2C2822" strokeWidth="0.75" />
               <line x1="20" y1="10" x2="20" y2="90" stroke="#2C2822" strokeWidth="0.75" />
 
@@ -1632,7 +1618,7 @@ function MiniVisual({ type, lang }: { type: string, lang: "pt" | "en" }) {
               {/* Input */}
               <rect x="10" y="38" width="45" height="22" rx="4" fill="#FAF5EB" stroke="#E3DCD0" strokeWidth="1" />
               <text x="32.5" y="51" textAnchor="middle" className="text-[6px] fill-txt-main font-bold font-sans">Prompt</text>
-              
+
               <path d="M 55 49 H 70" fill="none" stroke="#8A6535" strokeWidth="0.8" />
               <polygon points="70,46.5 74,49 70,51.5" fill="#8A6535" />
 
