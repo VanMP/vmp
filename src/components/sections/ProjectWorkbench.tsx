@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { projects, type Project } from "../../data/projects";
 import { methods, type Method } from "../../data/methods";
 import { stackItems, type StackItem } from "../../data/stack";
+import { applications, type Application } from "../../data/applications";
 
 function getProjectIcon(id: string, colorClass: string) {
   switch (id) {
@@ -159,8 +160,9 @@ const playDrawerSound = (type: "open" | "close") => {
 };
 
 export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps) {
-  const [activeDrawer, setActiveDrawer] = useState<"projects" | "methods" | "stack">("projects");
+  const [activeDrawer, setActiveDrawer] = useState<"projects" | "applications" | "methods" | "stack">("projects");
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+  const [selectedApplicationId, setSelectedApplicationId] = useState<string>("experimentation");
 
   // Sidebar Collapse & Selector Drawer States
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true);
@@ -818,7 +820,39 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </div>
               )}
 
-              {/* Tab 2: Métodos */}
+              {/* Tab 1.5: Aplicações */}
+              <button
+                onClick={() => {
+                  setActiveDrawer("applications");
+                  setDrawerOpen(false);
+                }}
+                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "applications"
+                    ? "bg-mustard border-mustard text-white shadow-sm"
+                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
+                  } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
+                title={lang === "pt" ? "Aplicações" : "Applications"}
+              >
+                <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
+                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
+                    <span className="text-[11px] md:text-xs font-bold leading-tight">
+                      {lang === "pt" ? "Aplicações" : "Applications"}
+                    </span>
+                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "applications" ? "text-surface/80" : "text-txt-muted"}`}>
+                      {lang === "pt" ? "Demandas de negócio" : "Business demands"}
+                    </span>
+                  </div>
+                </div>
+                {!sidebarCollapsed && (
+                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "applications" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                    ➔
+                  </span>
+                )}
+              </button>
+
+              {/* Tab 2: Técnicas (Antigo Métodos) */}
               <button
                 onClick={() => {
                   setActiveDrawer("methods");
@@ -828,7 +862,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                     ? "bg-wine border-wine text-white shadow-sm"
                     : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
                   } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-                title={lang === "pt" ? "Métodos" : "Methods"}
+                title={lang === "pt" ? "Técnicas" : "Techniques"}
               >
                 <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
                   <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -836,10 +870,10 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   </svg>
                   <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
                     <span className="text-[11px] md:text-xs font-bold leading-tight">
-                      {lang === "pt" ? "Métodos" : "Methods"}
+                      {lang === "pt" ? "Técnicas" : "Techniques"}
                     </span>
                     <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
+                      {lang === "pt" ? "Abordagens estatísticas" : "Statistical approaches"}
                     </span>
                   </div>
                 </div>
@@ -850,7 +884,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 )}
               </button>
 
-              {/* Tab 3: Stack */}
+              {/* Tab 3: Ferramentas (Antigo Stack) */}
               <button
                 onClick={() => {
                   setActiveDrawer("stack");
@@ -860,16 +894,18 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                     ? "bg-brown border-brown text-white shadow-sm"
                     : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
                   } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-                title="Stack"
+                title={lang === "pt" ? "Ferramentas" : "Tools"}
               >
                 <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
                   <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                    <span className="text-[11px] md:text-xs font-bold leading-tight">Stack</span>
+                    <span className="text-[11px] md:text-xs font-bold leading-tight">
+                      {lang === "pt" ? "Ferramentas" : "Tools"}
+                    </span>
                     <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "stack" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "Ferramentas e softwares" : "Tools & software"}
+                      {lang === "pt" ? "Softwares e bibliotecas" : "Software & libraries"}
                     </span>
                   </div>
                 </div>
@@ -971,27 +1007,72 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                     </div>
 
                     {/* Chips Grid */}
-                    <div className="space-y-3.5">
-                      <div className="flex flex-wrap gap-1.5">
-                        {currentProject.methods.map((m) => (
-                          <span key={m} className="px-2.5 py-1 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
-                            {getMethodName(m)}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="border-t border-border-soft/40 pt-3 flex items-center gap-2">
-                        <span className="text-[10px] uppercase font-mono font-bold text-txt-main">
-                          {lang === "pt" ? "Ferramentas:" : "Tools:"}
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {currentProject.tools.map((t) => (
-                            <span key={t} className="px-2.5 py-1 bg-frost text-wine text-[10px] rounded border border-border-soft/50 font-mono font-semibold">
-                              {t}
+                    <div className="space-y-3">
+                      {currentProject.applications && currentProject.applications.length > 0 ? (
+                        <div className="flex flex-col gap-3">
+                          <div className="flex flex-col gap-1">
+                            <span className="text-[9px] uppercase font-mono font-bold text-txt-main">
+                              {lang === "pt" ? "Aplicações:" : "Applications:"}
                             </span>
-                          ))}
+                            <div className="flex flex-wrap gap-1.5">
+                              {currentProject.applications.map((a) => (
+                                <span key={a} className="px-2.5 py-0.5 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
+                                  {a}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="border-t border-border-soft/30 pt-2 flex flex-col gap-1">
+                            <span className="text-[9px] uppercase font-mono font-bold text-txt-main">
+                              {lang === "pt" ? "Técnicas:" : "Techniques:"}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {currentProject.techniques.map((t) => (
+                                <span key={t} className="px-2.5 py-0.5 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="border-t border-border-soft/30 pt-2 flex items-center gap-2">
+                            <span className="text-[9px] uppercase font-mono font-bold text-txt-main w-20 flex-shrink-0">
+                              {lang === "pt" ? "Ferramentas:" : "Tools:"}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {currentProject.tools.map((t) => (
+                                <span key={t} className="px-2.5 py-0.5 bg-frost text-wine text-[10px] rounded border border-border-soft/50 font-mono font-semibold">
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="flex flex-col gap-3">
+                          <div className="flex flex-wrap gap-1.5">
+                            {currentProject.methods.map((m) => (
+                              <span key={m} className="px-2.5 py-1 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
+                                {getMethodName(m)}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="border-t border-border-soft/40 pt-3 flex items-center gap-2">
+                            <span className="text-[10px] uppercase font-mono font-bold text-txt-main">
+                              {lang === "pt" ? "Ferramentas:" : "Tools:"}
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {currentProject.tools.map((t) => (
+                                <span key={t} className="px-2.5 py-1 bg-frost text-wine text-[10px] rounded border border-border-soft/50 font-mono font-semibold">
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -1177,6 +1258,121 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   </div>
 
                 </article>
+              )}
+
+              {activeDrawer === "applications" && (
+                /* APPLICATION SELECTION VIEW */
+                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
+                  {/* Application Category Lists */}
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <h3 className="text-xl font-bold text-wine font-serif">
+                        {lang === "pt" ? "Demandas de Negócio (Aplicações)" : "Business Applications"}
+                      </h3>
+                      <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
+                        {lang === "pt"
+                          ? "Selecione um jargão ou caso de negócio para ver as abordagens técnicas aplicadas."
+                          : "Select a business use-case to see the applied technical approaches."}
+                      </p>
+                    </div>
+                    <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
+                      {(() => {
+                        const appCategories = lang === "en"
+                          ? ["Decision & Growth", "Product & Pricing", "Automation & Processing"]
+                          : ["Decisão & Crescimento", "Produto & Precificação", "Automação & Processamento"];
+
+                        const getAppGroups = () => {
+                          const groups: { [key: string]: Application[] } = {};
+                          appCategories.forEach(cat => {
+                            groups[cat] = applications.filter(app => (lang === "en" ? app.groupEn : app.group) === cat);
+                          });
+                          return groups;
+                        };
+
+                        const appGroups = getAppGroups();
+
+                        return Object.entries(appGroups).map(([groupName, items]) => (
+                          <div key={groupName} className="flex flex-col gap-1.5">
+                            <span className="text-xs font-extrabold text-[#9C8538] uppercase tracking-widest block font-mono">
+                              {groupName}
+                            </span>
+                            <div className="flex flex-col gap-1">
+                              {items.map((app) => {
+                                const isSelected = app.id === selectedApplicationId;
+                                return (
+                                  <button
+                                    key={app.id}
+                                    onClick={() => setSelectedApplicationId(app.id)}
+                                    className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${
+                                      isSelected
+                                        ? "bg-mustard text-white border-mustard"
+                                        : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
+                                    }`}
+                                  >
+                                    {lang === "en" ? app.nameEn : app.name}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ));
+                      })()}
+                    </div>
+                  </div>
+
+                  {/* Right Details Panel for Application */}
+                  {(() => {
+                    const currentApp = applications.find(a => a.id === selectedApplicationId) || applications[0];
+                    return (
+                      <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
+                        {/* Decorative watermark */}
+                        <div className="absolute bottom-2 right-2 w-20 h-20 text-[#9C8538]/5 pointer-events-none select-none">
+                          <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                          </svg>
+                        </div>
+                        <div>
+                          <span className="text-xs uppercase tracking-wider font-extrabold text-[#9C8538] font-mono block mb-1">
+                            {lang === "en" ? currentApp.groupEn : currentApp.group}
+                          </span>
+                          <h4 className="text-xl md:text-2xl font-bold text-wine font-serif mb-2 leading-tight">
+                            {lang === "en" ? currentApp.nameEn : currentApp.name}
+                          </h4>
+                          <p className="text-sm md:text-base text-txt-muted leading-relaxed mb-6">
+                            {lang === "en" ? currentApp.summaryEn : currentApp.summary}
+                          </p>
+                        </div>
+
+                        <div className="border-t border-border-soft/60 pt-4 mt-2">
+                          <span className="text-xs uppercase font-mono font-bold text-txt-main block mb-2.5">
+                            {lang === "pt" ? "Projetos Relacionados" : "Related Projects"}
+                          </span>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {projects
+                              .filter((p) => currentApp.relatedProjectIds.includes(p.id))
+                              .map((p) => (
+                                <button
+                                  key={p.id}
+                                  onClick={() => {
+                                    setSelectedProjectId(p.id);
+                                    setActiveDrawer("projects");
+                                  }}
+                                  className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
+                                >
+                                  <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
+                                    {lang === "en" ? p.categoryEn : p.category}
+                                  </span>
+                                  <span className="text-xs md:text-sm font-bold text-wine line-clamp-2">
+                                    {lang === "en" ? p.titleEn : p.title}
+                                  </span>
+                                </button>
+                              ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
               )}
 
               {activeDrawer === "methods" && (

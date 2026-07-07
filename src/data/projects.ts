@@ -38,23 +38,27 @@ export type Project = {
   simulated: boolean;
   visualType: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
   slides?: ProjectSlide[];
+  applications?: string[];
+  techniques?: string[];
 };
 
 export const projects: Project[] = [
   {
     id: "bayesian-promotions",
-    title: "Experimentação Bayesiana em Promoções",
-    titleEn: "Bayesian Experimentation in Promotions",
+    title: "Análise Bayesiana em Experimentação (Caso base: teste A/B)",
+    titleEn: "Bayesian Analysis in Experimentation (Baseline Case: A/B Test)",
     shortTitle: "Experimentação Bayesiana",
     shortTitleEn: "Bayesian Experimentation",
     category: "Experimentação",
     categoryEn: "Experimentation",
-    summary: "Avaliação de eficácia entre desconto direto e pacote promocional em campanha de e-commerce utilizando modelagem de eventos raros sob perspectiva de decisão bayesiana.",
-    summaryEn: "Efficacy evaluation between a direct discount and a promotional bundle in an e-commerce campaign utilizing rare-event modeling under a Bayesian decision perspective.",
-    problem: "Necessidade de avaliar a rentabilidade líquida e taxa de conversão de duas mecânicas promocionais (desconto percentual direto versus pacote com brinde) sob cenários de tráfego controlled.",
-    problemEn: "Evaluating the net profitability and conversion rate of two promotional strategies (direct percentage discount versus bundle offer) under controlled traffic conditions.",
+    summary: "Projeção de lucro esperado e análise de risco financeiro sobre alternativas de promoção para a Black Friday de um e-commerce",
+    summaryEn: "Expected profit projection and financial risk analysis on promotional alternatives for an e-commerce Black Friday",
+    problem: "Faltando dois meses para a Black Friday, o e-commerce precisava definir a estratégia de anúncios para uma base de 100 mil usuários, escolhendo entre duas opções: Campanha A (conversão maior, margem menor) e Campanha B (conversão menor, margem maior).\n\nA Análise frequentista comum foi inconclusiva, com um p-valor de 0.18. Neste projeto, criei um material para apoiar a decisão pela campanha mais vantajosa, utilizando modelagem Bayesiana e simulações de Monte Carlo para quantificar o risco financeiro exato de cada decisão, transformando incerteza em lucro esperado real.",
+    problemEn: "Two months before Black Friday, the e-commerce needed to define the ad strategy for a base of 100,000 users, choosing between two options: Campaign A (higher conversion, lower margin) and Campaign B (lower conversion, higher margin).\n\nThe standard frequentist analysis was inconclusive, with a p-value of 0.18. In this project, I created material to support the decision for the most advantageous campaign, using Bayesian modeling and Monte Carlo simulations to quantify the exact financial risk of each decision, transforming uncertainty into actual expected profit.",
     methods: ["Testes A/B", "Eventos raros", "Inferência bayesiana", "Teste Z", "Intervalos de credibilidade", "Projeção de lucro"],
-    tools: ["Python", "R", "SQL"],
+    applications: ["Testes A/B", "Modelagem de eventos raros", "Otimização de margem de lucro", "Análise de risco financeiro"],
+    techniques: ["Inferência Bayesiana", "Distribuição Conjugada Beta-Binomial", "Simulação de Monte Carlo", "Distribuição do Lift Relativo", "Lucro Esperado Coletivo", "Função de Perda Esperada (Risk Analysis)"],
+    tools: ["R", "Python", "NumPy", "Pandas", "SciPy (stats)", "Seaborn", "LaTeX"],
     metrics: [
       { label: "Conversão A", labelEn: "Conversion A", value: "2,04%", note: "Desconto direto", noteEn: "Direct discount" },
       { label: "Conversão B", labelEn: "Conversion B", value: "1,68%", note: "Pacote promocional", noteEn: "Bundle" },
