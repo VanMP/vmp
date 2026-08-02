@@ -13,6 +13,21 @@ export type TextBlock = {
   textEn?: string;
 };
 
+export type BenchmarkTableRow = {
+  theme: string;
+  themeEn?: string;
+  realPct: string;
+  classifiedCount: number | string;
+  finalPct: string;
+  errorMargin: string;
+};
+
+export type BenchmarkTableData = {
+  headers: string[];
+  headersEn?: string[];
+  rows: BenchmarkTableRow[];
+};
+
 export type ProjectSlide = {
   id: string;
   layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only" | "image-three-blocks" | "interactive-iframe";
@@ -25,6 +40,7 @@ export type ProjectSlide = {
   textEn?: string;
   metrics?: ProjectMetric[];
   textBlocks?: TextBlock[];
+  tableData?: BenchmarkTableData;
 };
 
 export type Project = {
@@ -52,6 +68,131 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    id: "nlp-text-intelligence",
+    title: "Pipeline de Clustering & Rotulagem por LLM",
+    titleEn: "Clustering Pipeline & LLM Labeling",
+    shortTitle: "Pipeline de Clustering & LLM",
+    shortTitleEn: "Clustering & LLM Pipeline",
+    category: "Modelagem & Agrupamento Vetorial",
+    categoryEn: "Modeling & Vector Clustering",
+    summary: "Validação experimental do algoritmo de agrupamento e quantificação semântica em dados de redes sociais, utilizando um dataset de teste sintético e pré-rotulado para validar a precisão da pipeline (BERT Multilíngue, UMAP, GMM e Llama 3.1 local) antes de sua integração na ferramenta interativa em Streamlit.",
+    summaryEn: "Experimental validation of the clustering and semantic quantification algorithm on social media data, using a pre-labeled synthetic test dataset to validate pipeline precision (Multilingual BERT, UMAP, GMM, local Llama 3.1) prior to Streamlit integration.",
+    problem: "Análise e quantificação de textos não estruturados e sem categorias pré-definidas. Para validar o desempenho do algoritmo antes da aplicação prática, utilizou-se um dataset de estresse sintético focado em gestão municipal (contendo 15% de ruído/spam e 25% de frases vagas sem palavras-chave), cenário onde classificadores tradicionais falham em capturar contexto e a leitura manual é inviável.",
+    problemEn: "Analysis and quantification of unstructured text without pre-defined categories. A synthetic stress dataset focused on municipal management (containing 15% noise/spam and 25% implicit statements) was used to validate algorithm performance prior to practical deployment.",
+    methods: ["Processamento de Linguagem Natural", "Embeddings multilíngues", "Redução de dimensionalidade", "Modelagem por Mistura de Gaussianas", "Agentes e LLMs locais", "Métricas de validação"],
+    applications: ["Clusterização Não Categórica", "Quantificação de Opinião Pública", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
+    techniques: ["Embeddings BERT Multilíngue (MiniLM-L12-v2)", "Redução de Dimensionalidade (UMAP)", "Mistura de Gaussianas (GMM)", "Rotulagem por Llama 3.1 Local", "Métricas de Validação (ARI/F1-Score)"],
+    tools: ["Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
+    metrics: [
+      { label: "Acurácia Global", labelEn: "Global Accuracy", value: "78,6%", note: "Pós-Refinamento", noteEn: "Post-Refinement" },
+      { label: "Weighted F1-Score", labelEn: "Weighted F1-Score", value: "78,7%", note: "Macro F1 de 72,9%", noteEn: "Macro F1 72.9%" },
+      { label: "Erro de Prevalência", labelEn: "Prevalence Error", value: "±2,16%", note: "Desvio Médio de Voto", noteEn: "Mean Margin Error" },
+      { label: "Precisão em Ruído", labelEn: "Spam Precision", value: "88,9%", note: "180 amostras salvas", noteEn: "180 samples saved" },
+      { label: "Índice ARI", labelEn: "ARI Index", value: "0,6091", note: "Separabilidade Rand", noteEn: "Rand Separability" }
+    ],
+    outcome: "O algoritmo de agrupamento vetorial demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e mapeando a estrutura vetorial em 3D.",
+    outcomeEn: "The vector clustering algorithm demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and mapping 3D vector space.",
+    simulated: true,
+    visualType: "nlp-flow",
+    slides: [
+      {
+        id: "quantificador-slide-1",
+        layout: "interactive-iframe",
+        title: "Projeção Espacial 3D de Opiniões (UMAP + GMM)",
+        titleEn: "3D Spatial Opinion Projection (UMAP + GMM)",
+        iframePath: "/reports/quantificador-semantico-plot.html"
+      },
+      {
+        id: "quantificador-slide-2",
+        layout: "image-three-blocks",
+        title: "Matriz de Validação e Destaques da Pipeline",
+        titleEn: "Validation Matrix & Pipeline Highlights",
+        tableData: {
+          headers: ["Tema da Opinião Pública", "% Real (Gabarito)", "Nº Classificado (IA)", "% Classificado (Final)", "Erro Absoluto (%)"],
+          headersEn: ["Public Opinion Theme", "% Real (Truth)", "Classified Count (AI)", "% Classified (Final)", "Margin Error (%)"],
+          rows: [
+            {
+              theme: "Apoio Cego e Elogios ao Candidato",
+              themeEn: "Blind Support & Candidate Praise",
+              realPct: "26.05%",
+              classifiedCount: 325,
+              finalPct: "27.31%",
+              errorMargin: "±1.26%"
+            },
+            {
+              theme: "Reclamações de Asfalto e Infraestrutura Urbana",
+              themeEn: "Road & Infrastructure Complaints",
+              realPct: "21.85%",
+              classifiedCount: 269,
+              finalPct: "22.61%",
+              errorMargin: "±0.76%"
+            },
+            {
+              theme: "Críticas à Saúde Pública e Postos de Saúde",
+              themeEn: "Public Health & Clinic Complaints",
+              realPct: "16.81%",
+              classifiedCount: 133,
+              finalPct: "11.18%",
+              errorMargin: "±5.63%"
+            },
+            {
+              theme: "Ruído / Fora de Escopo (Spam e Off-Topic)",
+              themeEn: "Noise / Out of Scope (Spam & Off-Topic)",
+              realPct: "15.13%",
+              classifiedCount: 180,
+              finalPct: "15.13%",
+              errorMargin: "±0.0%"
+            },
+            {
+              theme: "Denúncias de Corrupção e Superfaturamento",
+              themeEn: "Corruption & Overpricing Allegations",
+              realPct: "9.24%",
+              classifiedCount: 176,
+              finalPct: "14.79%",
+              errorMargin: "±5.55%"
+            },
+            {
+              theme: "Cobrança por Educação e Vagas em Creches",
+              themeEn: "Education & Daycare Demands",
+              realPct: "6.72%",
+              classifiedCount: 69,
+              finalPct: "5.8%",
+              errorMargin: "±0.92%"
+            },
+            {
+              theme: "Reclamações de Segurança e Iluminação Pública",
+              themeEn: "Public Safety & Lighting Complaints",
+              realPct: "4.2%",
+              classifiedCount: 38,
+              finalPct: "3.19%",
+              errorMargin: "±1.01%"
+            }
+          ]
+        },
+        textBlocks: [
+          {
+            title: "🎯 Acurácia de 78.6% & F1 de 78.7%",
+            titleEn: "🎯 78.6% Accuracy & 78.7% F1",
+            text: "Elevado desempenho em frases vagas com erro de prevalência de apenas ±2.16% no cômputo global dos temas.",
+            textEn: "High performance on implicit statements with an overall vote margin error of just ±2.16%."
+          },
+          {
+            title: "🌪️ 88.9% de Precisão em Ruído",
+            titleEn: "88.9% Precision on Spam Noise",
+            text: "Isolamento autônomo de 180 amostras fora de escopo (spam, piadas, futebol) sem poluir a contagem dos temas prioritários.",
+            textEn: "Autonomous isolation of 180 out-of-scope samples (spam, jokes) without polluting priority theme counts."
+          },
+          {
+            title: "💰 Custo Zero de API & 100% On-Premise",
+            titleEn: "💰 Zero API Cost & 100% On-Premise",
+            text: "Pipeline otimizada para executar 100% localmente (via Ollama/Llama 3.1 e embeddings open-source), processando grandes volumes de texto sem consumo de tokens em APIs pagas e garantindo privacidade total dos dados.",
+            textEn: "Optimized pipeline executing 100% locally (via Ollama/Llama 3.1 and open-source embeddings), processing large text volumes without paid API token consumption and ensuring full data privacy."
+          }
+        ]
+      }
+    ]
+  },
   {
     id: "bayesian-promotions",
     title: "Análise Bayesiana em Experimentação (Caso base: teste A/B)",
@@ -205,70 +346,6 @@ export const projects: Project[] = [
     outcomeEn: "Behavioral grouping into 4 clusters and LTV modeling (average R$ 4,250 for the priority tier) allowed precision targeting, yielding an estimated ROI of 3.2x on campaign investment.",
     simulated: true,
     visualType: "matrix"
-  },
-  {
-    id: "nlp-text-intelligence",
-    title: "Clusterização Baseada em Dados Não Categóricos",
-    titleEn: "Clustering Based on Non-Categorical Data",
-    shortTitle: "Clusterização Não Categórica",
-    shortTitleEn: "Non-Categorical Clustering",
-    category: "Modelagem & Agrupamento Vetorial",
-    categoryEn: "Modeling & Vector Clustering",
-    summary: "Desenvolvimento e validação de pipeline de clusterização probabilística para dados não categóricos e textos não estruturados, integrando embeddings multilíngues (MiniLM-L12-v2), redução UMAP e Mistura de Gaussianas (GMM).",
-    summaryEn: "Development and validation of a probabilistic clustering pipeline for non-categorical data and unstructured text, integrating multilingual embeddings, UMAP, and Gaussian Mixture Models (GMM).",
-    problem: "Agrupamento e quantificação de 1.190 fragmentos não estruturados (com 15% de ruído/spam e 25% de frases vagas sem palavras-chave), onde modelos baseados em dicionários estáticos ou variáveis categóricas puras falham em capturar distâncias e densidades semânticas em espaços contínuos.",
-    problemEn: "Clustering and quantification of 1,190 unstructured text fragments (containing 15% noise/spam and 25% implicit statements), where traditional categorical or keyword-based models fail to capture semantic density in continuous vector spaces.",
-    methods: ["Processamento de Linguagem Natural", "Embeddings multilíngues", "Redução de dimensionalidade", "Modelagem por Mistura de Gaussianas", "Agentes e LLMs locais", "Métricas de validação"],
-    applications: ["Clusterização Não Categórica", "Quantificação de Opinião Pública", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
-    techniques: ["Embeddings BERT Multilíngue (MiniLM-L12-v2)", "Redução de Dimensionalidade (UMAP)", "Mistura de Gaussianas (GMM)", "Rotulagem por Llama 3.1 Local", "Métricas de Validação (ARI/F1-Score)"],
-    tools: ["Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
-    metrics: [
-      { label: "Acurácia Global", labelEn: "Global Accuracy", value: "78,6%", note: "Pós-Refinamento", noteEn: "Post-Refinement" },
-      { label: "Weighted F1-Score", labelEn: "Weighted F1-Score", value: "78,7%", note: "Macro F1 de 72,9%", noteEn: "Macro F1 72.9%" },
-      { label: "Erro de Prevalência", labelEn: "Prevalence Error", value: "±2,16%", note: "Desvio Médio de Voto", noteEn: "Mean Margin Error" },
-      { label: "Precisão em Ruído", labelEn: "Spam Precision", value: "88,9%", note: "180 amostras salvas", noteEn: "180 samples saved" },
-      { label: "Índice ARI", labelEn: "ARI Index", value: "0,6091", note: "Separabilidade Rand", noteEn: "Rand Separability" }
-    ],
-    outcome: "O algoritmo de agrupamento vetorial demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e mapeando a estrutura vetorial em 3D.",
-    outcomeEn: "The vector clustering algorithm demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and mapping 3D vector space.",
-    simulated: true,
-    visualType: "nlp-flow",
-    slides: [
-      {
-        id: "quantificador-slide-1",
-        layout: "interactive-iframe",
-        title: "Projeção Espacial 3D de Opiniões (UMAP + GMM)",
-        titleEn: "3D Spatial Opinion Projection (UMAP + GMM)",
-        iframePath: "/reports/quantificador-semantico-plot.html"
-      },
-      {
-        id: "quantificador-slide-2",
-        layout: "image-three-blocks",
-        title: "Métricas de Validação e Desempenho da Clusterização",
-        titleEn: "Validation Metrics & Clustering Performance",
-        imagePath: "/images/ab_test_plots.png",
-        textBlocks: [
-          {
-            title: "🎯 Acurácia de 78.6% & F1 de 78.7%",
-            titleEn: "🎯 78.6% Accuracy & 78.7% F1",
-            text: "Elevado desempenho em dados não categóricos sutis e frases vagas com erro de prevalência de apenas ±2.16%.",
-            textEn: "High performance on subtle non-categorical data and implicit statements with a vote estimate error of just ±2.16%."
-          },
-          {
-            title: "🌪️ 88.9% de Precisão em Ruído",
-            titleEn: "88.9% Precision on Spam Noise",
-            text: "Isolamento autônomo de 180 amostras fora de escopo (spam, piadas) sem poluir a estrutura espacial dos clusters principais.",
-            textEn: "Autonomous isolation of 180 out-of-scope samples (spam, jokes) without polluting the spatial cluster structure."
-          },
-          {
-            title: "🤖 Rotulagem Semântica via Llama 3.1",
-            titleEn: "🤖 Semantic Labeling via Llama 3.1",
-            text: "Amostragem estatística por densidade de vetor enviada ao Llama local para nomear os clusters e extrair padrões.",
-            textEn: "Density-based vector sampling sent to local Llama to label clusters and extract patterns."
-          }
-        ]
-      }
-    ]
   },
   {
     id: "rag-knowledge-base",

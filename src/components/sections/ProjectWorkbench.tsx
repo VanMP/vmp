@@ -169,7 +169,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
   // Selection States
-  const [selectedProjectId, setSelectedProjectId] = useState<string>("bayesian-promotions");
+  const [selectedProjectId, setSelectedProjectId] = useState<string>("nlp-text-intelligence");
   const [selectedMethodId, setSelectedMethodId] = useState<string>("ab-tests");
   const [selectedStackName, setSelectedStackName] = useState<string>("Python");
 
@@ -1240,9 +1240,44 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
                             {activeSlide.layout === "image-three-blocks" && (
                               <div className="flex flex-col gap-4 flex-1 justify-between">
-                                {/* Top Image Section */}
-                                <div className="border border-border-soft bg-surface p-3.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] flex justify-center items-center">
-                                  {activeSlide.imagePath ? (
+                                {/* Top Image or Table Section */}
+                                <div className="border border-border-soft bg-surface p-3 md:p-3.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-x-auto">
+                                  {activeSlide.tableData ? (
+                                    <div className="w-full">
+                                      <div className="flex items-center justify-between mb-2 px-1">
+                                        <span className="text-xs font-mono font-bold text-wine flex items-center gap-1.5">
+                                          📊 {lang === "pt" ? "Matriz de Validação do Algoritmo (1.190 Fragmentos Sintéticos)" : "Algorithm Validation Matrix (1,190 Synthetic Samples)"}
+                                        </span>
+                                        <span className="text-[10px] font-mono text-txt-muted bg-frost px-2.5 py-0.5 rounded-full border border-border-soft">
+                                          Macro F1: 72.92% | Weighted F1: 78.7%
+                                        </span>
+                                      </div>
+                                      <table className="w-full text-left text-xs font-sans border-collapse">
+                                        <thead>
+                                          <tr className="bg-frost border-b border-border-soft text-wine font-extrabold text-[11px]">
+                                            <th className="py-2 px-2.5 rounded-tl-lg">{lang === "en" ? "Public Opinion Theme" : "Tema da Opinião Pública"}</th>
+                                            <th className="py-2 px-2.5 text-center">{lang === "en" ? "% Real (Truth)" : "% Real (Gabarito)"}</th>
+                                            <th className="py-2 px-2.5 text-center">{lang === "en" ? "Classified (AI)" : "Nº Classificado (IA)"}</th>
+                                            <th className="py-2 px-2.5 text-center">{lang === "en" ? "% Classified" : "% Classificado (Final)"}</th>
+                                            <th className="py-2 px-2.5 text-right rounded-tr-lg">{lang === "en" ? "Margin Error (%)" : "Erro Absoluto (%)"}</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-border-soft/60">
+                                          {activeSlide.tableData.rows.map((row, rIdx) => (
+                                            <tr key={rIdx} className="hover:bg-frost/50 transition-colors text-[11px]">
+                                              <td className="py-1.5 px-2.5 font-medium text-txt-main">
+                                                {lang === "en" && row.themeEn ? row.themeEn : row.theme}
+                                              </td>
+                                              <td className="py-1.5 px-2.5 text-center font-mono text-txt-muted">{row.realPct}</td>
+                                              <td className="py-1.5 px-2.5 text-center font-mono text-txt-main font-bold">{row.classifiedCount}</td>
+                                              <td className="py-1.5 px-2.5 text-center font-mono text-wine font-bold">{row.finalPct}</td>
+                                              <td className="py-1.5 px-2.5 text-right font-mono font-extrabold text-terracotta">{row.errorMargin}</td>
+                                            </tr>
+                                          ))}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  ) : activeSlide.imagePath ? (
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
