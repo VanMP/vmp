@@ -208,20 +208,20 @@ export const projects: Project[] = [
   },
   {
     id: "nlp-text-intelligence",
-    title: "Quantificador Semântico: Clustering & Rotulagem por LLM em Redes Sociais",
-    titleEn: "Semantic Quantifier: Clustering & LLM Labeling in Social Media",
-    shortTitle: "Quantificador Semântico (PLN)",
-    shortTitleEn: "Semantic Quantifier (NLP)",
-    category: "PLN & Agrupamento Vetorial",
-    categoryEn: "NLP & Vector Clustering",
-    summary: "Validação experimental de aplicação em Streamlit para processamento não-supervisionado de 1.190 comentários de redes sociais, combinando BERT multilíngue, UMAP, GMM e Llama 3.1 local.",
-    summaryEn: "Experimental validation of a Streamlit app for unsupervised processing of 1,190 social media comments, combining multilingual BERT, UMAP, GMM, and local Llama 3.1.",
-    problem: "Análise e quantificação de 1.190 manifestações populares não estruturadas sobre gestão municipal (com 15% de ruído/spam e 25% de frases vagas sem palavras-chave), onde classificadores tradicionais por palavra-chave falham em capturar contexto e a leitura manual é inviável.",
-    problemEn: "Analysis and quantification of 1,190 unstructured public feedback comments regarding municipal administration (containing 15% spam/noise and 25% implicit statements), where keyword classifiers fail and manual review is unfeasible.",
+    title: "Clusterização Baseada em Dados Não Categóricos",
+    titleEn: "Clustering Based on Non-Categorical Data",
+    shortTitle: "Clusterização Não Categórica",
+    shortTitleEn: "Non-Categorical Clustering",
+    category: "Modelagem & Agrupamento Vetorial",
+    categoryEn: "Modeling & Vector Clustering",
+    summary: "Desenvolvimento e validação de pipeline de clusterização probabilística para dados não categóricos e textos não estruturados, integrando embeddings multilíngues (MiniLM-L12-v2), redução UMAP e Mistura de Gaussianas (GMM).",
+    summaryEn: "Development and validation of a probabilistic clustering pipeline for non-categorical data and unstructured text, integrating multilingual embeddings, UMAP, and Gaussian Mixture Models (GMM).",
+    problem: "Agrupamento e quantificação de 1.190 fragmentos não estruturados (com 15% de ruído/spam e 25% de frases vagas sem palavras-chave), onde modelos baseados em dicionários estáticos ou variáveis categóricas puras falham em capturar distâncias e densidades semânticas em espaços contínuos.",
+    problemEn: "Clustering and quantification of 1,190 unstructured text fragments (containing 15% noise/spam and 25% implicit statements), where traditional categorical or keyword-based models fail to capture semantic density in continuous vector spaces.",
     methods: ["Processamento de Linguagem Natural", "Embeddings multilíngues", "Redução de dimensionalidade", "Modelagem por Mistura de Gaussianas", "Agentes e LLMs locais", "Métricas de validação"],
-    applications: ["Quantificação de Opinião Pública", "Social Listening & Redes Sociais", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
+    applications: ["Clusterização Não Categórica", "Quantificação de Opinião Pública", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
     techniques: ["Embeddings BERT Multilíngue (MiniLM-L12-v2)", "Redução de Dimensionalidade (UMAP)", "Mistura de Gaussianas (GMM)", "Rotulagem por Llama 3.1 Local", "Métricas de Validação (ARI/F1-Score)"],
-    tools: ["Streamlit", "Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
+    tools: ["Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
     metrics: [
       { label: "Acurácia Global", labelEn: "Global Accuracy", value: "78,6%", note: "Pós-Refinamento", noteEn: "Post-Refinement" },
       { label: "Weighted F1-Score", labelEn: "Weighted F1-Score", value: "78,7%", note: "Macro F1 de 72,9%", noteEn: "Macro F1 72.9%" },
@@ -229,8 +229,8 @@ export const projects: Project[] = [
       { label: "Precisão em Ruído", labelEn: "Spam Precision", value: "88,9%", note: "180 amostras salvas", noteEn: "180 samples saved" },
       { label: "Índice ARI", labelEn: "ARI Index", value: "0,6091", note: "Separabilidade Rand", noteEn: "Rand Separability" }
     ],
-    outcome: "O pipeline no Streamlit demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e gerando o relatório HTML interativo 3D.",
-    outcomeEn: "The Streamlit pipeline demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and generating an interactive 3D HTML report.",
+    outcome: "O algoritmo de agrupamento vetorial demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e mapeando a estrutura vetorial em 3D.",
+    outcomeEn: "The vector clustering algorithm demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and mapping 3D vector space.",
     simulated: true,
     visualType: "nlp-flow",
     slides: [
@@ -244,27 +244,27 @@ export const projects: Project[] = [
       {
         id: "quantificador-slide-2",
         layout: "image-three-blocks",
-        title: "Destaques Técnicos do Experimento",
-        titleEn: "Technical Experiment Highlights",
+        title: "Métricas de Validação e Desempenho da Clusterização",
+        titleEn: "Validation Metrics & Clustering Performance",
         imagePath: "/images/ab_test_plots.png",
         textBlocks: [
           {
             title: "🎯 Acurácia de 78.6% & F1 de 78.7%",
             titleEn: "🎯 78.6% Accuracy & 78.7% F1",
-            text: "Elevado desempenho em frases vagas (ex: 'Ninguém anda a pé nesse trecho') com erro de prevalência de apenas ±2.16%.",
-            textEn: "High performance on implicit statements (e.g., 'Nobody walks on foot here') with a vote estimate error of just ±2.16%."
+            text: "Elevado desempenho em dados não categóricos sutis e frases vagas com erro de prevalência de apenas ±2.16%.",
+            textEn: "High performance on subtle non-categorical data and implicit statements with a vote estimate error of just ±2.16%."
           },
           {
             title: "🌪️ 88.9% de Precisão em Ruído",
             titleEn: "88.9% Precision on Spam Noise",
-            text: "Isolamento autônomo de 180 amostras fora de escopo (spam, piadas, futebol) sem poluir a contagem dos temas prioritários.",
-            textEn: "Autonomous isolation of 180 out-of-scope samples (spam, jokes) without polluting priority theme counts."
+            text: "Isolamento autônomo de 180 amostras fora de escopo (spam, piadas) sem poluir a estrutura espacial dos clusters principais.",
+            textEn: "Autonomous isolation of 180 out-of-scope samples (spam, jokes) without polluting the spatial cluster structure."
           },
           {
-            title: "🤖 Automação via Llama 3.1 Local",
-            titleEn: "🤖 Local Llama 3.1 Automation",
-            text: "Amostragem inteligente por densidade de vetor para o Llama rotular clusters e gerar relatórios HTML 3D exportáveis.",
-            textEn: "Density-based vector sampling sent to local Llama to label clusters and generate exportable 3D HTML reports."
+            title: "🤖 Rotulagem Semântica via Llama 3.1",
+            titleEn: "🤖 Semantic Labeling via Llama 3.1",
+            text: "Amostragem estatística por densidade de vetor enviada ao Llama local para nomear os clusters e extrair padrões.",
+            textEn: "Density-based vector sampling sent to local Llama to label clusters and extract patterns."
           }
         ]
       }
