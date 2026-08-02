@@ -1317,7 +1317,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     href="/reports/quantificador-semantico.html"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-wine font-bold hover:underline flex items-center gap-1 text-[9px] uppercase tracking-wider"
+                                    className="text-wine font-extrabold hover:text-terracotta hover:underline flex items-center gap-1 text-[10px] uppercase tracking-wider transition-colors"
                                   >
                                     {lang === "pt" ? "Abrir Relatório Completo ↗" : "Open Full Report ↗"}
                                   </a>
