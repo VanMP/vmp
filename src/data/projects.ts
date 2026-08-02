@@ -15,10 +15,11 @@ export type TextBlock = {
 
 export type ProjectSlide = {
   id: string;
-  layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only" | "image-three-blocks";
+  layout: "legacy" | "image-text-metric" | "image-metrics-sidebar" | "chart-only" | "image-three-blocks" | "interactive-iframe";
   title?: string;
   titleEn?: string;
   imagePath?: string;
+  iframePath?: string;
   visualType?: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
   text?: string;
   textEn?: string;
@@ -96,10 +97,8 @@ export const projects: Project[] = [
           {
             title: "💰 Lucratividade Esperada",
             titleEn: "💰 Expected Profitability",
-            text: `A Campanha A entrega um lucro esperado de R$69.996 contra R$66.247 da B.
-A probabilidade de dominância financeira absoluta de A é de 64.99%.`,
-            textEn: `Campaign A delivers an expected profit of R$69,996 versus R$66,247 for B.
-The probability of absolute financial dominance for A is 64.99%.`
+            text: "A Campanha A entrega um lucro esperado de R$69.996 contra R$66.247 da B. \n A probabilidade de dominância financeira absoluta de A é de 64.99%.",
+            textEn: "Campaign A delivers an expected profit of R$69,996 versus R$66,247 for B. \n The probability of absolute financial dominance for A is 64.99%."
           },
           {
             title: "🚨 Avaliação de Risco",
@@ -209,27 +208,67 @@ The probability of absolute financial dominance for A is 64.99%.`
   },
   {
     id: "nlp-text-intelligence",
-    title: "PLN para Inteligência Quantitativa de Texto",
-    titleEn: "NLP for Quantitative Text Intelligence",
-    shortTitle: "PLN e Texto",
-    shortTitleEn: "NLP & Text",
-    category: "PLN",
-    categoryEn: "NLP",
-    summary: "Desenvolvimento de fluxo de Processamento de Linguagem Natural para classificar, resumir e quantificar tendências semânticas em grandes volumes de texto qualitativo.",
-    summaryEn: "Development of a Natural Language Processing pipeline to classify, summarize, and quantify semantic trends in large volumes of qualitative text data.",
-    problem: "Necessidade de processar comentários e avaliações de clientes e registros de suporte textuais não estruturados em categorias métricas de fricção e relevância operacional.",
-    problemEn: "Requirement to convert customer feedback and support logs into structured metric categories of product friction and operational relevance.",
-    methods: ["Análise de sentimentos", "Modelagem de tópicos", "Extração de entidades", "Sumarização", "Classificação de texto"],
-    tools: ["Python", "PLN", "Modelos de Linguagem (LLMs)"],
+    title: "Quantificador Semântico: Clustering & Rotulagem por LLM em Redes Sociais",
+    titleEn: "Semantic Quantifier: Clustering & LLM Labeling in Social Media",
+    shortTitle: "Quantificador Semântico (PLN)",
+    shortTitleEn: "Semantic Quantifier (NLP)",
+    category: "PLN & Agrupamento Vetorial",
+    categoryEn: "NLP & Vector Clustering",
+    summary: "Validação experimental de aplicação em Streamlit para processamento não-supervisionado de 1.190 comentários de redes sociais, combinando BERT multilíngue, UMAP, GMM e Llama 3.1 local.",
+    summaryEn: "Experimental validation of a Streamlit app for unsupervised processing of 1,190 social media comments, combining multilingual BERT, UMAP, GMM, and local Llama 3.1.",
+    problem: "Análise e quantificação de 1.190 manifestações populares não estruturadas sobre gestão municipal (com 15% de ruído/spam e 25% de frases vagas sem palavras-chave), onde classificadores tradicionais por palavra-chave falham em capturar contexto e a leitura manual é inviável.",
+    problemEn: "Analysis and quantification of 1,190 unstructured public feedback comments regarding municipal administration (containing 15% spam/noise and 25% implicit statements), where keyword classifiers fail and manual review is unfeasible.",
+    methods: ["Processamento de Linguagem Natural", "Embeddings multilíngues", "Redução de dimensionalidade", "Modelagem por Mistura de Gaussianas", "Agentes e LLMs locais", "Métricas de validação"],
+    applications: ["Quantificação de Opinião Pública", "Social Listening & Redes Sociais", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
+    techniques: ["Embeddings BERT Multilíngue (MiniLM-L12-v2)", "Redução de Dimensionalidade (UMAP)", "Mistura de Gaussianas (GMM)", "Rotulagem por Llama 3.1 Local", "Métricas de Validação (ARI/F1-Score)"],
+    tools: ["Streamlit", "Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
     metrics: [
-      { label: "Temas Identificados", labelEn: "Identified Themes", value: "8 tópicos", note: "Consistência de 0,72", noteEn: "Consistency of 0.72" },
-      { label: "Precisão do Classificador", labelEn: "Classifier Precision", value: "91%", note: "F1-Score médio", noteEn: "Average F1-Score" },
-      { label: "Extração de Entidades", labelEn: "Entity Extraction", value: "94%", note: "Recall de termos-chave", noteEn: "Key terms recall" }
+      { label: "Acurácia Global", labelEn: "Global Accuracy", value: "78,6%", note: "Pós-Refinamento", noteEn: "Post-Refinement" },
+      { label: "Weighted F1-Score", labelEn: "Weighted F1-Score", value: "78,7%", note: "Macro F1 de 72,9%", noteEn: "Macro F1 72.9%" },
+      { label: "Erro de Prevalência", labelEn: "Prevalence Error", value: "±2,16%", note: "Desvio Médio de Voto", noteEn: "Mean Margin Error" },
+      { label: "Precisão em Ruído", labelEn: "Spam Precision", value: "88,9%", note: "180 amostras salvas", noteEn: "180 samples saved" },
+      { label: "Índice ARI", labelEn: "ARI Index", value: "0,6091", note: "Separabilidade Rand", noteEn: "Rand Separability" }
     ],
-    outcome: "O fluxo de processamento estruturou tópicos latentes com coerência de 0,72 e habilitou classificação automatizada de reclamações com F1-score médio de 91%, permitindo o direcionamento preciso de melhorias de produto.",
-    outcomeEn: "The pipeline structured latent topics with a 0.72 coherence score and enabled automated text classification with an average 91% F1-score, directing product refinement teams to critical friction areas.",
+    outcome: "O pipeline no Streamlit demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e gerando o relatório HTML interativo 3D.",
+    outcomeEn: "The Streamlit pipeline demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and generating an interactive 3D HTML report.",
     simulated: true,
-    visualType: "nlp-flow"
+    visualType: "nlp-flow",
+    slides: [
+      {
+        id: "quantificador-slide-1",
+        layout: "interactive-iframe",
+        title: "Relatório Executivo & Projeção Espacial 3D (UMAP + GMM)",
+        titleEn: "Executive Report & 3D Spatial Projection (UMAP + GMM)",
+        iframePath: "/reports/quantificador-semantico.html"
+      },
+      {
+        id: "quantificador-slide-2",
+        layout: "image-three-blocks",
+        title: "Destaques Técnicos do Experimento",
+        titleEn: "Technical Experiment Highlights",
+        imagePath: "/images/ab_test_plots.png",
+        textBlocks: [
+          {
+            title: "🎯 Acurácia de 78.6% & F1 de 78.7%",
+            titleEn: "🎯 78.6% Accuracy & 78.7% F1",
+            text: "Elevado desempenho em frases vagas (ex: 'Ninguém anda a pé nesse trecho') com erro de prevalência de apenas ±2.16%.",
+            textEn: "High performance on implicit statements (e.g., 'Nobody walks on foot here') with a vote estimate error of just ±2.16%."
+          },
+          {
+            title: "🌪️ 88.9% de Precisão em Ruído",
+            titleEn: "88.9% Precision on Spam Noise",
+            text: "Isolamento autônomo de 180 amostras fora de escopo (spam, piadas, futebol) sem poluir a contagem dos temas prioritários.",
+            textEn: "Autonomous isolation of 180 out-of-scope samples (spam, jokes) without polluting priority theme counts."
+          },
+          {
+            title: "🤖 Automação via Llama 3.1 Local",
+            titleEn: "🤖 Local Llama 3.1 Automation",
+            text: "Amostragem inteligente por densidade de vetor para o Llama rotular clusters e gerar relatórios HTML 3D exportáveis.",
+            textEn: "Density-based vector sampling sent to local Llama to label clusters and generate exportable 3D HTML reports."
+          }
+        ]
+      }
+    ]
   },
   {
     id: "rag-knowledge-base",

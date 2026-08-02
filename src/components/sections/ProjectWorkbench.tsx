@@ -1269,6 +1269,43 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               </div>
                             )}
 
+                            {activeSlide.layout === "interactive-iframe" && (
+                              <div className="flex flex-col gap-2 flex-1 h-full min-h-[460px] justify-between">
+                                <div className="flex items-center justify-between px-3 py-1.5 bg-frost border border-border-soft/70 rounded-t-xl text-[10px] font-mono text-txt-muted">
+                                  <div className="flex items-center gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-terracotta/80"></span>
+                                    <span className="w-2 h-2 rounded-full bg-mustard/80"></span>
+                                    <span className="w-2 h-2 rounded-full bg-olive/80"></span>
+                                    <span className="ml-1.5 font-bold text-wine">
+                                      {lang === "pt" ? "Relatório HTML Interativo 3D (UMAP + GMM)" : "3D Interactive HTML Report (UMAP + GMM)"}
+                                    </span>
+                                  </div>
+                                  {activeSlide.iframePath && (
+                                    <a
+                                      href={activeSlide.iframePath}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-wine font-bold hover:underline flex items-center gap-1 text-[9px] uppercase tracking-wider"
+                                    >
+                                      {lang === "pt" ? "Abrir em Nova Aba ↗" : "Open New Tab ↗"}
+                                    </a>
+                                  )}
+                                </div>
+                                <div className="border border-border-soft bg-white rounded-b-xl overflow-hidden flex-1 shadow-[0_1px_4px_rgba(44,40,34,0.015)] relative h-[420px] md:h-[460px]">
+                                  {activeSlide.iframePath ? (
+                                    <iframe
+                                      src={activeSlide.iframePath}
+                                      title={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                                      className="w-full h-full border-0"
+                                      loading="lazy"
+                                    />
+                                  ) : (
+                                    <div className="p-4 text-center text-txt-muted text-xs">Relatório indisponível.</div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+
                             {activeSlide.layout === "chart-only" && (
                               <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
                                 {activeSlide.imagePath ? (
