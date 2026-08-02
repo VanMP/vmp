@@ -109,60 +109,60 @@ export const projects: Project[] = [
         title: "Matriz de Validação e Destaques da Pipeline",
         titleEn: "Validation Matrix & Pipeline Highlights",
         tableData: {
-          headers: ["Tema da Opinião Pública", "% Real (Gabarito)", "Nº Classificado (IA)", "% Classificado (Final)", "Erro Absoluto (%)"],
-          headersEn: ["Public Opinion Theme", "% Real (Truth)", "Classified Count (AI)", "% Classified (Final)", "Margin Error (%)"],
+          headers: ["Tema da Opinião Pública", "% Real (Gabarito)", "% Classificado (Final)", "Erro Absoluto (%)"],
+          headersEn: ["Public Opinion Theme", "% Real (Truth)", "% Classified (Final)", "Margin Error (%)"],
           rows: [
             {
-              theme: "Apoio Cego e Elogios ao Candidato",
-              themeEn: "Blind Support & Candidate Praise",
+              theme: "🟢 Apoio Cego e Elogios ao Candidato",
+              themeEn: "🟢 Blind Support & Candidate Praise",
               realPct: "26.05%",
               classifiedCount: 325,
               finalPct: "27.31%",
               errorMargin: "±1.26%"
             },
             {
-              theme: "Reclamações de Asfalto e Infraestrutura Urbana",
-              themeEn: "Road & Infrastructure Complaints",
+              theme: "🕳️ Reclamações de Asfalto e Infraestrutura Urbana",
+              themeEn: "🕳️ Road & Infrastructure Complaints",
               realPct: "21.85%",
               classifiedCount: 269,
               finalPct: "22.61%",
               errorMargin: "±0.76%"
             },
             {
-              theme: "Críticas à Saúde Pública e Postos de Saúde",
-              themeEn: "Public Health & Clinic Complaints",
+              theme: "🏥 Críticas à Saúde Pública e Postos de Saúde",
+              themeEn: "🏥 Public Health & Clinic Complaints",
               realPct: "16.81%",
               classifiedCount: 133,
               finalPct: "11.18%",
               errorMargin: "±5.63%"
             },
             {
-              theme: "Ruído / Fora de Escopo (Spam e Off-Topic)",
-              themeEn: "Noise / Out of Scope (Spam & Off-Topic)",
+              theme: "🌪️ Ruído / Fora de Escopo (Spam e Off-Topic)",
+              themeEn: "🌪️ Noise / Out of Scope (Spam & Off-Topic)",
               realPct: "15.13%",
               classifiedCount: 180,
               finalPct: "15.13%",
               errorMargin: "±0.0%"
             },
             {
-              theme: "Denúncias de Corrupção e Superfaturamento",
-              themeEn: "Corruption & Overpricing Allegations",
+              theme: "⚖️ Denúncias de Corrupção e Superfaturamento",
+              themeEn: "⚖️ Corruption & Overpricing Allegations",
               realPct: "9.24%",
               classifiedCount: 176,
               finalPct: "14.79%",
               errorMargin: "±5.55%"
             },
             {
-              theme: "Cobrança por Educação e Vagas em Creches",
-              themeEn: "Education & Daycare Demands",
+              theme: "🏫 Cobrança por Educação e Vagas em Creches",
+              themeEn: "🏫 Education & Daycare Demands",
               realPct: "6.72%",
               classifiedCount: 69,
               finalPct: "5.8%",
               errorMargin: "±0.92%"
             },
             {
-              theme: "Reclamações de Segurança e Iluminação Pública",
-              themeEn: "Public Safety & Lighting Complaints",
+              theme: "💡 Reclamações de Segurança e Iluminação Pública",
+              themeEn: "💡 Public Safety & Lighting Complaints",
               realPct: "4.2%",
               classifiedCount: 38,
               finalPct: "3.19%",

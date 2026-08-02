@@ -1257,7 +1257,6 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                           <tr className="bg-frost border-b border-border-soft text-wine font-extrabold text-[11px]">
                                             <th className="py-2 px-2.5 rounded-tl-lg">{lang === "en" ? "Public Opinion Theme" : "Tema da Opinião Pública"}</th>
                                             <th className="py-2 px-2.5 text-center">{lang === "en" ? "% Real (Truth)" : "% Real (Gabarito)"}</th>
-                                            <th className="py-2 px-2.5 text-center">{lang === "en" ? "Classified (AI)" : "Nº Classificado (IA)"}</th>
                                             <th className="py-2 px-2.5 text-center">{lang === "en" ? "% Classified" : "% Classificado (Final)"}</th>
                                             <th className="py-2 px-2.5 text-right rounded-tr-lg">{lang === "en" ? "Margin Error (%)" : "Erro Absoluto (%)"}</th>
                                           </tr>
@@ -1269,7 +1268,6 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                                 {lang === "en" && row.themeEn ? row.themeEn : row.theme}
                                               </td>
                                               <td className="py-1.5 px-2.5 text-center font-mono text-txt-muted">{row.realPct}</td>
-                                              <td className="py-1.5 px-2.5 text-center font-mono text-txt-main font-bold">{row.classifiedCount}</td>
                                               <td className="py-1.5 px-2.5 text-center font-mono text-wine font-bold">{row.finalPct}</td>
                                               <td className="py-1.5 px-2.5 text-right font-mono font-extrabold text-terracotta">{row.errorMargin}</td>
                                             </tr>
