@@ -237,9 +237,9 @@ export const projects: Project[] = [
       {
         id: "quantificador-slide-1",
         layout: "interactive-iframe",
-        title: "Relatório Executivo & Projeção Espacial 3D (UMAP + GMM)",
-        titleEn: "Executive Report & 3D Spatial Projection (UMAP + GMM)",
-        iframePath: "/reports/quantificador-semantico.html"
+        title: "Projeção Espacial 3D de Opiniões (UMAP + GMM)",
+        titleEn: "3D Spatial Opinion Projection (UMAP + GMM)",
+        iframePath: "/reports/quantificador-semantico-plot.html"
       },
       {
         id: "quantificador-slide-2",

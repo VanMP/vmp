@@ -1277,19 +1277,17 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <span className="w-2 h-2 rounded-full bg-mustard/80"></span>
                                     <span className="w-2 h-2 rounded-full bg-olive/80"></span>
                                     <span className="ml-1.5 font-bold text-wine">
-                                      {lang === "pt" ? "Relatório HTML Interativo 3D (UMAP + GMM)" : "3D Interactive HTML Report (UMAP + GMM)"}
+                                      {lang === "pt" ? "Gráfico Interativo 3D (UMAP + GMM)" : "3D Interactive Plot (UMAP + GMM)"}
                                     </span>
                                   </div>
-                                  {activeSlide.iframePath && (
-                                    <a
-                                      href={activeSlide.iframePath}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="text-wine font-bold hover:underline flex items-center gap-1 text-[9px] uppercase tracking-wider"
-                                    >
-                                      {lang === "pt" ? "Abrir em Nova Aba ↗" : "Open New Tab ↗"}
-                                    </a>
-                                  )}
+                                  <a
+                                    href="/reports/quantificador-semantico.html"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-wine font-bold hover:underline flex items-center gap-1 text-[9px] uppercase tracking-wider"
+                                  >
+                                    {lang === "pt" ? "Abrir Relatório Completo ↗" : "Open Full Report ↗"}
+                                  </a>
                                 </div>
                                 <div className="border border-border-soft bg-white rounded-b-xl overflow-hidden flex-1 shadow-[0_1px_4px_rgba(44,40,34,0.015)] relative h-[420px] md:h-[460px]">
                                   {activeSlide.iframePath ? (
