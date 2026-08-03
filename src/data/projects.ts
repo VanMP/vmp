@@ -194,6 +194,62 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: "quantificador-semantico-app",
+    title: "Quantificador Semântico: Aplicação Streamlit No-Code",
+    titleEn: "Semantic Quantifier: No-Code Streamlit App",
+    shortTitle: "Aplicação Streamlit (Quantificador)",
+    shortTitleEn: "Streamlit App (Quantifier)",
+    category: "Engenharia de Aplicações & IA",
+    categoryEn: "App Engineering & AI",
+    summary: "Interface interativa no-code desenvolvida em Streamlit para operacionalizar a pipeline de clusterização semântica, permitindo ingestão de qualquer dataset em CSV, parametrização dinâmica de modelos e geração automatizada de relatórios 3D.",
+    summaryEn: "Interactive no-code Streamlit interface to operationalize the semantic clustering pipeline, supporting any CSV dataset ingestion, dynamic model parameter tuning, and automated 3D report generation.",
+    problem: "Para operar a pipeline de inteligência de texto no dia a dia sem depender de código ou scripts Python manuais, desenvolveu-se uma ferramenta agnóstica em Streamlit que permite a qualquer usuário carregar sua própria base em CSV, configurar os parâmetros semânticos (embeddings, UMAP, GMM e prompt do Llama 3.1) e obter a quantificação executiva em segundos.",
+    problemEn: "To run the text intelligence pipeline daily without relying on manual Python scripts, a domain-agnostic Streamlit tool was created allowing users to upload any CSV dataset, adjust parameters, and get executive 3D reports in seconds.",
+    methods: ["Engenharia de Software em IA", "Desenvolvimento de Aplicações Web", "Streamlit", "Automação de Pipelines", "Execução On-Premise", "Visualização Interativa"],
+    applications: ["Software de Inteligência de Texto", "Automação de Workflow de IA", "Interface No-Code para Data Science", "Análise Agnóstica de CSVs"],
+    techniques: ["UI Interativa com Streamlit", "Ingestão Dinâmica de CSV", "Conexão com Ollama Local", "Geração de Relatórios HTML Autônomos", "Parametrização de Modelos"],
+    tools: ["Streamlit", "Python", "Ollama (Llama 3.1)", "Plotly", "Pandas", "Sentence-Transformers"],
+    metrics: [
+      { label: "Ingestão de Dados", labelEn: "Data Ingestion", value: "CSV Genérico", note: "Qualquer dataset", noteEn: "Any CSV dataset" },
+      { label: "Execução de Pipeline", labelEn: "Pipeline Execution", value: "100% On-Premise", note: "Sem API paga", noteEn: "No paid API" },
+      { label: "Geração de Relatório", labelEn: "Report Generation", value: "HTML 3D", note: "Exportação em 1 clique", noteEn: "1-click export" },
+      { label: "Facilidade de Uso", labelEn: "Ease of Use", value: "Interface No-Code", note: "Uso intuitivo", noteEn: "Intuitive UI" }
+    ],
+    outcome: "A aplicação em Streamlit transformou uma rotina técnica complexa de PLN e agrupamento probabilístico em um software acessível de 1 clique, capacitando equipes a carregar dados qualitativos não estruturados e extrair relatórios executivos em tempo real.",
+    outcomeEn: "The Streamlit application transformed a complex NLP and probabilistic clustering routine into an accessible 1-click software, enabling teams to upload unstructured qualitative data and generate executive reports in real time.",
+    simulated: true,
+    visualType: "nlp-flow",
+    slides: [
+      {
+        id: "quantificador-app-slide-1",
+        layout: "image-three-blocks",
+        title: "Demonstração da Aplicação Streamlit (Fluxo Completo de Uso)",
+        titleEn: "Streamlit App Demonstration (Full Usage Workflow)",
+        imagePath: "/images/quantificador-demo.gif",
+        textBlocks: [
+          {
+            title: "📂 Ingestão Flexível de CSV",
+            titleEn: "📂 Flexible CSV Ingestion",
+            text: "Carregamento instantâneo de dados com seleção interativa da coluna de texto alvo e metadados contextuais.",
+            textEn: "Instant data loading with interactive selection of target text column and contextual metadata."
+          },
+          {
+            title: "⚙️ Ajuste Dinâmico de Parâmetros",
+            titleEn: "⚙️ Dynamic Parameter Tuning",
+            text: "Controle dos hiperparâmetros de embeddings (BERT Multilíngue), UMAP, Mistura de Gaussianas e amostragem do Llama 3.1.",
+            textEn: "Full control over Multilingual BERT embeddings, UMAP, Gaussian Mixture Models, and Llama 3.1 sampling parameters."
+          },
+          {
+            title: "⚡ Geração & Exportação 3D",
+            titleEn: "⚡ 3D Generation & Export",
+            text: "Síntese automática do relatório executivo interativo em HTML 3D pronto para apresentação e tomada de decisão.",
+            textEn: "Automatic synthesis of interactive executive 3D HTML reports ready for presentation and decision making."
+          }
+        ]
+      }
+    ]
+  },
+  {
     id: "bayesian-promotions",
     title: "Análise Bayesiana em Experimentação (Caso base: teste A/B)",
     titleEn: "Bayesian Analysis in Experimentation (Baseline Case: A/B Test)",
