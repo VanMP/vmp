@@ -48,7 +48,7 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
 
   return (
     <section className="px-6 py-2 md:px-8 md:py-4 w-full font-sans">
-      <div className="relative border border-border-soft bg-surface/40 p-6 md:p-8 rounded-2xl grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-8 md:gap-10 md:h-[500px] lg:h-[460px] shadow-[0_2px_12px_rgba(44,40,34,0.015)] overflow-hidden">
+      <div className="relative border border-border-soft bg-surface/40 p-6 md:p-8 rounded-2xl grid grid-cols-1 md:grid-cols-[1fr_1.3fr] gap-8 md:gap-10 md:h-[530px] lg:h-[500px] shadow-[0_2px_12px_rgba(44,40,34,0.015)] overflow-hidden">
         
         {/* Column 1: Identity & About Me */}
         <div className="flex flex-col gap-4 justify-between h-full overflow-y-auto pr-1.5 relative z-10 items-center md:items-start text-center md:text-left">
@@ -64,12 +64,28 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
                 </span>
               </div>
               <h1 className="text-3xl md:text-4xl font-extrabold text-wine tracking-tight font-serif mt-1 text-center md:text-left">
-                Vanessa Pinto
+                Vanessa Schemes
               </h1>
               <p className="text-xs md:text-sm font-semibold text-olive italic mt-1 font-serif text-center md:text-left">
                 {lang === "pt"
                   ? "Analista Estatística e de Experimentação"
                   : "Statistical & Experimentation Analyst"}
+              </p>
+            </div>
+
+            {/* Work Authorization & Location Badge */}
+            <div className="w-full flex flex-col items-center md:items-start text-center md:text-left bg-frost/70 border border-border-soft/60 rounded-xl px-3.5 py-2.5 text-[11px] font-sans shadow-xs">
+              <div className="flex items-center gap-1.5 text-wine font-bold font-mono text-[10px] uppercase tracking-wider">
+                <svg className="w-3.5 h-3.5 text-terracotta flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>{lang === "pt" ? "Portugal • Autorização de Trabalho" : "Portugal • Work Authorization"}</span>
+              </div>
+              <p className="text-txt-muted text-[10px] md:text-[11px] leading-snug mt-1">
+                {lang === "pt"
+                  ? "Autorização de residência e pleno direito de trabalho em Portugal / União Europeia (UE) — sem necessidade de patrocínio de visto (NIF e NISS ativos)."
+                  : "Residence permit and full right to work in Portugal / European Union (EU) — no visa sponsorship required (Active NIF and NISS)."}
               </p>
             </div>
 
