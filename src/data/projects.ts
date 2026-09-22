@@ -386,8 +386,8 @@ export const projects: Project[] = [
           {
             title: "💵 Quantificação de Disposição a Pagar (WTP)",
             titleEn: "💵 Willingness to Pay (WTP) Quantification",
-            text: "O valor monetário percebido por atributo revelou que o Segmento A aceita pagar até R$ 2.424 a mais pelo burger artesanal e R$ 1.258 pelo milkshake, viabilizando estratégias de precificação premium sem risco de perda de share.",
-            textEn: "Perceived monetary attribute valuation showed Segment A is willing to pay up to R$ 2,424 more for artisan burgers and R$ 1,258 for gourmet shakes, enabling premium pricing without share erosion."
+            text: "O valor monetário percebido por atributo revelou que o Segmento A aceita pagar até R$ 2.424 a mais pelo \"burger artesanal\" e R$ 1.258 pelo \"milkshake\", viabilizando estratégias de precificação premium sem risco de perda de share.",
+            textEn: "Perceived monetary attribute valuation showed Segment A is willing to pay up to R$ 2,424 more for \"artisan burger\" and R$ 1,258 for \"gourmet shake\", enabling premium pricing without share erosion."
           },
           {
             title: "📊 Eliminação do Viés Médio",
