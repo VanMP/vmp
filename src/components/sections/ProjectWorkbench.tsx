@@ -161,6 +161,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
   // Sidebar Collapse & Selector Drawer States
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true);
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title?: string } | null>(null);
 
   // Selection States
   const [selectedProjectId, setSelectedProjectId] = useState<string>("nlp-text-intelligence");
@@ -170,6 +171,14 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
   useEffect(() => {
     setCurrentSlideIndex(0);
   }, [selectedProjectId]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxImage(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Option A (Filing Cabinet Drawers) States
   const [openDrawerId, setOpenDrawerId] = useState<string | null>(null);
@@ -1254,7 +1263,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                                      className="w-full h-[180px] md:h-[220px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                      onClick={() => setLightboxImage({ src: activeSlide.imagePath!, title: lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title })}
+                                      className="w-full h-[180px] md:h-[220px] object-contain rounded-lg hover:scale-[1.02] cursor-zoom-in hover:opacity-95 transition-all duration-300"
+                                      title={lang === "pt" ? "Clique para ampliar a imagem em tela cheia" : "Click to view full-size image"}
                                     />
                                   </div>
                                 )}
@@ -1290,7 +1301,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                                      className="w-full h-[180px] md:h-[240px] object-contain rounded-lg hover:scale-[1.02] transition-transform duration-300"
+                                      onClick={() => setLightboxImage({ src: activeSlide.imagePath!, title: lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title })}
+                                      className="w-full h-[180px] md:h-[240px] object-contain rounded-lg hover:scale-[1.02] cursor-zoom-in hover:opacity-95 transition-all duration-300"
+                                      title={lang === "pt" ? "Clique para ampliar a imagem em tela cheia" : "Click to view full-size image"}
                                     />
                                   </div>
                                 )}
@@ -1355,7 +1368,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                                      className="w-full h-auto max-h-[340px] md:max-h-[460px] object-contain rounded-lg"
+                                      onClick={() => setLightboxImage({ src: activeSlide.imagePath!, title: lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title })}
+                                      className="w-full h-auto max-h-[340px] md:max-h-[460px] object-contain rounded-lg cursor-zoom-in hover:opacity-95 transition-opacity"
+                                      title={lang === "pt" ? "Clique para ampliar a imagem em tela cheia" : "Click to view full-size image"}
                                     />
                                   ) : (
                                     <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
@@ -1750,6 +1765,53 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
               </div>
             )}
           </main>
+        </div>
+      )}
+
+      {/* Fullscreen Image Lightbox Modal */}
+      {lightboxImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-3 md:p-6 animate-fadeIn"
+          onClick={() => setLightboxImage(null)}
+        >
+          <div 
+            className="relative max-w-6xl max-h-[92vh] w-full flex flex-col items-center justify-center bg-[#FAF6EF] border border-[#D5C29D] rounded-2xl shadow-2xl p-3 md:p-4 overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top bar with title and action buttons */}
+            <div className="w-full flex items-center justify-between pb-2 mb-2 border-b border-[#DCD5C5] px-1">
+              <span className="font-serif font-bold text-wine text-xs md:text-sm truncate max-w-[70%]">
+                {lightboxImage.title || (lang === "pt" ? "Visualização em Alta Resolução" : "High-Resolution Preview")}
+              </span>
+              <div className="flex items-center gap-2">
+                <a
+                  href={lightboxImage.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-stone-200 hover:bg-wine hover:text-white rounded-lg text-[10px] font-mono font-bold text-stone-700 transition-colors flex items-center gap-1 cursor-pointer"
+                  title={lang === "pt" ? "Abrir arquivo original em nova aba" : "Open original file in new tab"}
+                >
+                  <span>↗</span> {lang === "pt" ? "Nova Aba" : "New Tab"}
+                </a>
+                <button
+                  onClick={() => setLightboxImage(null)}
+                  className="w-7 h-7 rounded-full bg-stone-200 hover:bg-wine hover:text-white flex items-center justify-center text-xs font-bold text-stone-700 transition-colors cursor-pointer"
+                  title={lang === "pt" ? "Fechar (Esc)" : "Close (Esc)"}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            {/* Image container */}
+            <div className="overflow-auto max-h-[calc(92vh-60px)] w-full flex items-center justify-center rounded-xl bg-white/40 p-1">
+              <img
+                src={lightboxImage.src}
+                alt={lightboxImage.title || "Expanded image"}
+                className="max-w-full max-h-[calc(88vh-70px)] w-auto h-auto object-contain rounded-lg shadow-sm"
+              />
+            </div>
+          </div>
         </div>
       )}
     </section>
