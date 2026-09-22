@@ -12,8 +12,8 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
       titlePt: "Pós-graduação em Processamento de Linguagem Natural",
       titleEn: "Postgraduate in Natural Language Processing",
       institution: "Universidade Federal de Goiás (UFG)",
-      periodPt: "2024 – Em andamento",
-      periodEn: "2024 – In progress",
+      periodPt: "2025 – 2026",
+      periodEn: "2025 – 2026",
       descPt: "Especialização focada em redes profundas, embeddings vetoriais, arquitetura Transformer e fluxos de RAG.",
       descEn: "Specialization focused on deep networks, vector embeddings, Transformer architectures, and RAG pipelines."
     },
