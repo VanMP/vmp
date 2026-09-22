@@ -24,28 +24,22 @@ function getProjectIcon(id: string, colorClass: string) {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       );
-    case "portfolio-optimization":
+    case "conjoint-portfolio-optimization":
       return (
         <svg width="16" height="16" className={colorClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       );
-    case "churn-ltv-matrix":
-      return (
-        <svg width="16" height="16" className={colorClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      );
-    case "nlp-text-mining":
+    case "nlp-text-intelligence":
       return (
         <svg width="16" height="16" className={colorClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
         </svg>
       );
-    case "rag-assistant":
+    case "quantificador-semantico-app":
       return (
         <svg width="16" height="16" className={colorClass} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       );
     default:
@@ -597,6 +591,47 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                   ))}
                                 </div>
                               </div>
+
+                              {/* Direct Notebook Action Buttons */}
+                              {(activeProject.notebookPt || activeProject.notebookEn) && (
+                                <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-dashed border-[#DCD5C5]">
+                                  <span className="font-mono text-[9px] font-extrabold text-stone-500 uppercase tracking-wider">
+                                    {lang === "pt" ? "Notebooks Completos:" : "Full Notebooks:"}
+                                  </span>
+                                  {activeProject.notebookPt && (
+                                    <a
+                                      href={activeProject.notebookPt}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="px-2.5 py-1 bg-wine/10 hover:bg-wine text-wine hover:text-white border border-wine/30 rounded-lg font-mono text-[9.5px] font-extrabold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+                                      title={lang === "pt" ? "Abrir Notebook em Português" : "Open Notebook in Portuguese"}
+                                    >
+                                      <span>🇧🇷</span> {lang === "pt" ? "Notebook Completo (PT)" : "Full Notebook (PT)"} ↗
+                                    </a>
+                                  )}
+                                  {activeProject.notebookEn && (
+                                    <a
+                                      href={activeProject.notebookEn}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="px-2.5 py-1 bg-olive/10 hover:bg-olive text-olive hover:text-white border border-olive/30 rounded-lg font-mono text-[9.5px] font-extrabold transition-all flex items-center gap-1.5 shadow-xs cursor-pointer"
+                                      title={lang === "pt" ? "Abrir Notebook em Inglês" : "Open Notebook in English"}
+                                    >
+                                      <span>🇺🇸</span> {lang === "pt" ? "Notebook Completo (EN)" : "Full Notebook (EN)"} ↗
+                                    </a>
+                                  )}
+                                </div>
+                              )}
+
+                              {/* Anonymized Confidentiality Disclaimer */}
+                              {activeProject.anonymizedDisclaimer && (
+                                <div className="bg-[#8A6535]/10 border border-[#8A6535]/30 rounded-lg p-2.5 flex items-start gap-2">
+                                  <span className="text-xs flex-shrink-0">🔒</span>
+                                  <p className="text-[10px] text-[#5C4D35] leading-relaxed font-serif italic">
+                                    {lang === "en" && activeProject.anonymizedDisclaimerEn ? activeProject.anonymizedDisclaimerEn : activeProject.anonymizedDisclaimer}
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           </div>
 
@@ -1071,6 +1106,47 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               ))}
                             </div>
                           </div>
+                        </div>
+                      )}
+
+                      {/* Direct Notebook Action Buttons in Workbench */}
+                      {(currentProject.notebookPt || currentProject.notebookEn) && (
+                        <div className="border-t border-dashed border-border-soft/60 pt-3 flex flex-wrap items-center gap-2">
+                          <span className="text-[9px] uppercase font-mono font-bold text-txt-muted">
+                            {lang === "pt" ? "Notebooks:" : "Notebooks:"}
+                          </span>
+                          {currentProject.notebookPt && (
+                            <a
+                              href={currentProject.notebookPt}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2.5 py-1 bg-wine/10 hover:bg-wine text-wine hover:text-white border border-wine/30 rounded-lg font-mono text-[9px] font-extrabold transition-all flex items-center gap-1 shadow-xs cursor-pointer"
+                              title={lang === "pt" ? "Abrir Notebook em Português" : "Open Notebook in Portuguese"}
+                            >
+                              <span>🇧🇷</span> {lang === "pt" ? "Notebook Completo (PT)" : "Full Notebook (PT)"} ↗
+                            </a>
+                          )}
+                          {currentProject.notebookEn && (
+                            <a
+                              href={currentProject.notebookEn}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-2.5 py-1 bg-olive/10 hover:bg-olive text-olive hover:text-white border border-olive/30 rounded-lg font-mono text-[9px] font-extrabold transition-all flex items-center gap-1 shadow-xs cursor-pointer"
+                              title={lang === "pt" ? "Abrir Notebook em Inglês" : "Open Notebook in English"}
+                            >
+                              <span>🇺🇸</span> {lang === "pt" ? "Notebook Completo (EN)" : "Full Notebook (EN)"} ↗
+                            </a>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Confidentiality Disclaimer in Workbench */}
+                      {currentProject.anonymizedDisclaimer && (
+                        <div className="bg-[#8A6535]/10 border border-[#8A6535]/25 rounded-lg p-2.5 flex items-start gap-2">
+                          <span className="text-xs flex-shrink-0">🔒</span>
+                          <p className="text-[10px] text-txt-muted leading-relaxed font-serif italic">
+                            {lang === "en" && currentProject.anonymizedDisclaimerEn ? currentProject.anonymizedDisclaimerEn : currentProject.anonymizedDisclaimer}
+                          </p>
                         </div>
                       )}
                     </div>

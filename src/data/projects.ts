@@ -61,10 +61,15 @@ export type Project = {
   outcome: string;
   outcomeEn: string;
   simulated: boolean;
+  anonymizedDisclaimer?: string;
+  anonymizedDisclaimerEn?: string;
   visualType: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
   slides?: ProjectSlide[];
   applications?: string[];
   techniques?: string[];
+  notebookPt?: string;
+  notebookEn?: string;
+  simulatorUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -257,8 +262,8 @@ export const projects: Project[] = [
     shortTitleEn: "Bayesian Experimentation",
     category: "Experimentação",
     categoryEn: "Experimentation",
-    summary: "Projeção de lucro esperado e análise de risco financeiro sobre alternativas de promoção para a Black Friday de um e-commerce",
-    summaryEn: "Expected profit projection and financial risk analysis on promotional alternatives for an e-commerce Black Friday",
+    summary: "Projeção de lucro esperado e análise de risco financeiro sobre alternativas de promoção para a Black Friday de um e-commerce.",
+    summaryEn: "Expected profit projection and financial risk analysis on promotional alternatives for an e-commerce Black Friday.",
     problem: "Faltando dois meses para a Black Friday, o e-commerce precisava definir a estratégia de anúncios para uma base de 100 mil usuários, escolhendo entre duas opções: Campanha A (conversão maior, margem menor) e Campanha B (conversão menor, margem maior).\n\nA Análise frequentista comum foi inconclusiva, com um p-valor de 0.18. Neste projeto, criei um material para apoiar a decisão pela campanha mais vantajosa, utilizando modelagem Bayesiana e simulações de Monte Carlo para quantificar o risco financeiro exato de cada decisão, transformando incerteza em lucro esperado real.",
     problemEn: "Two months before Black Friday, the e-commerce needed to define the ad strategy for a base of 100,000 users, choosing between two options: Campaign A (higher conversion, lower margin) and Campaign B (lower conversion, higher margin).\n\nThe standard frequentist analysis was inconclusive, with a p-value of 0.18. In this project, I created material to support the decision for the most advantageous campaign, using Bayesian modeling and Monte Carlo simulations to quantify the exact financial risk of each decision, transforming uncertainty into actual expected profit.",
     methods: ["Testes A/B", "Eventos raros", "Inferência bayesiana", "Teste Z", "Intervalos de credibilidade", "Projeção de lucro"],
@@ -308,123 +313,171 @@ export const projects: Project[] = [
     ]
   },
   {
-    id: "time-series-impact",
-    title: "Séries Temporais e Impacto Contrafactual",
-    titleEn: "Time Series and Counterfactual Impact",
-    shortTitle: "Séries Temporais e Impacto",
-    shortTitleEn: "Time Series & Impact",
-    category: "Inferência Estatística",
-    categoryEn: "Statistical Inference",
-    summary: "Determinação do efeito incremental de uma alteração comercial em série temporal, isolando componentes de tendência, sazonalidade histórica e ruído aleatório.",
-    summaryEn: "Determining the incremental effect of a commercial policy change on a time series, isolating trend, historical seasonality, and random noise.",
-    problem: "Verificação de causalidade e mensuração do incremento real de faturamento pós-intervenção em série temporal de vendas sujeita a flutuações sazonais cíclicas.",
-    problemEn: "Causal validation and measurement of real incremental revenue post-intervention in a sales time series subject to cyclical seasonal fluctuations.",
-    methods: ["Inferência em séries temporais", "Previsão", "Análise contrafactual", "Séries temporais interrompidas", "Intervalos de confiança"],
-    tools: ["Python", "R", "Power BI"],
+    id: "conjoint-portfolio-optimization",
+    title: "Choice-Based Conjoint (LC-MNL) & Otimização Prescritiva de Portfólio (L-BFGS-B)",
+    titleEn: "Choice-Based Conjoint (LC-MNL) & Prescriptive Portfolio Optimization (L-BFGS-B)",
+    shortTitle: "Conjoint & Otimização de Preço",
+    shortTitleEn: "Conjoint & Price Opt.",
+    category: "Econometria & Otimização Prescritiva",
+    categoryEn: "Econometrics & Prescriptive Opt.",
+    summary: "Modelagem econométrica Choice-Based Conjoint com segmentação por Classes Latentes (EM) e otimizador não-linear multivariado L-BFGS-B para precificação ótima de prateleira, captura de disposição a pagar (WTP) e purga estratégica de catálogo sob restrições de canibalização.",
+    summaryEn: "Choice-Based Conjoint econometric modeling with Latent Class segmentation (EM) and L-BFGS-B multivariate non-linear solver for optimal shelf pricing, willingness-to-pay (WTP) extraction, and catalog pruning under cannibalization constraints.",
+    problem: "Determinação da elasticidade-preço da demanda e definição de preços e mix de produtos capazes de maximizar o lucro total da empresa. O portfólio possuía dois perfis claros de clientes (sensíveis a preço vs. focados em qualidade/especificações). Foi necessário modelar as classes latentes, quantificar a disposição a pagar por atributo e otimizar simultaneamente os preços de todos os SKUs sob elasticidade cruzada e fuga para opt-out.",
+    problemEn: "Determining demand price elasticity and setting optimal pricing and product mix to maximize total profit. With two distinct customer segments (price-sensitive vs. quality-driven), Latent Class modeling (EM) and L-BFGS-B multivariate optimization were deployed to capture WTP and optimize all SKU prices under cross-elasticity and opt-out constraints.",
+    methods: ["Choice-Based Conjoint (CBC)", "Classes Latentes (LC-MNL)", "Algoritmo Expectation-Maximization (EM)", "Otimização Não-Linear (L-BFGS-B)", "Disposição a Pagar (WTP)", "Elasticidade Cruzada", "Otimização de Assortment (Purga)"],
+    applications: ["Precificação Ótima Multivariada", "Segmentação por Classes Latentes", "Maximização de Lucro de Prateleira", "Purga Estratégica de Assortment", "Simulação de Concorrência e Mix"],
+    techniques: ["Desenho D-Optimal", "Logit Condicional de McFadden", "Estimador EM com Regularização L2", "Solver L-BFGS-B sob Limites de Markup", "Simulação de Escolha Softmax com Opt-Out", "Varredura Combinatória de SKUs"],
+    tools: ["Python", "SciPy (optimize)", "Pandas", "NumPy", "Statsmodels", "Matplotlib / Seaborn", "Streamlit"],
     metrics: [
-      { label: "Impacto estimado", labelEn: "Estimated impact", value: "+12,4%", note: "Efeito incremental", noteEn: "Incremental effect" },
-      { label: "Cenário base", labelEn: "Baseline scenario", value: "Contrafactual", note: "Sem intervenção", noteEn: "Without intervention" },
-      { label: "Incerteza", labelEn: "Uncertainty", value: "[+8.1%, +16.7%]", note: "Intervalo de confiança", noteEn: "Confidence interval" }
+      { label: "Crescimento no Lucro", labelEn: "Profit Growth", value: "+17,0%", note: "+R$ 13,74M/mês (L-BFGS-B)", noteEn: "+R$ 13.74M/mo (L-BFGS-B)" },
+      { label: "Retenção com 8 SKUs", labelEn: "8-SKU Retention", value: "97,7%", note: "-33% complexidade operacional", noteEn: "-33% operational complexity" },
+      { label: "Painel Amostral", labelEn: "Survey Panel", value: "N = 420", note: "Desenho D-Optimal", noteEn: "D-Optimal design" },
+      { label: "Segmentação Latente", labelEn: "Latent Segments", value: "2 Classes", note: "Entusiastas vs. Pragmáticos", noteEn: "Enthusiasts vs. Pragmatists" }
     ],
-    outcome: "O modelo contrafactual estimou um incremento médio estável de 12,4% (IC 95%: [8,1%, 16,7%]) atribuível à intervenção comercial, isolando-o de picos sazonais usuais do período.",
-    outcomeEn: "The counterfactual model estimated a stable average increment of 12.4% (95% CI: [8.1%, 16.7%]) attributable to the commercial intervention, isolating it from seasonal peaks.",
+    outcome: "A otimização multivariada L-BFGS-B gerou um salto de +17,0% no lucro líquido mensal (de R$ 80,67M para R$ 94,41M na base analisada) ao explorar a elasticidade cruzada entre produtos e ajustar preços para cada segmento latente, com retenção de 97,7% do lucro mesmo após purga de 12 para 8 SKUs.",
+    outcomeEn: "Multivariate L-BFGS-B optimization yielded a +17.0% net profit increase (from R$ 80.67M to R$ 94.41M in the analyzed baseline) by leveraging cross-price elasticity and segment preferences, while retaining 97.7% of maximum profit when pruning from 12 down to 8 active SKUs.",
     simulated: true,
-    visualType: "time-series"
-  },
-  {
-    id: "survival-time-to-event",
-    title: "Análise de Sobrevivência para Tempo até Evento",
-    titleEn: "Survival Analysis for Time-to-Event",
-    shortTitle: "Análise de Sobrevivência",
-    shortTitleEn: "Survival Analysis",
-    category: "Modelagem Estatística",
-    categoryEn: "Statistical Modeling",
-    summary: "Modelagem probabilística do tempo decorrido até a ocorrência de cancelamentos de clientes, avaliando o perfil de atrito instantâneo ajustado por variáveis de aquisição.",
-    summaryEn: "Probabilistic modeling of elapsed time until customer cancellation events occur, evaluating the hazard rate adjusted for acquisition covariates.",
-    problem: "Necessidade de prever o ciclo de vida ativo do cliente (LTV) e identificar em quais períodos há maior vulnerabilidade ao cancelamento em safras distintas.",
-    problemEn: "Predicting customer active lifecycle (LTV) and identifying periods with higher vulnerability to cancellation across distinct cohorts.",
-    methods: ["Análise de sobrevivência", "Kaplan-Meier", "Riscos proporcionais de Cox", "Razão de risco (Hazard Ratio)"],
-    tools: ["Python", "R"],
-    metrics: [
-      { label: "Mediana Sobrevivência", labelEn: "Median Survival", value: "18 meses", note: "Grupo geral", noteEn: "General group" },
-      { label: "Razão de risco (A vs B)", labelEn: "Hazard Ratio (A vs B)", value: "0,65", note: "Risco relativo", noteEn: "Relative risk" },
-      { label: "p-valor (Log-rank)", labelEn: "p-value (Log-rank)", value: "< 0,001", note: "Significância", noteEn: "Significance" }
-    ],
-    outcome: "O modelo de riscos proporcionais de Cox estimou uma Razão de Risco de 0,65 para a safra qualificada (p-valor < 0,001), indicando uma redução de 35% na taxa de atrito sob a nova estratégia de integração e boas-vindas.",
-    outcomeEn: "The Cox proportional hazards model estimated a Hazard Ratio of 0.65 for the qualified cohort (p-value < 0.001), indicating a 35% reduction in the attrition rate under the new onboarding flow.",
-    simulated: true,
-    visualType: "survival"
-  },
-  {
-    id: "portfolio-pricing",
-    title: "Otimização de Portfólio e Preço",
-    titleEn: "Portfolio and Price Optimization",
-    shortTitle: "Otimização de Portfólio/Preço",
-    shortTitleEn: "Portfolio & Price Opt.",
-    category: "Otimização",
-    categoryEn: "Optimization",
-    summary: "Simulação de mercado baseada em dados de preferência declarada para otimizar elasticidade de preço, atributos de produto e alcance líquido da oferta.",
-    summaryEn: "Market simulation based on stated preference data to optimize price elasticity, product attributes, and net product mix reach.",
-    problem: "Determinação da elasticidade-preço da demanda e definição de um mix de portfólio capaz de maximizar o alcance líquido (reach) sem canibalização de faturamento.",
-    problemEn: "Determining price elasticity of demand and selecting an optimal product mix to maximize net market reach without revenue cannibalization.",
-    methods: ["Elasticidade de preço", "MaxDiff", "Análise conjunta", "Análise TURF", "Simulação de quota de mercado"],
-    tools: ["Python", "R", "Excel"],
-    metrics: [
-      { label: "Elasticidade Média", labelEn: "Average Elasticity", value: "-1,85", note: "Sensibilidade de preço", noteEn: "Price sensitivity" },
-      { label: "Alcance TURF", labelEn: "TURF Reach", value: "85%", note: "Mix ideal de 3 itens", noteEn: "Optimal mix of 3 items" },
-      { label: "Simulação Share", labelEn: "Share Simulation", value: "+4,2%", note: "Aumento estimado de quota", noteEn: "Estimated share increase" }
-    ],
-    outcome: "A simulação TURF indicou alcance líquido ótimo de 85% com um portfólio composto por três itens chave, e a modelagem de análise conjunta identificou o patamar de preço ideal sob elasticidade estimada de -1,85.",
-    outcomeEn: "TURF simulation indicated an optimal net reach of 85% using a three-item portfolio combination, while conjoint modeling identified the target price point under an estimated elasticity of -1.85.",
-    simulated: true,
-    visualType: "pricing"
-  },
-  {
-    id: "segmentation-churn-ltv-roi",
-    title: "Segmentação, Churn, LTV e ROI",
-    titleEn: "Segmentation, Churn, LTV, and ROI",
-    shortTitle: "Segmentação e LTV",
-    shortTitleEn: "Segmentation & LTV",
-    category: "Inteligência Quantitativa",
-    categoryEn: "Quantitative Intelligence",
-    summary: "Agrupamento estatístico multidimensional e modelagem de valor do ciclo de vida do cliente (LTV) para otimizar a distribuição do orçamento de campanhas de retenção.",
-    summaryEn: "Multidimensional statistical clustering and customer lifetime value (LTV) modeling to optimize retention campaign budget allocation.",
-    problem: "Otimização de custos de aquisição e retenção através da diferenciação do comportamento de consumo, frequência transacional e risco de cancelamento entre clientes ativos.",
-    problemEn: "Optimizing acquisition and retention costs by differentiating customer value patterns, purchasing frequency, and attrition risk.",
-    methods: ["Análise de agrupamento", "Segmentação RFM", "Previsão de rotatividade (churn)", "Valor de vida do cliente (LTV)", "Retorno sobre o investimento (ROI)"],
-    tools: ["Python", "SQL", "Power BI"],
-    metrics: [
-      { label: "Grupos Identificados", labelEn: "Identified Clusters", value: "4 grupos", note: "Comportamentos distintos", noteEn: "Distinct behaviors" },
-      { label: "LTV Esperado (Grupo Alto)", labelEn: "Expected LTV (High Group)", value: "R$ 4.250", note: "Valor médio do ciclo de vida", noteEn: "Average lifecycle value" },
-      { label: "ROI Estimado de Campanha", labelEn: "Estimated Campaign ROI", value: "3,2x", note: "Retorno da alocação otimizada", noteEn: "Optimized allocation return" }
-    ],
-    outcome: "A estruturação em 4 grupos e a modelagem do LTV médio (R$ 4.250 para a faixa prioritária) permitiram focar campanhas ativas, estimando um retorno financeiro de 3,2 vezes o capital alocado.",
-    outcomeEn: "Behavioral grouping into 4 clusters and LTV modeling (average R$ 4,250 for the priority tier) allowed precision targeting, yielding an estimated ROI of 3.2x on campaign investment.",
-    simulated: true,
-    visualType: "matrix"
-  },
-  {
-    id: "rag-knowledge-base",
-    title: "Assistente RAG para Base de Conhecimento",
-    titleEn: "RAG Assistant for Knowledge Base",
-    shortTitle: "Assistente RAG",
-    shortTitleEn: "RAG Assistant",
-    category: "Automação com IA",
-    categoryEn: "AI Automation",
-    summary: "Implementação de arquitetura de geração aumentada por recuperação (RAG) integrada a base de dados vetorial para consulta indexada de manuais técnicos e normativas.",
-    summaryEn: "Implementation of a retrieval-augmented generation (RAG) architecture integrated with a vector database for indexed queries on technical manuals and internal policies.",
-    problem: "Elevada latência de busca e inconsistência na recuperação manual de informações regulatórias em arquivos PDF extensos e descentralizados.",
-    problemEn: "High search latency and retrieval inconsistency during manual lookup of regulatory information within large, decentralized PDF documents.",
-    methods: ["Geração aumentada por recuperação (RAG)", "Vetorização de texto", "Pesquisa vetorial", "Agentes de IA", "Chatbot"],
-    tools: ["Python", "LangChain", "LangGraph", "n8n"],
-    metrics: [
-      { label: "Precisão de Resposta", labelEn: "Response Accuracy", value: "96%", note: "Avaliação baseada em fontes", noteEn: "Source-based evaluation" },
-      { label: "Tempo de Busca Médio", labelEn: "Average Search Time", value: "1.2s", note: "Redução de 90%", noteEn: "90% reduction" },
-      { label: "Fontes Rastreáveis", labelEn: "Traceable Sources", value: "100%", note: "Citação direta do parágrafo", noteEn: "Direct paragraph citation" }
-    ],
-    outcome: "O fluxo RAG de busca por representações vetoriais reduziu em 90% o tempo médio de consulta interna (latência de 1,2s), mantendo precisão de 96% através do rastreamento estrito de referências regulatórias fonte.",
-    outcomeEn: "The embedding-based retrieval workflow reduced average internal lookup latency by 90% (1.2s response time) while maintaining 96% response accuracy through strict source-paragraph citation tracking.",
-    simulated: true,
-    visualType: "rag-pipeline"
+    anonymizedDisclaimer: "Estudo real com dados descaracterizados e atributos de produtos mascarados para preservar o sigilo comercial da empresa contratante, mantendo rigorosamente intactas as proporções de ganho (+17%) e a modelagem matemática.",
+    anonymizedDisclaimerEn: "Real-world study with masked product attributes and anonymized figures to preserve client commercial confidentiality, preserving the exact +17% profit gain proportions and mathematical rigor.",
+    visualType: "pricing",
+    notebookPt: "/reports/analise_conjoint_e_otimizacao.html",
+    notebookEn: "/reports/conjoint_analysis_and_portfolio_optimization.html",
+    slides: [
+      {
+        id: "conjoint-slide-1",
+        layout: "image-three-blocks",
+        title: "Transição por SKU: Preço vs. Market Share vs. Lucro Estimado",
+        titleEn: "SKU-Level Transition: Price vs Market Share vs Monthly Profit",
+        imagePath: "/images/conjoint_sku_transition.png",
+        textBlocks: [
+          {
+            title: "💰 Salto de +17,0% no Lucro Líquido",
+            titleEn: "💰 +17.0% Net Profit Uplift",
+            text: "A otimização multivariada de preços via L-BFGS-B elevou o lucro mensal de R$ 80,67M para R$ 94,41M (+R$ 13,74M/mês), capturando a elasticidade cruzada entre produtos e mitigando a fuga para opt-out.",
+            textEn: "Multivariate price optimization via L-BFGS-B increased monthly profit from R$ 80.67M to R$ 94.41M (+R$ 13.74M/mo), capturing cross-price elasticity and mitigating opt-out leakage."
+          },
+          {
+            title: "🎯 Calibração Fina por SKU",
+            titleEn: "🎯 SKU-Specific Calibration",
+            text: "Itens de alta margem e preferência inelástica (ex: SKU 05 e SKU 12) tiveram preços elevados com ganho expressivo de lucro, enquanto SKUs de entrada foram reposicionados para proteger o fluxo de clientes.",
+            textEn: "High-margin, inelastic items (e.g., SKU 05 and SKU 12) had prices increased yielding substantial profit gains, while entry SKUs were repositioned to protect foot traffic."
+          },
+          {
+            title: "🔒 Estudo Real Anonimizado",
+            titleEn: "🔒 Anonymized Real-World Case",
+            text: "Estudo real de precificação com produtos e números anonimizados (com erro de calibração adicionado no volume) para preservar o sigilo comercial, mantendo intacta a proporção de ganho (+17%).",
+            textEn: "Real-world pricing study with masked product attributes and anonymized figures to preserve business confidentiality, preserving true +17% profit gain proportions."
+          }
+        ]
+      },
+      {
+        id: "conjoint-slide-2",
+        layout: "image-three-blocks",
+        title: "Segmentação por Classes Latentes & Disposição a Pagar (WTP)",
+        titleEn: "Latent Class Segmentation & Willingness to Pay (WTP)",
+        imagePath: "/images/conjoint_wtp_segment.png",
+        textBlocks: [
+          {
+            title: "👥 2 Segmentos Comportamentais Claros",
+            titleEn: "👥 2 Distinct Behavioral Segments",
+            text: "O estimador EM (Expectation-Maximization) isolou com precisão dois perfis latentes de consumidores: Segmento A (Entusiastas focados em qualidade/artesanal) e Segmento B (Pragmáticos altamente sensíveis a preço).",
+            textEn: "The EM (Expectation-Maximization) estimator isolated two latent consumer segments: Segment A (Quality-driven enthusiasts) and Segment B (Price-sensitive pragmatists)."
+          },
+          {
+            title: "💵 Quantificação de Disposição a Pagar (WTP)",
+            titleEn: "💵 Willingness to Pay (WTP) Quantification",
+            text: "O valor monetário percebido por atributo revelou que o Segmento A aceita pagar até R$ 2.424 a mais pelo burger artesanal e R$ 1.258 pelo milkshake, viabilizando estratégias de precificação premium sem risco de perda de share.",
+            textEn: "Perceived monetary attribute valuation showed Segment A is willing to pay up to R$ 2,424 more for artisan burgers and R$ 1,258 for gourmet shakes, enabling premium pricing without share erosion."
+          },
+          {
+            title: "📊 Eliminação do Viés Médio",
+            titleEn: "📊 Eliminating Average Aggregation Bias",
+            text: "A modelagem conjunta por classes latentes superou as limitações do modelo MNL agregado clássico, evitando a armadilha de precificar para um 'cliente médio inexistente'.",
+            textEn: "Latent class modeling avoided aggregate MNL bias, preventing the trap of pricing for a non-existent 'average customer'."
+          }
+        ]
+      },
+      {
+        id: "conjoint-slide-3",
+        layout: "image-three-blocks",
+        title: "Otimização Combinatória de Assortment (Purga de SKUs)",
+        titleEn: "Combinatorial Assortment Optimization (SKU Pruning)",
+        imagePath: "/images/conjoint_sku_pruning.png",
+        textBlocks: [
+          {
+            title: "✂️ 99,88% de Retenção com -1 SKU",
+            titleEn: "✂️ 99.88% Retention with -1 SKU",
+            text: "A eliminação do SKU 08 (identificado como produto canibalizador de baixa margem) praticamente não impactou o lucro total (retenção de 99,88%), transferindo a demanda para opções mais rentáveis.",
+            textEn: "Removing SKU 08 (identified as a low-margin cannibalizing item) had virtually zero profit impact (99.88% retention), shifting demand to more profitable choices."
+          },
+          {
+            title: "📦 97,67% de Retenção com 8 SKUs",
+            titleEn: "📦 97.67% Retention with 8 SKUs",
+            text: "Ao reduzir o catálogo de 12 para 8 SKUs ativos (-33% de complexidade de estoque e preparação), a empresa ainda retém 97,67% do faturamento total maximizado.",
+            textEn: "Pruning the catalog from 12 to 8 active SKUs (-33% inventory and operational complexity) retains 97.67% of total maximized revenue."
+          },
+          {
+            title: "⚡ Eficiência Operacional sem Perda de Margem",
+            titleEn: "⚡ Lean Operations without Margin Loss",
+            text: "A análise combinatorial permite aos diretores de produto tomar decisões embasadas de simplificação de menu com total previsibilidade do impacto financeiro.",
+            textEn: "Combinatorial scanning enables product directors to make data-backed menu simplification decisions with full financial predictability."
+          }
+        ]
+      },
+      {
+        id: "conjoint-slide-4",
+        layout: "image-three-blocks",
+        title: "Matriz Estratégica de Precificação e Portfólio (108 Combinações)",
+        titleEn: "Strategic Pricing & Portfolio Matrix (108 Viable Combinations)",
+        imagePath: "/images/conjoint_full_matrix.png",
+        textBlocks: [
+          {
+            title: "⭐ Mapeamento de 4 Quadrantes",
+            titleEn: "⭐ 4-Quadrant Strategic Mapping",
+            text: "Classificação das 108 combinações viáveis em Estrelas (alto share e alta margem), Vacas Leiteiras, Interrogações e Itens a Descontinuar sob simulação Softmax simultânea.",
+            textEn: "Classification of 108 valid configurations into Stars (high share and margin), Cash Cows, Question Marks, and Dogs under simultaneous Softmax simulation."
+          },
+          {
+            title: "📐 Espaço Viável Restrito (Fatorial D-Optimal)",
+            titleEn: "📐 Constrained Viable Space (D-Optimal)",
+            text: "Exclusão de combinações proibidas do desenho fatorial completo, mapeando unicamente as configurações comercialmente viáveis para o negócio.",
+            textEn: "Exclusion of prohibited combinations from full factorial design, mapping only commercially viable configurations."
+          },
+          {
+            title: "🎯 Curva Teórica de Fronteira Eficiente",
+            titleEn: "🎯 Efficient Frontier Curve",
+            text: "Permite simular lançamentos futuros de novos produtos prevendo canibalização antes mesmo de entrar em produção.",
+            textEn: "Enables simulating future product rollouts predicting cannibalization prior to production."
+          }
+        ]
+      },
+      {
+        id: "conjoint-slide-5",
+        layout: "image-three-blocks",
+        title: "Simulador de Prateleira Interativo (Ferramenta de Apoio à Decisão)",
+        titleEn: "Interactive Shelf Simulator (Decision Support Software)",
+        imagePath: "/images/conjoint_shelf_simulator.png",
+        textBlocks: [
+          {
+            title: "🎛️ Simulação em Tempo Real",
+            titleEn: "🎛️ Real-Time Simulation Engine",
+            text: "Interface executiva desenvolvida para permitir que gestores ajustem preços, ativem/desativem SKUs e visualizem curvas de elasticidade e lucro instantaneamente.",
+            textEn: "Executive interface allowing managers to adjust prices, toggle SKUs, and inspect elasticity and profit curves instantaneously."
+          },
+          {
+            title: "📈 Curvas de Demanda & Elasticidade Cruzada",
+            titleEn: "📈 Demand Curves & Cross-Elasticity",
+            text: "Cálculo reativo da redistribuição de market share e probabilidade de escolha conjunta integrando o motor econométrico de Classes Latentes.",
+            textEn: "Reactive calculation of market share redistribution and joint choice probabilities powered by the Latent Class engine."
+          },
+          {
+            title: "💼 Decisão de Negócio Sem Dependência Técnica",
+            titleEn: "💼 Self-Serve Business Decision Making",
+            text: "Transposição de um modelo matemático complexo em uma ferramenta self-service intuitiva para times comerciais e de precificação.",
+            textEn: "Translating a complex mathematical model into an intuitive self-service tool for commercial and pricing teams."
+          }
+        ]
+      }
+    ]
   }
 ];

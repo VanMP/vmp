@@ -12,72 +12,62 @@ export type Application = {
 export const applications: Application[] = [
   {
     id: "experimentation",
-    name: "Testes A/B e Experimentação",
-    nameEn: "A/B Testing & Experimentation",
+    name: "Testes A/B e Experimentação Bayesiana",
+    nameEn: "A/B Testing & Bayesian Experimentation",
     group: "Decisão & Crescimento",
     groupEn: "Decision & Growth",
-    summary: "Validação de hipóteses comerciais e mecânicas de conversão sob cenários de tráfego controlado, reduzindo riscos antes do lançamento de promoções.",
-    summaryEn: "Validation of business hypotheses and conversion mechanics under controlled traffic, reducing risks prior to promotional rollouts.",
+    summary: "Validação de hipóteses comerciais, cálculo de lucro esperado e quantificação exata de risco financeiro sob cenários de incerteza amostral.",
+    summaryEn: "Validation of commercial hypotheses, expected profit calculation, and exact financial risk quantification under sample uncertainty.",
     relatedProjectIds: ["bayesian-promotions"]
   },
   {
-    id: "churn-retention",
-    name: "Prevenção de Churn e Retenção",
-    nameEn: "Churn Prevention & Retention",
-    group: "Decisão & Crescimento",
-    groupEn: "Decision & Growth",
-    summary: "Modelagem estatística do tempo até o cancelamento do cliente, estimando taxas instantâneas de atrito e valor de ciclo de vida (LTV).",
-    summaryEn: "Statistical modeling of customer time-to-cancel, estimating hazard rates and customer lifetime value (LTV).",
-    relatedProjectIds: ["survival-time-to-event", "segmentation-churn-ltv-roi"]
-  },
-  {
     id: "pricing-optimization",
-    name: "Precificação e Elasticidade",
-    nameEn: "Pricing & Elasticity",
+    name: "Precificação Ótima e Elasticidade Cruzada",
+    nameEn: "Optimal Pricing & Cross-Elasticity",
     group: "Produto & Precificação",
     groupEn: "Product & Pricing",
-    summary: "Determinação da sensibilidade ao preço e curvas de demanda declarada para maximizar faturamento e mitigar canibalização.",
-    summaryEn: "Determining price sensitivity and stated demand curves to maximize revenue and mitigate cannibalization.",
-    relatedProjectIds: ["portfolio-pricing"]
+    summary: "Determinação de preços ótimos via solvers não-lineares (L-BFGS-B) integrando demanda agregada, canibalização de SKUs e restrições de markup.",
+    summaryEn: "Determining optimal price points via non-linear solvers (L-BFGS-B) integrating aggregate demand, SKU cannibalization, and markup bounds.",
+    relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
   {
-    id: "portfolio-mix",
-    name: "Otimização de Portfólio (TURF)",
-    nameEn: "Portfolio Mix Optimization",
+    id: "discrete-choice-segmentation",
+    name: "Segmentação por Classes Latentes & WTP",
+    nameEn: "Latent Class Segmentation & WTP",
     group: "Produto & Precificação",
     groupEn: "Product & Pricing",
-    summary: "Configuração do mix ideal de produtos e atributos para maximizar o alcance líquido (Reach) da marca sem redundâncias.",
-    summaryEn: "Configuring the optimal product mix and attributes to maximize net brand reach without redundancies.",
-    relatedProjectIds: ["portfolio-pricing"]
+    summary: "Identificação de heterogeneidade não observada de consumidores e cálculo de disposição a pagar para orientar estratégias de diferenciação.",
+    summaryEn: "Identifying unobserved consumer heterogeneity and calculating willingness-to-pay to guide product differentiation strategies.",
+    relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
   {
-    id: "customer-value",
-    name: "Segmentação de Clientes (LTV e ROI)",
-    nameEn: "Customer Segmentation (LTV & ROI)",
-    group: "Decisão & Crescimento",
-    groupEn: "Decision & Growth",
-    summary: "Agrupamento estatístico multidimensional de clientes para otimizar alocação de orçamento e focar esforços de marketing nos clientes mais rentáveis.",
-    summaryEn: "Multidimensional customer clustering to optimize budget allocation and focus marketing on the most profitable customers.",
-    relatedProjectIds: ["segmentation-churn-ltv-roi"]
+    id: "assortment-pruning",
+    name: "Otimização de Assortment e Purga de Menu",
+    nameEn: "Assortment Optimization & Menu Pruning",
+    group: "Produto & Precificação",
+    groupEn: "Product & Pricing",
+    summary: "Varredura combinatória para identificar produtos canibais e simplificar o catálogo com máxima retenção de faturamento e eficiência operacional.",
+    summaryEn: "Combinatorial scanning to identify cannibalizing products and simplify menus while maximizing revenue retention and operational efficiency.",
+    relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
   {
     id: "text-intelligence",
-    name: "Inteligência de Texto e NLP",
-    nameEn: "Text Intelligence & NLP",
+    name: "Inteligência de Texto e Clusterização Vetorial",
+    nameEn: "Text Intelligence & Vector Clustering",
     group: "Automação & Processamento",
     groupEn: "Automation & Processing",
-    summary: "Processamento e categorização de grandes volumes de feedback textual não estruturado para extrair fricções de produto e tendências semânticas.",
-    summaryEn: "Processing and categorizing large volumes of unstructured textual feedback to extract product frictions and semantic trends.",
-    relatedProjectIds: ["nlp-text-intelligence"]
+    summary: "Agrupamento semântico probabilístico em 3D e rotulagem autônoma por LLMs locais em grandes bases de texto não estruturado.",
+    summaryEn: "3D probabilistic semantic clustering and autonomous local LLM labeling over large unstructured text datasets.",
+    relatedProjectIds: ["nlp-text-intelligence", "quantificador-semantico-app"]
   },
   {
-    id: "ai-automation",
-    name: "Automação Cognitiva (RAG)",
-    nameEn: "Cognitive Automation (RAG)",
+    id: "no-code-decision-tools",
+    name: "Aplicações Interativas & Simuladores de Negócio",
+    nameEn: "Interactive Apps & Business Simulators",
     group: "Automação & Processamento",
     groupEn: "Automation & Processing",
-    summary: "Indexação vetorial e recuperação inteligente de informações para bases regulatórias, manuais ou políticas internas.",
-    summaryEn: "Vector indexing and intelligent information retrieval for regulatory databases, manuals, or internal policies.",
-    relatedProjectIds: ["rag-knowledge-base"]
+    summary: "Desenvolvimento de interfaces e simuladores de prateleira (Streamlit) para permitir que executivos simulem cenários em tempo real.",
+    summaryEn: "Development of interactive interfaces and shelf simulators (Streamlit) enabling executives to test pricing scenarios in real time.",
+    relatedProjectIds: ["quantificador-semantico-app", "conjoint-portfolio-optimization"]
   }
 ];
