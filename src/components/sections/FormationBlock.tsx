@@ -14,8 +14,8 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
       institution: "Universidade Federal de Goiás (UFG)",
       periodPt: "2025 – 2026",
       periodEn: "2025 – 2026",
-      descPt: "Especialização focada em redes profundas, embeddings vetoriais, arquitetura Transformer e fluxos de RAG.",
-      descEn: "Specialization focused on deep networks, vector embeddings, Transformer architectures, and RAG pipelines."
+      descPt: "Especialização avançada com ênfase em modelagem de texto como dado, arquiteturas neurais e pipelines de dados não estruturados. Investigação e desenvolvimento de projeto de conclusão focado na decomposição de latência e otimização computacional em sistemas RAG (Retrieval-Augmented Generation).",
+      descEn: "Advanced specialization focusing on text-as-data modeling, neural architectures, and unstructured data pipelines. Capstone project investigating latency decomposition and computational optimization in Retrieval-Augmented Generation (RAG) systems."
     },
     {
       titlePt: "Bacharelado em Estatística",
@@ -23,8 +23,8 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
       institution: "Universidade Federal do Paraná (UFPR)",
       periodPt: "2018 – 2023",
       periodEn: "2018 – 2023",
-      descPt: "Foco em inferência matemática, modelos lineares (GLM), amostragem e regressão. Capstone em modelos estatísticos sob eventos raros.",
-      descEn: "Focus on mathematical inference, linear models (GLM), sampling, and regression. Capstone on statistical models under rare events."
+      descPt: "Formação quantitativa rigorosa com ênfase em inferência matemática, modelos lineares generalizados (GLM), processos estocásticos e desenho amostral. Trabalho de Conclusão focado em modelagem de séries temporais não-lineares com troca de regime (Smooth Transition Autoregressive - STARMAX), comparando dinâmica de limiares exógenos contra o paradigma clássico de Box-Jenkins para mitigação de resíduos não-gaussianos sob choques hidrológicos extremos.",
+      descEn: "Rigorous quantitative training in mathematical inference, generalized linear models (GLM), stochastic processes, and survey sampling design. Capstone focused on non-linear regime-switching time series (Smooth Transition Autoregressive - STARMAX), evaluating exogenous threshold dynamics against the classical Box-Jenkins paradigm to mitigate non-Gaussian residuals under extreme hydrological shocks."
     },
     {
       titlePt: "Engenharia de Computação (Frequência Universitária)",
@@ -32,17 +32,17 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
       institution: "Universidade Tecnológica Federal do Paraná (UTFPR)",
       periodPt: "2013 – 2017",
       periodEn: "2013 – 2017",
-      descPt: "Transição para estatística. Foco em algoritmos, estruturas de dados e programação.",
-      descEn: "Transition to statistics. Focus on algorithms, data structures, and programming."
+      descPt: "Sólida base de engenharia de software e arquitetura de sistemas: estruturas de dados avançadas, complexidade algorítmica, programação em baixo nível e computação científica. Essa vivência universitária garante autonomia e destreza na criação de scripts analíticos próprios, automação de dados e implementação de rotinas estatísticas eficientes em Python e R, operando como suporte direto à modelagem quantitativa.",
+      descEn: "Solid foundation in software engineering and systems architecture: advanced data structures, algorithmic complexity, low-level programming, and scientific computing. Provides full technical autonomy in building custom analytical scripts, automated data pipelines, and highly efficient statistical routines in Python and R to directly power quantitative modeling."
     },
     {
-      titlePt: "Colegial Técnico, Engenharia Industrial e Eletrônica",
+      titlePt: "Colegial Técnico, Engenharia Industrial e Eletrónica",
       titleEn: "Integrated Technical High School, Industrial Electronics",
       institution: "Universidade Tecnológica Federal do Paraná (UTFPR)",
       periodPt: "2008 – 2012",
       periodEn: "2008 – 2012",
-      descPt: "Curso técnico integrado focado em instrumentação industrial, circuitos digitais e automação básica.",
-      descEn: "Integrated technical course focused on industrial instrumentation, digital circuits, and basic automation."
+      descPt: "Formação técnica integrada com ênfase em instrumentação de precisão, lógica de controlo, circuitos e resolução metódica de problemas. Introdução precoce à arquitetura de testes e métodos empíricos de medição.",
+      descEn: "Integrated technical degree emphasizing precision instrumentation, control logic, digital circuits, and methodical problem-solving. Early foundation in test architecture and empirical measurement methodologies."
     }
   ];
 
@@ -200,7 +200,7 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
                     {/* Collapsible content wrapper */}
                     <div 
                       style={{
-                        maxHeight: isExpanded ? "120px" : "0px",
+                        maxHeight: isExpanded ? "320px" : "0px",
                         opacity: isExpanded ? 1 : 0,
                         marginTop: isExpanded ? "10px" : "0px",
                         paddingTop: isExpanded ? "10px" : "0px",
