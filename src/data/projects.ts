@@ -325,8 +325,8 @@ export const projects: Project[] = [
     problem: "Determinação da elasticidade-preço da demanda e definição de preços e mix de produtos capazes de maximizar o lucro total da empresa. O portfólio possuía dois perfis claros de clientes (sensíveis a preço vs. focados em qualidade/especificações). Foi necessário modelar as classes latentes, quantificar a disposição a pagar por atributo e otimizar simultaneamente os preços de todos os SKUs sob elasticidade cruzada e fuga para opt-out.",
     problemEn: "Determining demand price elasticity and setting optimal pricing and product mix to maximize total profit. With two distinct customer segments (price-sensitive vs. quality-driven), Latent Class modeling (EM) and L-BFGS-B multivariate optimization were deployed to capture WTP and optimize all SKU prices under cross-elasticity and opt-out constraints.",
     methods: ["Choice-Based Conjoint (CBC)", "Classes Latentes (LC-MNL)", "Algoritmo Expectation-Maximization (EM)", "Otimização Não-Linear (L-BFGS-B)", "Disposição a Pagar (WTP)", "Elasticidade Cruzada", "Otimização de Assortment (Purga)"],
-    applications: ["Precificação Ótima Multivariada", "Segmentação por Classes Latentes", "Maximização de Lucro de Prateleira", "Purga Estratégica de Assortment", "Simulação de Concorrência e Mix"],
-    techniques: ["Desenho D-Optimal", "Logit Condicional de McFadden", "Estimador EM com Regularização L2", "Solver L-BFGS-B sob Limites de Markup", "Simulação de Escolha Softmax com Opt-Out", "Varredura Combinatória de SKUs"],
+    applications: ["Pesquisa Conjoint", "Precificação Ótima Multivariada", "Canibalização de Prateleira", "Segmentação por Classes Latentes", "Purga Estratégica de Assortment", "Simulação de Concorrência e Mix"],
+    techniques: ["Pesquisa Conjoint (CBC)", "Desenho D-Optimal", "Logit Condicional de McFadden", "Estimador EM com Regularização L2", "Solver L-BFGS-B sob Limites de Markup", "Simulação de Escolha Softmax com Opt-Out", "Varredura Combinatória de SKUs"],
     tools: ["Python", "SciPy (optimize)", "Pandas", "NumPy", "Statsmodels", "Matplotlib / Seaborn", "Streamlit"],
     metrics: [
       { label: "Crescimento no Lucro", labelEn: "Profit Growth", value: "+17,0%", note: "+R$ 13,74M/mês (L-BFGS-B)", noteEn: "+R$ 13.74M/mo (L-BFGS-B)" },
@@ -337,8 +337,8 @@ export const projects: Project[] = [
     outcome: "A otimização multivariada L-BFGS-B gerou um salto de +17,0% no lucro líquido mensal (de R$ 80,67M para R$ 94,41M na base analisada) ao explorar a elasticidade cruzada entre produtos e ajustar preços para cada segmento latente, com retenção de 97,7% do lucro mesmo após purga de 12 para 8 SKUs.",
     outcomeEn: "Multivariate L-BFGS-B optimization yielded a +17.0% net profit increase (from R$ 80.67M to R$ 94.41M in the analyzed baseline) by leveraging cross-price elasticity and segment preferences, while retaining 97.7% of maximum profit when pruning from 12 down to 8 active SKUs.",
     simulated: true,
-    anonymizedDisclaimer: "Estudo real com dados descaracterizados e atributos de produtos mascarados para preservar o sigilo comercial da empresa contratante, mantendo rigorosamente intactas as proporções de ganho (+17%) e a modelagem matemática.",
-    anonymizedDisclaimerEn: "Real-world study with masked product attributes and anonymized figures to preserve client commercial confidentiality, preserving the exact +17% profit gain proportions and mathematical rigor.",
+    anonymizedDisclaimer: "Estudo real com dados descaracterizados, atributos mascarados e valores arredondados para preservar o sigilo comercial, mantendo a proporção aproximada de ganho observada (+17%) e o racional da modelagem.",
+    anonymizedDisclaimerEn: "Real-world study with masked product attributes and rounded figures to preserve commercial confidentiality, maintaining the approximate observed profit gain (+17%) and modeling rationale.",
     visualType: "pricing",
     notebookPt: "/reports/analise_conjoint_e_otimizacao.html",
     notebookEn: "/reports/conjoint_analysis_and_portfolio_optimization.html",
@@ -348,7 +348,7 @@ export const projects: Project[] = [
         layout: "image-three-blocks",
         title: "Transição por SKU: Preço vs. Market Share vs. Lucro Estimado",
         titleEn: "SKU-Level Transition: Price vs Market Share vs Monthly Profit",
-        imagePath: "/images/conjoint_sku_transition.png",
+        imagePath: "/images/conjoint_results_table.png",
         textBlocks: [
           {
             title: "💰 Salto de +17,0% no Lucro Líquido",
@@ -365,8 +365,8 @@ export const projects: Project[] = [
           {
             title: "🔒 Estudo Real Anonimizado",
             titleEn: "🔒 Anonymized Real-World Case",
-            text: "Estudo real de precificação com produtos e números anonimizados (com erro de calibração adicionado no volume) para preservar o sigilo comercial, mantendo intacta a proporção de ganho (+17%).",
-            textEn: "Real-world pricing study with masked product attributes and anonymized figures to preserve business confidentiality, preserving true +17% profit gain proportions."
+            text: "Estudo real de precificação com atributos mascarados e valores arredondados para preservar o sigilo comercial, mantendo a proporção aproximada de ganho observada (+17%).",
+            textEn: "Real-world pricing study with masked product attributes and rounded figures to preserve commercial confidentiality, maintaining approximate +17% gain proportions."
           }
         ]
       },

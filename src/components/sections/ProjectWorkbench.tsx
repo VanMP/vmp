@@ -775,7 +775,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
       )}
 
       {true && (
-        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto md:h-[850px] relative">
+        <div className="border border-border-soft bg-surface/50 rounded-2xl shadow-[0_4px_24px_rgba(44,40,34,0.02)] overflow-hidden grid grid-cols-1 md:grid-cols-[auto_1fr] h-auto min-h-[680px] relative">
 
           {/* Left/Top Navigation Sidebar/Tabbar */}
           <nav className={`border-b md:border-b-0 md:border-r border-border-soft bg-frost/25 p-3 md:p-4 flex flex-row md:flex-col justify-between gap-2 md:gap-6 overflow-x-auto md:overflow-y-auto transition-all duration-300 flex-shrink-0 w-full ${sidebarCollapsed ? "md:w-[64px] md:items-center md:px-2" : "md:w-[260px]"
@@ -1153,7 +1153,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   </div>
 
                   {/* Right Side: Visual Graphic & KPI Stats (Slides Carousel) */}
-                  <div className="flex flex-col gap-4 justify-between h-full min-h-[460px] md:min-h-[480px]">
+                  <div className="flex flex-col gap-3 justify-start h-full">
                     {(() => {
                       const projectSlides = currentProject.slides && currentProject.slides.length > 0
                         ? currentProject.slides
@@ -1177,7 +1177,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       const activeSlide = projectSlides[currentSlideIndex] || projectSlides[0];
 
                       return (
-                        <div className="flex flex-col gap-4 justify-between h-full">
+                        <div className="flex flex-col gap-3 justify-start h-full">
                           {/* Slide Header with Local Navigation */}
                           <div className="flex items-center justify-between border-b border-border-soft/40 pb-2">
                             <h4 className="text-[11px] uppercase tracking-wider font-mono font-bold text-txt-main flex items-center gap-1.5">
@@ -1208,7 +1208,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                           </div>
 
                           {/* Slide Layout Content */}
-                          <div className="flex-1 flex flex-col justify-between gap-4">
+                          <div className="flex-1 flex flex-col justify-start gap-3">
                             {activeSlide.layout === "legacy" && (
                               <div className="flex flex-col gap-4">
                                 <div className="border border-border-soft bg-surface p-4 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)]">
@@ -1315,9 +1315,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                             )}
 
                             {activeSlide.layout === "image-three-blocks" && (
-                              <div className="flex flex-col gap-4 flex-1 justify-between">
+                              <div className="flex flex-col gap-3 flex-1 justify-start">
                                 {/* Top Image or Table Section */}
-                                <div className="border border-border-soft bg-surface p-3 md:p-3.5 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-x-auto">
+                                <div className="border border-border-soft bg-surface p-2.5 md:p-3 rounded-xl shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-x-auto flex items-center justify-center">
                                   {activeSlide.tableData ? (
                                     <div className="w-full">
                                       <div className="flex items-center justify-between mb-2 px-1">
@@ -1355,7 +1355,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <img
                                       src={activeSlide.imagePath}
                                       alt={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
-                                      className="w-full h-auto max-h-[320px] md:max-h-[450px] object-contain rounded-lg"
+                                      className="w-full h-auto max-h-[340px] md:max-h-[460px] object-contain rounded-lg"
                                     />
                                   ) : (
                                     <MiniVisual type={activeSlide.visualType || currentProject.visualType} lang={lang} />
@@ -1363,13 +1363,13 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 </div>
 
                                 {/* Bottom Three Blocks Section */}
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                                   {(activeSlide.textBlocks || []).map((block, idx) => (
-                                    <div key={idx} className="p-3.5 bg-frost border border-border-soft/60 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-1.5 transition-all hover:border-wine/20">
-                                      <h5 className="text-xs md:text-sm font-extrabold text-wine font-sans flex items-center gap-1.5 leading-tight">
+                                    <div key={idx} className="p-3 bg-frost border border-border-soft/60 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-1 transition-all hover:border-wine/20">
+                                      <h5 className="text-[11px] md:text-xs font-extrabold text-wine font-sans flex items-center gap-1.5 leading-tight">
                                         {lang === "en" && block.titleEn ? block.titleEn : block.title}
                                       </h5>
-                                      <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
+                                      <p className="text-[10px] md:text-[11px] text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
                                         {lang === "en" && block.textEn ? block.textEn : block.text}
                                       </p>
                                     </div>
