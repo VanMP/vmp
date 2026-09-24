@@ -1421,16 +1421,16 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                             )}
 
                             {activeSlide.layout === "four-blocks" && (
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full justify-start items-start">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 w-full justify-start items-stretch">
                                 {(activeSlide.textBlocks || []).map((block, idx) => (
                                   <div 
                                     key={idx} 
-                                    className="p-3 md:p-3.5 bg-frost/90 border border-border-soft/70 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col justify-start gap-1.5 transition-all hover:border-wine/25 hover:bg-frost md:h-[135px] overflow-y-auto"
+                                    className="p-4 md:p-5 bg-frost/90 border border-border-soft/70 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col justify-start gap-2 transition-all hover:border-wine/25 hover:bg-frost min-h-[160px] md:min-h-[180px]"
                                   >
                                     <h5 className="text-xs md:text-sm font-extrabold text-wine font-sans flex items-center gap-1.5 leading-snug">
                                       {lang === "en" && block.titleEn ? block.titleEn : block.title}
                                     </h5>
-                                    <p className="text-[10.5px] md:text-[11.5px] text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
+                                    <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
                                       {lang === "en" && block.textEn ? block.textEn : block.text}
                                     </p>
                                   </div>
