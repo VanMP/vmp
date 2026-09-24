@@ -1055,6 +1055,49 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         {lang === "en" ? currentProject.summaryEn : currentProject.summary}
                       </p>
 
+                      {/* Standout Notebook Action Banner above The Problem */}
+                      {(currentProject.notebookPt || currentProject.notebookEn) && (
+                        <div className="bg-surface/80 border border-wine/30 rounded-xl p-3 flex flex-col gap-2.5 shadow-xs my-1">
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2">
+                              <div className="w-6 h-6 rounded-md bg-[#542E3B] text-[#FAF6EF] flex items-center justify-center flex-shrink-0 font-mono font-bold text-[10px] shadow-xs">
+                                &lt;/&gt;
+                              </div>
+                              <span className="text-xs font-bold text-wine font-sans">
+                                {lang === "pt" ? "Estudo Técnico & Código" : "Technical Study & Code"}
+                              </span>
+                            </div>
+                            <span className="text-[9px] font-mono text-txt-muted bg-frost px-2 py-0.5 rounded border border-border-soft">
+                              HTML / Python
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 w-full">
+                            {currentProject.notebookPt && (
+                              <a
+                                href={currentProject.notebookPt}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 text-center py-1.5 bg-[#542E3B] hover:bg-[#774F4C] !text-[#FAF6EF] font-sans rounded-lg font-bold text-[10.5px] uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
+                                title={lang === "pt" ? "Abrir Notebook em Português" : "Open Notebook in Portuguese"}
+                              >
+                                <span>🇧🇷</span> {lang === "pt" ? "Ver Notebook (PT)" : "View Notebook (PT)"} ↗
+                              </a>
+                            )}
+                            {currentProject.notebookEn && (
+                              <a
+                                href={currentProject.notebookEn}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 text-center py-1.5 bg-[#4E5F2A] hover:bg-[#5C5E26] !text-[#FAF6EF] font-sans rounded-lg font-bold text-[10.5px] uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
+                                title={lang === "pt" ? "Abrir Notebook em Inglês" : "Open Notebook in English"}
+                              >
+                                <span>🇺🇸</span> {lang === "pt" ? "Ver Notebook (EN)" : "View Notebook (EN)"} ↗
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
                       <div className="border-t border-border-soft/40 pt-3">
                         <h4 className="text-[11px] uppercase font-mono font-bold text-txt-main mb-1">
                           {lang === "pt" ? "O Problema" : "The Problem"}
@@ -1129,49 +1172,6 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 </span>
                               ))}
                             </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Direct Standout Notebook Action Banner in Workbench */}
-                      {(currentProject.notebookPt || currentProject.notebookEn) && (
-                        <div className="bg-frost/95 border border-wine/30 rounded-xl p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-xs">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-lg bg-[#542E3B] text-[#FAF6EF] flex items-center justify-center flex-shrink-0 shadow-xs font-mono font-bold text-xs">
-                              &lt;/&gt;
-                            </div>
-                            <div>
-                              <span className="text-xs font-bold text-wine font-sans block leading-tight">
-                                {lang === "pt" ? "Estudo Técnico & Código" : "Technical Study & Code"}
-                              </span>
-                              <span className="text-[10px] text-txt-muted font-sans font-medium">
-                                {lang === "pt" ? "Notebook interativo em tela cheia" : "Interactive full notebook in new tab"}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 w-full sm:w-auto">
-                            {currentProject.notebookPt && (
-                              <a
-                                href={currentProject.notebookPt}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 sm:flex-none px-3.5 py-1.5 bg-[#542E3B] hover:bg-[#774F4C] text-[#FAF6EF] font-sans rounded-lg font-bold text-[10px] uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
-                                title={lang === "pt" ? "Abrir Notebook em Português" : "Open Notebook in Portuguese"}
-                              >
-                                <span>🇧🇷</span> {lang === "pt" ? "Ver Notebook (PT)" : "View Notebook (PT)"} ↗
-                              </a>
-                            )}
-                            {currentProject.notebookEn && (
-                              <a
-                                href={currentProject.notebookEn}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 sm:flex-none px-3.5 py-1.5 bg-[#4E5F2A] hover:bg-[#5C5E26] text-[#FAF6EF] font-sans rounded-lg font-bold text-[10px] uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
-                                title={lang === "pt" ? "Abrir Notebook em Inglês" : "Open Notebook in English"}
-                              >
-                                <span>🇺🇸</span> {lang === "pt" ? "Ver Notebook (EN)" : "View Notebook (EN)"} ↗
-                              </a>
-                            )}
                           </div>
                         </div>
                       )}
