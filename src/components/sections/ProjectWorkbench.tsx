@@ -3,6 +3,7 @@ import { projects, type Project } from "../../data/projects";
 import { methods, type Method } from "../../data/methods";
 import { stackItems, type StackItem } from "../../data/stack";
 import { applications, type Application } from "../../data/applications";
+import { MathText } from "../common/MathText";
 
 function getProjectIcon(id: string, colorClass: string) {
   switch (id) {
@@ -565,9 +566,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               {lang === "en" ? activeProject.titleEn : activeProject.title}
                             </h3>
 
-                            <p className="text-xs md:text-sm text-stone-700 leading-relaxed font-sans">
-                              {lang === "en" ? activeProject.summaryEn : activeProject.summary}
-                            </p>
+                            <MathText as="p" className="text-xs md:text-sm text-stone-700 leading-relaxed font-sans" text={lang === "en" ? activeProject.summaryEn : activeProject.summary} />
 
                             {/* Organization business problem stamp box */}
                             <div className="bg-[#FAF8F2] border border-[#E4DFD3] rounded-xl p-4 shadow-xs relative overflow-hidden">
@@ -576,7 +575,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 ✏️ {lang === "pt" ? "O PROBLEMA DA ORGANIZAÇÃO" : "THE BUSINESS PROBLEM"}
                               </span>
                               <p className="text-xs text-stone-600 leading-relaxed font-serif italic">
-                                "{lang === "en" ? activeProject.problemEn : activeProject.problem}"
+                                "<MathText text={lang === "en" ? activeProject.problemEn : activeProject.problem} />"
                               </p>
                             </div>
 
@@ -682,9 +681,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 <span className="font-mono text-[8px] uppercase tracking-wider font-extrabold text-olive block">
                                   {lang === "pt" ? "Métricas e Impacto Realizado" : "Outcome Summary"}
                                 </span>
-                                <p className="font-serif italic text-xs md:text-sm text-wine leading-relaxed font-semibold">
-                                  {lang === "en" ? activeProject.outcomeEn : activeProject.outcome}
-                                </p>
+                                <MathText as="p" className="font-serif italic text-xs md:text-sm text-wine leading-relaxed font-semibold" text={lang === "en" ? activeProject.outcomeEn : activeProject.outcome} />
                               </div>
                             </div>
 
@@ -703,11 +700,11 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
                                   </span>
                                   <span className="text-xs md:text-sm font-bold text-wine font-serif py-0.5 select-all">
-                                    {metric.value}
+                                    <MathText text={metric.value} />
                                   </span>
                                   {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
                                     <span className="text-[8.5px] text-stone-600 leading-tight mt-1 font-serif italic border-t border-stone-300/40 pt-1">
-                                      {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                      <MathText text={lang === "en" && metric.noteEn ? metric.noteEn : metric.note} />
                                     </span>
                                   )}
                                 </div>
@@ -1051,9 +1048,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         </h3>
                       </div>
 
-                      <p className="text-xs md:text-sm text-txt-muted leading-relaxed">
-                        {lang === "en" ? currentProject.summaryEn : currentProject.summary}
-                      </p>
+                      <MathText as="p" className="text-xs md:text-sm text-txt-muted leading-relaxed" text={lang === "en" ? currentProject.summaryEn : currentProject.summary} />
 
                       {/* Standout Notebook Action Banner above The Problem */}
                       {(currentProject.notebookPt || currentProject.notebookEn) && (
@@ -1102,9 +1097,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         <h4 className="text-[11px] uppercase font-mono font-bold text-txt-main mb-1">
                           {lang === "pt" ? "O Problema" : "The Problem"}
                         </h4>
-                        <p className="text-xs text-txt-muted leading-relaxed">
-                          {lang === "en" ? currentProject.problemEn : currentProject.problem}
-                        </p>
+                        <MathText as="p" className="text-xs text-txt-muted leading-relaxed" text={lang === "en" ? currentProject.problemEn : currentProject.problem} />
                       </div>
                     </div>
 
@@ -1132,7 +1125,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                             <div className="flex flex-wrap gap-1.5">
                               {currentProject.techniques.map((t) => (
                                 <span key={t} className="px-2.5 py-0.5 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
-                                  {t}
+                                  <MathText text={t} />
                                 </span>
                               ))}
                             </div>
@@ -1218,7 +1211,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                           <div className="flex items-center justify-between border-b border-border-soft/40 pb-2">
                             <h4 className="text-[11px] uppercase tracking-wider font-mono font-bold text-txt-main flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-olive animate-pulse"></span>
-                              {lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title}
+                              <MathText text={lang === "en" && activeSlide.titleEn ? activeSlide.titleEn : activeSlide.title} />
                             </h4>
                             {projectSlides.length > 1 && (
                               <div className="flex items-center gap-2 select-none">
@@ -1257,11 +1250,11 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                         {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
                                       </span>
                                       <span className="text-xs md:text-sm font-bold text-wine font-serif py-1">
-                                        {metric.value}
+                                        <MathText text={metric.value} />
                                       </span>
                                       {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
                                         <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
-                                          {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                          <MathText text={lang === "en" && metric.noteEn ? metric.noteEn : metric.note} />
                                         </span>
                                       )}
                                     </div>
@@ -1275,9 +1268,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     <span className="text-[10px] uppercase tracking-wider font-mono font-bold text-olive">
                                       {lang === "pt" ? "Resultado" : "Outcome"}
                                     </span>
-                                    <p className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed">
-                                      {lang === "en" ? currentProject.outcomeEn : currentProject.outcome}
-                                    </p>
+                                    <MathText as="p" className="text-xs md:text-sm font-serif italic text-wine font-semibold leading-relaxed" text={lang === "en" ? currentProject.outcomeEn : currentProject.outcome} />
                                   </div>
                                 </div>
                               </div>
@@ -1298,9 +1289,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                 )}
                                 <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-3.5 items-stretch">
                                   <div className="bg-frost border border-border-soft/60 p-4 rounded-xl flex flex-col justify-center">
-                                    <p className="text-xs text-txt-muted leading-relaxed font-sans">
-                                      {lang === "en" && activeSlide.textEn ? activeSlide.textEn : activeSlide.text}
-                                    </p>
+                                    <MathText as="p" className="text-xs text-txt-muted leading-relaxed font-sans" text={lang === "en" && activeSlide.textEn ? activeSlide.textEn : activeSlide.text} />
                                   </div>
                                   {activeSlide.metrics && activeSlide.metrics[0] && (
                                     <div className="bg-olive/5 border border-olive/20 p-4 rounded-xl flex flex-col items-center justify-center text-center shadow-xs">
@@ -1308,11 +1297,11 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                         {lang === "en" && activeSlide.metrics[0].labelEn ? activeSlide.metrics[0].labelEn : activeSlide.metrics[0].label}
                                       </span>
                                       <span className="text-lg font-bold text-wine font-serif mb-1">
-                                        {activeSlide.metrics[0].value}
+                                        <MathText text={activeSlide.metrics[0].value} />
                                       </span>
                                       {(lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note) && (
                                         <span className="text-[8px] text-txt-muted italic font-serif leading-tight">
-                                          {lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note}
+                                          <MathText text={lang === "en" && activeSlide.metrics[0].noteEn ? activeSlide.metrics[0].noteEn : activeSlide.metrics[0].note} />
                                         </span>
                                       )}
                                     </div>
@@ -1341,11 +1330,11 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                         {lang === "en" && metric.labelEn ? metric.labelEn : metric.label}
                                       </span>
                                       <span className="text-xs md:text-sm font-bold text-wine font-serif py-0.5">
-                                        {metric.value}
+                                        <MathText text={metric.value} />
                                       </span>
                                       {(lang === "en" && metric.noteEn ? metric.noteEn : metric.note) && (
                                         <span className="text-[8px] text-txt-muted leading-tight mt-0.5">
-                                          {lang === "en" && metric.noteEn ? metric.noteEn : metric.note}
+                                          <MathText text={lang === "en" && metric.noteEn ? metric.noteEn : metric.note} />
                                         </span>
                                       )}
                                     </div>
@@ -1409,11 +1398,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                   {(activeSlide.textBlocks || []).map((block, idx) => (
                                     <div key={idx} className="p-3 bg-frost border border-border-soft/60 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col gap-1 transition-all hover:border-wine/20">
                                       <h5 className="text-[11px] md:text-xs font-extrabold text-wine font-sans flex items-center gap-1.5 leading-tight">
-                                        {lang === "en" && block.titleEn ? block.titleEn : block.title}
+                                        <MathText text={lang === "en" && block.titleEn ? block.titleEn : block.title} />
                                       </h5>
-                                      <p className="text-[10px] md:text-[11px] text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
-                                        {lang === "en" && block.textEn ? block.textEn : block.text}
-                                      </p>
+                                      <MathText as="p" className="text-[10px] md:text-[11px] text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line" text={lang === "en" && block.textEn ? block.textEn : block.text} />
                                     </div>
                                   ))}
                                 </div>
@@ -1428,11 +1415,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                     className="p-4 md:p-5 bg-frost/90 border border-border-soft/70 rounded-xl shadow-[0_1px_3px_rgba(0,0,0,0.01)] flex flex-col justify-start gap-2 transition-all hover:border-wine/25 hover:bg-frost min-h-[160px] md:min-h-[180px]"
                                   >
                                     <h5 className="text-xs md:text-sm font-extrabold text-wine font-sans flex items-center gap-1.5 leading-snug">
-                                      {lang === "en" && block.titleEn ? block.titleEn : block.title}
+                                      <MathText text={lang === "en" && block.titleEn ? block.titleEn : block.title} />
                                     </h5>
-                                    <p className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line">
-                                      {lang === "en" && block.textEn ? block.textEn : block.text}
-                                    </p>
+                                    <MathText as="p" className="text-[11px] md:text-xs text-txt-muted leading-relaxed font-sans font-medium whitespace-pre-line" text={lang === "en" && block.textEn ? block.textEn : block.text} />
                                   </div>
                                 ))}
                               </div>
