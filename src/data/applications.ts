@@ -21,6 +21,26 @@ export const applications: Application[] = [
     relatedProjectIds: ["bayesian-promotions"]
   },
   {
+    id: "collinearity-suppression",
+    name: "Diagnóstico de Multicolinearidade Oculta & Supressão",
+    nameEn: "Hidden Multicollinearity & Suppression Diagnostics",
+    group: "Decisão & Crescimento",
+    groupEn: "Decision & Growth",
+    summary: "Identificação formal de patologias de supressão estatística e colapso de coeficientes em dados empíricos com sobreposição informacional severa.",
+    summaryEn: "Formal identification of statistical suppression pathologies and coefficient collapse in empirical datasets with severe informational overlap.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
+  {
+    id: "predictive-dominance",
+    name: "Decomposição de Poder Preditivo a 100% (Shapley)",
+    nameEn: "100% Predictive Power Decomposition (Shapley)",
+    group: "Decisão & Crescimento",
+    groupEn: "Decision & Growth",
+    summary: "Partição cooperativa e não-arbitrária da variância explicada entre blocos macro de variáveis em modelos de escolha discreta e regressão logística.",
+    summaryEn: "Cooperative, non-arbitrary partitioning of explained variance across macro variable blocks in discrete choice and logistic regression models.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
+  {
     id: "pricing-optimization",
     name: "Precificação Ótima e Elasticidade Cruzada",
     nameEn: "Optimal Pricing & Cross-Elasticity",

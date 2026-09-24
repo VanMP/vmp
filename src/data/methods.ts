@@ -93,6 +93,46 @@ export const methods: Method[] = [
     summaryEn: "Measurement of cannibalization and demand redistribution among competing shelf products.",
     relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
+  {
+    id: "shapley-decomposition",
+    name: "Decomposição de Shapley do Pseudo-R²",
+    nameEn: "Pseudo-R² Shapley Decomposition",
+    group: "Inferência e modelagem",
+    groupEn: "Inference & Modeling",
+    summary: "Partição de dominância e importância relativa cooperativa a 100% sobre o Pseudo-R² de McFadden em 2^k submodelos.",
+    summaryEn: "Dominance partitioning and 100% cooperative relative importance over McFadden Pseudo-R² across 2^k submodels.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
+  {
+    id: "suppression-diagnosis",
+    name: "Diagnóstico de Supressão Clássica (Conger)",
+    nameEn: "Classical Suppression Diagnostics (Conger)",
+    group: "Inferência e modelagem",
+    groupEn: "Inference & Modeling",
+    summary: "Aplicação do critério analítico de Conger (1974) para identificação formal de inversão de sinal e colapso de regressores.",
+    summaryEn: "Application of Conger's (1974) analytical criterion for formal identification of sign reversal and coefficient collapse.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
+  {
+    id: "bootstrap-resampling",
+    name: "Bootstrap Não-Paramétrico",
+    nameEn: "Non-Parametric Bootstrap Resampling",
+    group: "Inferência e modelagem",
+    groupEn: "Inference & Modeling",
+    summary: "Reamostragem empírica (B=1.000) para inferência e intervalos de confiança exatos sob violação de premissas paramétricas.",
+    summaryEn: "Empirical resampling (B=1,000) for exact inference and confidence intervals under parametric assumption violations.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
+  {
+    id: "covariate-adjusted-logit",
+    name: "Logit Bivariado Ajustado por Covariáveis",
+    nameEn: "Covariate-Adjusted Bivariate Logit",
+    group: "Inferência e modelagem",
+    groupEn: "Inference & Modeling",
+    summary: "Estimação isolada de drivers granulares controlando rigorosamente por perfil sociodemográfico para obter Odds Ratios não-poluídos.",
+    summaryEn: "Isolated estimation of granular drivers strictly controlled for sociodemographic profile to extract unpolluted Odds Ratios.",
+    relatedProjectIds: ["collinearity-suppression-ppm"]
+  },
 
   // Otimização e inteligência quantitativa
   {

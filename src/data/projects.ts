@@ -479,5 +479,125 @@ export const projects: Project[] = [
         ]
       }
     ]
+  },
+  {
+    id: "collinearity-suppression-ppm",
+    title: "Tratamento de Supressão e Colinearidade Extrema em Modelo Comportamental",
+    titleEn: "Treatment of Statistical Suppression & Extreme Collinearity in Behavioral Modeling",
+    shortTitle: "Tratamento de Colinearidade Extrema",
+    shortTitleEn: "Extreme Collinearity Treatment",
+    category: "Diagnóstico Econométrico & Métodos Robustos",
+    categoryEn: "Econometric Diagnostics & Robust Methods",
+    summary: "Diagnóstico econométrico avançado de supressão estatística clássica e colinearidade extrema mascarada em modelos de escolha discreta (Push-Pull-Mooring, N=500). Superação do paradoxo do VIF baixo (<2,1) através do Critério Analítico de Conger (1974), teste de colapso via Bootstrap Não-Paramétrico (B=1.000, p<0,0001) e Análise de Importância Relativa via Decomposição de Shapley do Pseudo-R² de McFadden combinada à Regressão Logística Binária Hierárquica em Blocos Controlada por Covariáveis.",
+    summaryEn: "Advanced econometric diagnosis of classical statistical suppression and masked extreme collinearity in discrete choice models (Push-Pull-Mooring, N=500). Resolving the low VIF paradox (<2.1) via Conger's Analytical Criterion (1974), Non-Parametric Bootstrap collapse test (B=1,000, p<0.0001), and Relative Importance Analysis via McFadden's Pseudo-R² Shapley Decomposition combined with Covariate-Controlled Block-Hierarchical Binary Logistic Regression.",
+    problem: "Em modelos comportamentais empíricos, dimensões preditoras são frequentemente intrinsecamente correlacionadas. Ao ajustar a regressão logística hierárquica clássica, a inclusão da percepção de atratividade externa (Pull) causou o colapso estatístico das dores do produto (Push), despencando seu Odds Ratio de 1,81 (p<0,001) para 0,86 (p=0,361), gerando uma espúria inversão de sinal (como se defeitos aumentassem a retenção). O diagnóstico convencional via VIF falhou totalmente (VIF < 2,1), pois a patologia decorria da sobreposição triangular informacional com o desfecho (r=0,689), exigindo provas formais de supressão de Conger, reamostragem por bootstrap e partição cooperativa de variância via Shapley.",
+    problemEn: "In empirical behavioral models, predictors often share severe latent correlation. When estimating standard hierarchical logistic regression, adding competitor attraction (Pull) triggered the statistical collapse of product pain points (Push), plummeting its Odds Ratio from 1.81 (p<0.001) down to 0.86 (p=0.361) with an anomalous sign reversal. Standard VIF diagnostics completely missed the issue (VIF < 2.1), as variance absorption was driven by triangular covariance with the outcome (r=0.689), necessitating Conger's analytical suppression proof, non-parametric bootstrap testing, and cooperative Shapley variance partitioning.",
+    methods: ["Diagnóstico de Supressão Clássica", "Critério Analítico de Conger (1974)", "Bootstrap Não-Paramétrico (B=1.000)", "Decomposição de Shapley (LMG / Dominância)", "Pseudo-R² de McFadden", "Regressão Logística Binária Hierárquica", "Logit Bivariado Ajustado por Covariáveis", "Modelagem Push-Pull-Mooring (PPM)"],
+    applications: ["Diagnóstico de Multicolinearidade Oculta", "Decomposição de Poder Preditivo a 100%", "Modelagem de Churn e Migração de Marca", "Key Driver Analysis Descontaminada", "Resgate de Regressores Supimidos"],
+    techniques: [
+      "Análise de Importância Relativa via Decomposição de Shapley do Pseudo-R2 de McFadden combinada à Regressão Logística Binária Hierárquica em Blocos Controlada por Covariáveis",
+      "Diagnóstico de Supressão de Conger (1974)",
+      "Teste de Colapso de Beta por Bootstrap Não-Paramétrico",
+      "Decomposição Combinatória em 2^k Submodelos",
+      "Logit Bivariado Controlado por Perfil Sociodemográfico",
+      "Construção de Forest Plot com IC 95% e Dominância Macro"
+    ],
+    tools: ["Python", "Statsmodels", "SciPy (stats)", "NumPy", "Pandas", "Scikit-Learn", "Matplotlib / Seaborn"],
+    metrics: [
+      { label: "Colapso do Beta (Δβ)", labelEn: "Beta Collapse (Δβ)", value: "0,748", note: "IC 95%: [0,561 a 1,007]", noteEn: "95% CI: [0.561 to 1.007]" },
+      { label: "Significância Bootstrap", labelEn: "Bootstrap p-value", value: "p < 0,0001", note: "B = 1.000 replicações", noteEn: "B = 1,000 replications" },
+      { label: "Dominância Macro (Shapley)", labelEn: "Shapley Dominance", value: "55% | 37% | 8%", note: "Pull 55% • Mooring 37% • Push 8%", noteEn: "Pull 55% • Mooring 37% • Push 8%" },
+      { label: "Discriminação (AUC-ROC)", labelEn: "AUC-ROC Discrimination", value: "0,788", note: "McFadden R²: 19,0%", noteEn: "McFadden R²: 19.0%" },
+      { label: "Drivers Granulares", labelEn: "Granular Drivers", value: "20 Itens", note: "Logit Bivariado Controlado", noteEn: "Covariate-Adjusted Logit" }
+    ],
+    outcome: "A Decomposição de Shapley sobre o Pseudo-R² de McFadden avaliou todos os 8 submodelos possíveis e resgatou a partição justa de variância a 100% (55,0% Pull, 37,3% Mooring e 7,6% Push), enquanto a Key Driver Analysis bivariada controlada por demografia isolou os Odds Ratios puros por +1 DP sem distorção por multicolinearidade.",
+    outcomeEn: "McFadden Pseudo-R² Shapley Decomposition evaluated all 8 submodels, restoring a 100% fair variance partition (55.0% Pull, 37.3% Mooring, 7.6% Push), while demographic-controlled bivariate Key Driver Analysis isolated pure odds ratios per +1 SD without collinearity distortion.",
+    simulated: true,
+    anonymizedDisclaimer: "Estudo real sobre migração de marca com variáveis e atributos mascarados para preservar o sigilo do cliente, mantendo integralmente a estrutura matemática, as matrizes de covariância e a interpretabilidade dos estimadores.",
+    anonymizedDisclaimerEn: "Real-world brand migration study with masked attributes to preserve client confidentiality, preserving the exact mathematical structure, covariance matrices, and estimator interpretability.",
+    visualType: "ab-bars",
+    notebookPt: "/reports/tratamento_colinearidade_e_supressao.html",
+    notebookEn: "/reports/treatment_of_extreme_collinearity_and_suppression.html",
+    slides: [
+      {
+        id: "collinearity-slide-1",
+        layout: "image-three-blocks",
+        title: "Forest Plot de Key Drivers: Odds Ratios Descontaminados por Covariáveis (N=500)",
+        titleEn: "Key Drivers Forest Plot: Covariate-Adjusted Odds Ratios (N=500)",
+        imagePath: "/images/colinearidade_forest_plot.png",
+        textBlocks: [
+          {
+            title: "🎯 Resgate da Força Pura por Item",
+            titleEn: "🎯 Pure Item-Level Effect Recovery",
+            text: "Modelagem bivariada independente controlada rigorosamente por idade, renda e tempo de posse, eliminando a autocanibalização entre variáveis correlacionadas e preservando a significância individual.",
+            textEn: "Independent bivariate modeling strictly controlled for age, income, and ownership tenure, eliminating mutual cannibalization among correlated features and preserving individual significance."
+          },
+          {
+            title: "📊 Risco de Churn vs. Proteção",
+            titleEn: "📊 Churn Risk vs Retention Protection",
+            text: "Itens de atratividade externa (Pull) elevam a propensão de migração em até +120,1% por +1 DP (OR = 2,20 [1,78 - 2,72]), enquanto barreiras de saída (Mooring) conferem até -35,5% de retenção (OR = 0,64 [0,53 - 0,79]).",
+            textEn: "Competitor attraction (Pull) increases migration likelihood by up to +120.1% per +1 SD (OR = 2.20 [1.78 - 2.72]), while switching barriers (Mooring) provide up to -35.5% retention protection (OR = 0.64 [0.53 - 0.79])."
+          },
+          {
+            title: "⚖️ Integração Multinível",
+            titleEn: "⚖️ Multi-Level Integration",
+            text: "Conexão direta entre o Odds Ratio micro (tamanho de efeito do atributo específico) e o peso macro de Shapley (dominância estrutural do bloco a 100%), permitindo priorização hierárquica precisa.",
+            textEn: "Direct link between micro-level Odds Ratios (specific attribute effect size) and macro Shapley dominance (structural block weight summing to 100%), enabling precise hierarchical prioritization."
+          }
+        ]
+      },
+      {
+        id: "collinearity-slide-2",
+        layout: "image-three-blocks",
+        title: "O Paradoxo do VIF Baixo & Diagnóstico Analítico de Supressão (Conger & Bootstrap)",
+        titleEn: "The Low VIF Paradox & Analytical Suppression Proof (Conger & Bootstrap)",
+        textBlocks: [
+          {
+            title: "🚨 O Colapso do Push & Inversão Espúria",
+            titleEn: "🚨 Push Collapse & Spurious Sign Inversion",
+            text: "No modelo clássico, adicionar Pull faz o Odds Ratio de Push despencar de 1,81 (p < 0,001) para 0,86 (p = 0,361), gerando uma inversão patológica de sinal onde ter problemas no produto pareceria aumentar a fidelidade do cliente.",
+            textEn: "In standard regression, adding Pull causes Push Odds Ratio to collapse from 1.81 (p < 0.001) down to 0.86 (p = 0.361), producing a pathological sign inversion falsely suggesting product defects increase loyalty."
+          },
+          {
+            title: "🔍 O Paradoxo do VIF Baixo (VIF < 2,1)",
+            titleEn: "🔍 The Low VIF Paradox (VIF < 2.1)",
+            text: "O diagnóstico convencional via Variance Inflation Factor reportou valores baixos (<2,1), gerando a falsa premissa de ortogonalidade. O VIF mede apenas a inflação na matriz VCOV, sendo cego à sobreposição triangular com a variável dependente (r = 0,689).",
+            textEn: "Standard Variance Inflation Factor reported low values (<2.1), creating a false assumption of orthogonality. VIF only captures inflation in the VCOV matrix, remaining blind to triangular overlap with the response variable (r = 0.689)."
+          },
+          {
+            title: "📐 Prova de Conger & Bootstrap (p < 0,0001)",
+            titleEn: "📐 Conger Proof & Bootstrap (p < 0.0001)",
+            text: "O Critério de Conger (1974) comprovou que r(Y,Pull) × r(Push,Pull) = 0,2101 > r(Y,Push) = 0,1476 força algebricamente o colapso. O Bootstrap não-paramétrico (B=1.000) validou empiricamente Δβ = 0,748 (IC 95%: [0,561 a 1,007], p < 0,0001).",
+            textEn: "Conger's Criterion (1974) proved that r(Y,Pull) × r(Push,Pull) = 0.2101 > r(Y,Push) = 0.1476 algebraically forces the sign reversal. Non-parametric bootstrap (B=1,000) confirmed Δβ = 0.748 (95% CI: [0.561 to 1.007], p < 0.0001)."
+          }
+        ]
+      },
+      {
+        id: "collinearity-slide-3",
+        layout: "image-three-blocks",
+        title: "Decomposição de Shapley do Pseudo-R² de McFadden (2³ = 8 Submodelos)",
+        titleEn: "McFadden's Pseudo-R² Shapley Decomposition (2³ = 8 Submodels)",
+        textBlocks: [
+          {
+            title: "🎲 Partição Cooperativa em 2^k Submodelos",
+            titleEn: "🎲 Cooperative 2^k Submodel Partitioning",
+            text: "Cálculo da contribuição marginal média ponderada de cada dimensão ao longo de todas as 8 combinações de submodelos possíveis, eliminando a sensibilidade à ordem de entrada arbitrária dos preditores.",
+            textEn: "Weighted average marginal contribution calculation across all 8 possible submodel permutations, completely eliminating sensitivity to arbitrary predictor entry order."
+          },
+          {
+            title: "🏆 Partição Justa da Variância a 100%",
+            titleEn: "🏆 100% Fair Variance Partitioning",
+            text: "Pull responde por 55,0% do poder preditivo global, Mooring responde por 37,3% e Push por 7,6%. O resgate de Push (7,6%) prova que dores no produto têm peso real na decisão, embora a atratividade da concorrência domine o gatilho proximal.",
+            textEn: "Pull accounts for 55.0% of total predictive power, Mooring for 37.3%, and Push for 7.6%. Rescuing Push (7.6%) proves pain points have true explanatory power, though competitor attraction dominates the proximal choice trigger."
+          },
+          {
+            title: "📈 Ajuste Global de Alta Discriminação",
+            titleEn: "📈 High-Discrimination Global Fit",
+            text: "O modelo consolidado atinge McFadden Pseudo-R² de 19,0% (equivalente a R² de 70%-90% em OLS conforme McFadden, 1979), Nagelkerke R² de 29,3% e AUC-ROC de 0,788 na separação entre clientes fiéis e vulneráveis.",
+            textEn: "The consolidated model achieves McFadden Pseudo-R² of 19.0% (equivalent to 70%-90% R² in OLS per McFadden, 1979), Nagelkerke R² of 29.3%, and AUC-ROC of 0.788 in separating loyal from vulnerable customers."
+          }
+        ]
+      }
+    ]
   }
 ];
