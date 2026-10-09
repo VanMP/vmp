@@ -73,8 +73,8 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
 
             <p className="text-xs md:text-sm text-txt-muted leading-relaxed text-center md:text-left">
               {lang === "pt"
-                ? "Estatística com mais de 4 anos de experiência em pesquisa quantitativa de produto, desenho experimental e modelagem de preferências do consumidor. Atuo como líder técnica em frentes quantitativas, traduzindo incertezas de produto e estratégia comercial em testes controlados, validação empírica de hipóteses e sistemas prescritivos de decisão."
-                : "Senior Statistician with 4+ years of experience in quantitative product research, experimental design, and consumer choice modeling. I serve as technical lead in quantitative initiatives, translating product and commercial uncertainty into controlled tests, empirical hypothesis validation, and prescriptive decision systems."}
+                ? "Estatística com mais de 4 anos de experiência em pesquisa quantitativa de produto e consumidor. Sólida base quantitativa e computacional, especializada em modelos de alta explicabilidade para suporte à tomada de decisão estratégica. Atuo como líder técnica em frentes quantitativas, traduzindo incertezas de produto e estratégia comercial em testes controlados, validação empírica de hipóteses e sistemas prescritivos de decisão."
+                : "Senior Statistician with 4+ years of experience in quantitative product and consumer research. Strong quantitative and computational background, specializing in high-explainability models for strategic decision support. I serve as technical lead in quantitative initiatives, translating product and commercial uncertainty into controlled tests, empirical hypothesis validation, and prescriptive decision systems."}
             </p>
           </div>
 
@@ -99,22 +99,24 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
               </div>
             </div>
 
-            {/* Spec 2: Foco em Decisão Prescritiva */}
+            {/* Spec 2: Modelagem de Alta Explicabilidade (Glass-Box) */}
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-lg bg-frost border border-border-soft/40 text-olive flex-shrink-0">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="w-5 h-5">
-                  <circle cx="12" cy="12" r="10" />
-                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="w-5 h-5">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  <line x1="11" y1="8" x2="11" y2="14" />
+                  <line x1="8" y1="11" x2="14" y2="11" />
                 </svg>
               </div>
               <div>
                 <h4 className="text-xs font-bold text-txt-main leading-tight">
-                  {lang === "pt" ? "Foco em Decisão Prescritiva" : "Prescriptive Decision Focus"}
+                  {lang === "pt" ? "Modelagem de Alta Explicabilidade (Glass-Box)" : "High-Explainability Modeling (Glass-Box)"}
                 </h4>
                 <p className="text-[10px] md:text-xs text-txt-muted leading-normal mt-0.5">
                   {lang === "pt"
-                    ? "Modelagem orientada a mitigar riscos e simular cenários estratégicos, substituindo intuição por evidência empírica verificável."
-                    : "Modeling designed to mitigate risk and simulate strategic scenarios, replacing intuition with verifiable empirical evidence."}
+                    ? "Modelos transparentes e estruturados (GLM, decomposição de Shapley, classes latentes) que explicam o porquê dos fenômenos, eliminando o risco de caixas-pretas em decisões críticas."
+                    : "Transparent, structured models (GLM, Shapley decomposition, latent classes) explaining the underlying mechanics of phenomena, eliminating black-box risks in critical decisions."}
                 </p>
               </div>
             </div>

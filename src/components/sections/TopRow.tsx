@@ -58,10 +58,10 @@ export default function TopRow({ lang = "pt", setLang = () => {}, onContactClick
 
       {/* Center: Positioning Phrase with Stylized Leaf Branch */}
       <div className="flex-1 flex flex-col items-center justify-center text-center p-4">
-        <p className="font-serif text-[15px] sm:text-xl md:text-2xl italic text-olive font-semibold leading-relaxed whitespace-nowrap">
+        <p className="font-serif text-[15px] sm:text-lg md:text-xl lg:text-2xl italic text-olive font-semibold leading-snug">
           {lang === "pt"
-            ? "Evitando erros antes que eles sejam cometidos."
-            : "Avoiding mistakes before they happen."}
+            ? "Modelos transparentes para decisões onde não há espaço para adivinhação."
+            : "Transparent models for decisions where guesswork is not an option."}
         </p>
         
         {/* Beautiful detailed branch of autumn leaves */}
