@@ -15,7 +15,9 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
       periodPt: "2025 – 2026",
       periodEn: "2025 – 2026",
       descPt: "Especialização avançada com ênfase em modelagem de texto como dado, arquiteturas neurais e pipelines de dados não estruturados. Investigação e desenvolvimento de projeto de conclusão focado na decomposição de latência e otimização computacional em sistemas RAG (Retrieval-Augmented Generation).",
-      descEn: "Advanced specialization focusing on text-as-data modeling, neural architectures, and unstructured data pipelines. Capstone project investigating latency decomposition and computational optimization in Retrieval-Augmented Generation (RAG) systems."
+      descEn: "Advanced specialization focusing on text-as-data modeling, neural architectures, and unstructured data pipelines. Capstone project investigating latency decomposition and computational optimization in Retrieval-Augmented Generation (RAG) systems.",
+      documentPt: "/files/tcc-eficiencia-rag-pt.pdf",
+      documentEn: "/files/tcc-rag-efficiency-en.pdf"
     },
     {
       titlePt: "Bacharelado em Estatística",
@@ -175,9 +177,16 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
                           <h4 className="text-xs md:text-sm font-bold text-txt-main text-center md:text-left w-full">
                             {lang === "pt" ? item.titlePt : item.titleEn}
                           </h4>
-                          <span className="text-[9px] md:text-[10px] font-bold font-mono text-txt-muted uppercase px-2 py-0.5 bg-surface border border-border-soft/40 rounded flex-shrink-0 self-center sm:self-auto">
-                            {lang === "pt" ? item.periodPt : item.periodEn}
-                          </span>
+                          <div className="flex items-center gap-1.5 flex-shrink-0 self-center sm:self-auto">
+                            {(item.documentPt || item.documentEn) && (
+                              <span className="text-[8.5px] md:text-[9px] font-bold font-mono text-wine uppercase px-1.5 py-0.5 bg-wine/10 border border-wine/25 rounded flex items-center gap-1">
+                                <span>📄</span> {lang === "pt" ? "Artigo PDF" : "PDF Paper"}
+                              </span>
+                            )}
+                            <span className="text-[9px] md:text-[10px] font-bold font-mono text-txt-muted uppercase px-2 py-0.5 bg-surface border border-border-soft/40 rounded">
+                              {lang === "pt" ? item.periodPt : item.periodEn}
+                            </span>
+                          </div>
                         </div>
                         <span className="text-[10px] md:text-xs text-olive font-semibold font-serif block mt-0.5 text-center md:text-left w-full">
                           {item.institution}
@@ -202,7 +211,7 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
                     {/* Collapsible content wrapper */}
                     <div 
                       style={{
-                        maxHeight: isExpanded ? "320px" : "0px",
+                        maxHeight: isExpanded ? "420px" : "0px",
                         opacity: isExpanded ? 1 : 0,
                         marginTop: isExpanded ? "10px" : "0px",
                         paddingTop: isExpanded ? "10px" : "0px",
@@ -215,6 +224,41 @@ export default function FormationBlock({ lang = "pt" }: FormationBlockProps) {
                       <p className="text-[10px] md:text-xs text-txt-muted leading-relaxed text-center md:text-left">
                         {lang === "pt" ? item.descPt : item.descEn}
                       </p>
+
+                      {/* Document Action Button if available */}
+                      {(item.documentPt || item.documentEn) && (
+                        <div className="mt-3 pt-2.5 border-t border-border-soft/40 flex flex-col sm:flex-row items-center justify-between gap-2">
+                          <span className="font-mono text-[9px] font-bold text-wine uppercase tracking-wider flex items-center gap-1.5 text-center sm:text-left">
+                            <span>📄</span> {lang === "pt" ? "Artigo / TCC da Pós-Graduação:" : "Capstone Research Paper:"}
+                          </span>
+                          <div className="flex items-center gap-2">
+                            {item.documentPt && (
+                              <a
+                                href={item.documentPt}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="px-2.5 py-1 bg-[#542E3B] hover:bg-[#774F4C] !text-[#FAF6EF] font-sans rounded-md font-bold text-[9.5px] uppercase tracking-wider transition-all flex items-center gap-1 shadow-xs cursor-pointer"
+                                title={lang === "pt" ? "Abrir TCC em Português (PDF)" : "Open Capstone in Portuguese (PDF)"}
+                              >
+                                <span>🇧🇷</span> {lang === "pt" ? "Ver TCC (PT)" : "View Paper (PT)"} ↗
+                              </a>
+                            )}
+                            {item.documentEn && (
+                              <a
+                                href={item.documentEn}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="px-2.5 py-1 bg-[#4E5F2A] hover:bg-[#5C5E26] !text-[#FAF6EF] font-sans rounded-md font-bold text-[9.5px] uppercase tracking-wider transition-all flex items-center gap-1 shadow-xs cursor-pointer"
+                                title={lang === "pt" ? "Abrir TCC em Inglês (PDF)" : "Open Capstone in English (PDF)"}
+                              >
+                                <span>🇺🇸</span> {lang === "pt" ? "Ver TCC (EN)" : "View Paper (EN)"} ↗
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
