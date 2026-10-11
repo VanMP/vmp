@@ -174,36 +174,52 @@ export const competencies: Competency[] = [
   {
     id: "predictive-ml-risk-modeling",
     number: 6,
-    title: "Machine Learning Preditivo & Modelagem de Risco",
-    titleEn: "Predictive Machine Learning & Risk Modeling",
-    tagline: "Calibração de probabilidades, otimização de ponto de corte e Explainable AI",
-    taglineEn: "Probability calibration, cost-sensitive thresholding, and Explainable AI",
+    title: "Machine Learning",
+    titleEn: "Machine Learning",
+    tagline: "Arquiteturas supervisionadas, redes neurais, predição calibrada e Explainable AI",
+    taglineEn: "Supervised architectures, neural networks, calibrated prediction, and Explainable AI",
     icon: "shield-check",
-    businessImpact: "Estimar a probabilidade matemática de um evento acontecer (uma transação suspeita, inadimplência, adesão a um serviço) e calibrar a régua de decisão da empresa: definir exatamente onde traçar a linha de corte para evitar perder clientes bons por excesso de cautela ou tomar prejuízo por frouxidão.",
-    businessImpactEn: "Estimating the mathematical probability of critical outcomes (suspicious transactions, default, feature adoption) and calibrating the operational decision threshold: balancing false positive opportunity loss against false negative default costs.",
+    businessImpact: "Construir arquiteturas preditivas supervisionadas (árvores de gradiente e redes neurais densas) capazes de antecipar comportamentos, detectar anomalias e classificar eventos complexos de negócio em escala. O foco reside em unir alta acurácia preditiva à calibração rigorosa de probabilidades e otimização de matriz de custo — garantindo que cada linha de corte gere valor econômico direto e decisões auditáveis.",
+    businessImpactEn: "Building supervised predictive architectures (gradient boosted trees and dense neural networks) capable of anticipating behaviors, detecting anomalies, and classifying complex business events at scale. The focus lies in pairing high predictive accuracy with rigorous probability calibration and cost-matrix threshold tuning — ensuring every operational cutoff delivers direct financial value and auditability.",
     marketTerms: [
+      "Explainable AI",
+      "Modelagem Preditiva",
+      "Aprendizado Supervisionado",
+      "Score de Risco",
+      "Detecção de Fraudes",
+      "Classificação Binária e Multiclasse",
+      "Calibração de Probabilidades"
+    ],
+    marketTermsEn: [
+      "Explainable AI (XAI)",
       "Predictive Modeling",
+      "Supervised Learning",
       "Risk Scoring",
-      "Probability Calibration",
-      "Cost-Sensitive Learning",
-      "Threshold Optimization",
+      "Fraud Detection",
       "Binary & Multiclass Classification",
-      "Gradient Boosting (XGBoost / LightGBM)",
-      "Explainable AI (SHAP / Partial Dependence)"
+      "Probability Calibration"
     ],
     technicalArsenal: [
-      "Otimização de Ponto de Corte Ponderada por Matriz de Custos/Ganhos",
-      "Calibração de Probabilidades (Platt Scaling e Regressão Isotônica)",
-      "Árvores Encadeadas por Gradiente e Random Forests",
-      "Regularização Logística com Penalidades L1/L2",
-      "Diagnóstico de Desbalanceamento com Curvas Precision-Recall (PR-AUC) e Brier Score"
+      "XGBoost",
+      "Random Forest",
+      "Redes Neurais Densas (MLP)",
+      "Regularização Esparsa e Contração",
+      "Platt Scaling",
+      "Brier Score",
+      "Threshold Tuning",
+      "Valores de Shapley (SHAP)",
+      "Gráficos de Dependência Parcial (PDP)"
     ],
     technicalArsenalEn: [
-      "Cost/Gain Matrix Weighted Cutoff Optimization",
-      "Probability Calibration (Platt Scaling & Isotonic Regression)",
-      "Gradient Boosted Trees & Random Forests",
-      "Logistic Regularization with L1/L2 Penalties",
-      "Imbalance Diagnosis with Precision-Recall Curves (PR-AUC) & Brier Score"
+      "XGBoost",
+      "Random Forest",
+      "Dense Neural Networks (MLP)",
+      "Sparse Regularization & Shrinkage",
+      "Platt Scaling",
+      "Brier Score",
+      "Threshold Tuning",
+      "Shapley Additive Explanations (SHAP)",
+      "Partial Dependence Plots (PDP)"
     ],
     relatedProjectIds: ["collinearity-suppression-ppm", "quantificador-semantico-app"]
   },
