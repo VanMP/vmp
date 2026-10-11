@@ -1541,14 +1541,11 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   {/* Left Side: Header, Problem / Business Impact, and Applied Case Studies */}
                   <div className="flex flex-col gap-5 justify-between">
                     <div className="flex flex-col gap-4">
-                      {/* Competency Title & Tagline */}
+                      {/* Competency Title */}
                       <div>
                         <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
                           {lang === "en" ? currentCompetency.titleEn : currentCompetency.title}
                         </h3>
-                        <p className="font-serif italic text-xs md:text-sm text-olive font-semibold mt-1">
-                          {lang === "en" ? currentCompetency.taglineEn : currentCompetency.tagline}
-                        </p>
                       </div>
 
                       {/* Bloco 1: O que resolve (Impacto de Negócio) */}
