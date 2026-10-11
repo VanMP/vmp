@@ -210,38 +210,56 @@ export const competencies: Competency[] = [
   {
     id: "text-intelligence-unstructured-data",
     number: 7,
-    title: "Inteligência de Texto & Extração de Dados Não Estruturados",
-    titleEn: "Text Intelligence & Unstructured Data Extraction",
-    tagline: "Embeddings densos, clustering semântico, benchmarking e avaliação de LLMs",
-    taglineEn: "Dense embeddings, semantic clustering, benchmarking, and LLM evaluation",
+    title: "Processamento de Texto",
+    titleEn: "Text Processing",
+    tagline: "Mineração de texto, embeddings, busca semântica e extração estruturada de dados",
+    taglineEn: "Text mining, embeddings, semantic search, and structured data extraction",
     icon: "document-text",
-    businessImpact: "Transformar montanhas de textos desestruturados (avaliações de produto, chamados de atendimento, comentários e documentos técnicos) em indicadores quantitativos acionáveis. Avaliar de forma auditável e científica se ferramentas de inteligência artificial estão entregando respostas factuais ou inventando dados.",
-    businessImpactEn: "Converting massive volumes of unstructured text (customer reviews, support tickets, survey feedback, technical documents) into actionable quantitative signals. Scientifically and auditably evaluating whether AI tools deliver factual grounded answers or hallucinate.",
+    businessImpact: "Transformar montanhas de textos não estruturados (avaliações de produto, chamados de atendimento, comentários e documentos técnicos) em indicadores quantitativos acionáveis e variáveis estruturadas para suporte à tomada de decisão.",
+    businessImpactEn: "Converting large volumes of unstructured text (customer reviews, support tickets, survey feedback, and technical documents) into actionable quantitative signals and structured features for decision-making.",
     marketTerms: [
-      "Natural Language Processing (NLP)",
-      "Voice of Customer (VoC) Mining",
+      "Text Mining",
+      "Information Extraction (IE)",
+      "Named Entity Recognition (NER)",
+      "Topic Modeling",
       "Semantic Search",
-      "Vector Embeddings",
-      "Unstructured Data Structuring",
-      "LLM Benchmarking",
-      "LLM-as-a-Judge Evaluation",
-      "Inter-Rater Reliability"
+      "Aspect-Based Sentiment Analysis (ABSA)",
+      "Document Classification",
+      "Intent Recognition",
+      "Hybrid Search (Dense + Sparse)",
+      "Feature Extraction from Unstructured Data"
+    ],
+    marketTermsEn: [
+      "Text Mining",
+      "Information Extraction (IE)",
+      "Named Entity Recognition (NER)",
+      "Topic Modeling",
+      "Semantic Search",
+      "Aspect-Based Sentiment Analysis (ABSA)",
+      "Document Classification",
+      "Intent Recognition",
+      "Hybrid Search (Dense + Sparse)",
+      "Feature Extraction from Unstructured Data"
     ],
     technicalArsenal: [
-      "Embeddings Densos e Busca Vetorial Topológica (HNSW com Métrica de Cosseno)",
-      "Redução Dimensional e Clusterização Semântica (UMAP / HDBSCAN)",
-      "Parsing Estrutural de Documentos (Docling)",
-      "Teoria de Mensuração Psicométrica e Concordância Inter-Avaliadores via ICC ($ICC$)",
-      "Protocolos Cegos de Triangulação de Modelos"
+      "Modelos de Linguagem & Embeddings",
+      "Classificação & Extração Estruturada",
+      "NER / Sequence Tagging",
+      "Modelos Cross-Encoder",
+      "Pipelines de Sanitização Morfológica",
+      "Tratamento de Dados Ruidosos de OCR/HTML",
+      "Extração Semântica de Entidades-Chave"
     ],
     technicalArsenalEn: [
-      "Dense Embeddings & Topological Vector Search (HNSW with Cosine Metric)",
-      "Dimensionality Reduction & Semantic Clustering (UMAP / HDBSCAN)",
-      "Structural Document Parsing (Docling)",
-      "Psychometric Measurement Theory & Inter-Rater Reliability ($ICC$)",
-      "Blinded Multi-Model Triangulation Protocols"
+      "Language Models & Vector Embeddings",
+      "Classification & Structured Extraction",
+      "NER / Sequence Tagging",
+      "Cross-Encoder Architectures",
+      "Morphological Sanitization Pipelines",
+      "Noisy OCR/HTML Data Cleaning",
+      "Semantic Key Entity Extraction"
     ],
-    relatedProjectIds: ["quantificador-semantico-app"]
+    relatedProjectIds: ["nlp-text-intelligence", "quantificador-semantico-app"]
   }
 ];
 
