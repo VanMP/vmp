@@ -117,28 +117,50 @@ export const competencies: Competency[] = [
   {
     id: "marketing-science-brand-attribution",
     number: 4,
-    title: "Marketing Science, Marca & Atribuição de Impacto",
-    titleEn: "Marketing Science, Brand Equity & Impact Attribution",
+    title: "Marketing, Marca & Impacto",
+    titleEn: "Marketing, Brand & Impact",
     tagline: "Decomposição de Shapley, Key Driver Analysis e diagnóstico de multicolinearidade",
     taglineEn: "Shapley decomposition, Key Driver Analysis, and strict multicollinearity diagnosis",
     icon: "presentation-chart",
-    businessImpact: "Medir o retorno real sobre o investimento de marketing e entender quais atributos da marca realmente movem a consideração e a recompra do consumidor. Eliminar disputas políticas entre canais mostrando onde cortar verba sem derrubar as vendas e onde colocar mais orçamento.",
-    businessImpactEn: "Measuring the true incremental return on marketing investments and identifying which brand attributes drive customer consideration and repeat purchase. Eliminating cross-channel attribution disputes by revealing where budget can be trimmed safely and where to scale.",
+    businessImpact: "Mostrar onde colocar ou cortar orçamento de marketing para gerar mais vendas sem desperdício, e identificar com precisão o que realmente faz o cliente preferir a sua marca em vez do concorrente. Descobrir o que os clientes pensam da sua marca, o quanto ela alcança e o que faz seu cliente ficar nela ou trocar.",
+    businessImpactEn: "Revealing where to allocate or trim marketing spend to drive revenue without waste, and accurately identifying what truly drives customers to choose your brand over competitors. Uncovering how customers perceive your brand, its real reach, and what drives customer retention versus brand switching.",
     marketTerms: [
       "Marketing Mix Modeling (MMM)",
-      "Modern Attribution",
-      "Key Driver Analysis (KDA)",
-      "Incrementality Testing",
-      "Brand Equity Drivers",
-      "Adstock & Saturação de Mídia",
-      "Media Effectiveness",
-      "ROI/ROAS Causal"
+      "Atribuição Causal & Eficácia de Canais",
+      "Key Driver Analysis (Drivers de Marca & NPS)",
+      "Otimização & Alocação de Orçamento de Mídia",
+      "Curvas de Saturação & Retornos Decrescentes",
+      "Mensuração de Incrementalidade (Brand Lift)",
+      "Diagnóstico de Brand Equity & Migração de Marca",
+      "Auditoria de Efeito Carregado de Mídia (Adstock)"
+    ],
+    marketTermsEn: [
+      "Marketing Mix Modeling (MMM)",
+      "Causal Attribution & Channel Effectiveness",
+      "Key Driver Analysis (Brand Drivers & NPS)",
+      "Media Budget Optimization & Allocation",
+      "Saturation Curves & Diminishing Returns",
+      "Incrementality Measurement (Brand Lift)",
+      "Brand Equity & Migration Diagnostics",
+      "Media Carryover Audit (Adstock)"
     ],
     technicalArsenal: [
-      "Decomposição de Shapley (LMG) para Variáveis Colineares",
-      "Regularização Penalizada (Ridge/ElasticNet)",
-      "Modelagem Estrutural de Drivers com Curvas de Saturação Não-Lineares (Hill/Weibull Adstock)",
-      "Diagnóstico de Multicolinearidade Estrita via VIF e Decomposição em Autovalores"
+      "Decomposição de Shapley (LMG / Dominance Analysis)",
+      "Transformações de Adstock (Decaimento Geométrico & Weibull)",
+      "Curvas de Saturação Não-Lineares (Função de Hill)",
+      "Diagnóstico de Multicolinearidade (VIF & Matriz de Condição)",
+      "Regressão Regularizada Penalizada (Ridge, Lasso & ElasticNet)",
+      "Modelos Aditivos Generalizados (GAM)",
+      "Modelagem de Equações Estruturais (SEM)"
+    ],
+    technicalArsenalEn: [
+      "Shapley Decomposition (LMG / Dominance Analysis)",
+      "Adstock Transformations (Geometric & Weibull Decay)",
+      "Non-Linear Saturation Curves (Hill Function)",
+      "Multicollinearity Diagnosis (VIF & Condition Matrix)",
+      "Penalized Regularized Regression (Ridge, Lasso & ElasticNet)",
+      "Generalized Additive Models (GAM)",
+      "Structural Equation Modeling (SEM)"
     ],
     relatedProjectIds: ["collinearity-suppression-ppm"]
   },
