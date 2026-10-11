@@ -150,24 +150,47 @@ export const competencies: Competency[] = [
     tagline: "Modelos de espaço de estados, filtro de Kalman e detecção de quebras estruturais",
     taglineEn: "State-space models, Kalman filtering, and structural break detection",
     icon: "trending-up",
-    businessImpact: "Separar a real trajetória de crescimento do negócio da volatilidade de curto prazo e dos picos sazonais. Projetar a demanda futura com margens de incerteza realistas e detectar em tempo real se a sensibilidade do mercado está mudando diante de crises ou pressões econômicas.",
-    businessImpactEn: "Decomposing core business growth trajectory from short-term noise and seasonal spikes. Projecting future demand with realistic uncertainty intervals and detecting structural parameter shifts in real time during macroeconomic shocks.",
+    businessImpact: "Extrair o sinal real e a direção subjacente de métricas críticas (financeiras, operacionais, de produto ou mercado), isolando ruídos estocásticos transitórios e oscilações sazonais sobrepostas. Permite dimensionar recursos com antecedência: desde capacidade de atendimento e infraestrutura computacional até gestão de estoques e liquidez de caixa, gerando projeções com intervalos analíticos de incerteza e identificando em tempo real anomalias pontuais ou quebras permanentes de comportamento no sistema.",
+    businessImpactEn: "Extracting the true signal and underlying direction of critical metrics (financial, operational, product, or market), isolating transient stochastic noise and overlapping seasonal swings. Enables proactive resource allocation—from customer support staffing and compute infrastructure to inventory management and cash liquidity—by generating forecasts with analytical uncertainty intervals while identifying point anomalies or permanent structural breaks in real time.",
     marketTerms: [
-      "Demand Forecasting",
-      "Structural Time Series",
-      "State-Space Models",
-      "Kalman Filter",
-      "Time-Varying Parameters (TVP)",
-      "Structural Break Detection",
-      "Trend-Cycle Decomposition",
-      "Anomaly Detection"
+      "Previsão de Demanda & Capacidade",
+      "Dimensionamento Operacional & Recursos",
+      "Detecção de Anomalias & Incidentes",
+      "Monitoramento de Tendências Estruturais",
+      "Identificação de Quebras de Regime",
+      "Planejamento Orçamentário & Métricas de Produto",
+      "Decomposição de Sinal vs. Ruído",
+      "Extração de Sensibilidade Dinâmica"
+    ],
+    marketTermsEn: [
+      "Demand & Capacity Forecasting",
+      "Operational & Resource Sizing",
+      "Anomaly & Incident Detection",
+      "Structural Trend Monitoring",
+      "Regime Shift Detection",
+      "Budget Planning & Product Metrics",
+      "Signal vs. Noise Decomposition",
+      "Dynamic Sensitivity Extraction"
     ],
     technicalArsenal: [
-      "Representação em Espaço de Estados (Harvey / Durbin-Koopman)",
-      "Filtro e Suavizador de Kalman (RTS Smoother)",
-      "Coeficientes Variantes no Tempo (TVP via Random Walk)",
-      "Sazonalidade Trigonométrica Estocástica por Harmônicos de Fourier",
-      "Diagnóstico de Quebras via Inovações Padronizadas"
+      "Modelos em Espaço de Estados (SSM)",
+      "Filtro e Suavizador de Kalman (RTS)",
+      "Modelos Estruturais / Componentes Não Observados",
+      "Parâmetros Variantes no Tempo (TVP)",
+      "Sazonalidade Trigonométrica (Harmônicos de Fourier)",
+      "Tendência Amortecida (Damped Trend)",
+      "Família ARIMA / SARIMAX",
+      "Intervalos de Predição Analíticos"
+    ],
+    technicalArsenalEn: [
+      "State-Space Models (SSM)",
+      "Kalman Filter & RTS Smoother",
+      "Structural / Unobserved Components Models (UCM)",
+      "Time-Varying Parameters (TVP)",
+      "Trigonometric Seasonality (Fourier Harmonics)",
+      "Damped Trend",
+      "ARIMA / SARIMAX Family",
+      "Analytical Prediction Intervals"
     ],
     relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
