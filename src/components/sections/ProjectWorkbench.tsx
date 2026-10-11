@@ -255,6 +255,20 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
     setSelectedProjectId(projects[nextIdx].id);
   };
 
+  // Competency Carousel Navigation
+  const competencyIndex = competencies.findIndex((c) => c.id === selectedCompetencyId);
+  const currentCompetency = competencies[competencyIndex] || competencies[0];
+
+  const handlePrevCompetency = () => {
+    const prevIdx = (competencyIndex - 1 + competencies.length) % competencies.length;
+    setSelectedCompetencyId(competencies[prevIdx].id);
+  };
+
+  const handleNextCompetency = () => {
+    const nextIdx = (competencyIndex + 1) % competencies.length;
+    setSelectedCompetencyId(competencies[nextIdx].id);
+  };
+
   const currentStackItem = stackItems.find((s) => s.name === selectedStackName) || stackItems[0];
 
   // Dynamic method translation helper
@@ -846,9 +860,14 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
                   </svg>
                   <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                    <span className="text-[11px] md:text-xs font-bold leading-tight">
-                      {lang === "pt" ? "Projetos" : "Projects"}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] md:text-xs font-bold leading-tight">
+                        {lang === "pt" ? "Projetos" : "Projects"}
+                      </span>
+                      <span className="text-[8.5px] font-mono font-extrabold px-1.5 py-0.2 bg-white/20 rounded-full">
+                        {projects.length}
+                      </span>
+                    </div>
                     <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "projects" ? "text-surface/80" : "text-txt-muted"}`}>
                       {lang === "pt" ? "Casos de estudo" : "Case studies"}
                     </span>
@@ -885,7 +904,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </div>
               )}
 
-              {/* Tab 2: Competências (7 Gavetas de Domínio) */}
+              {/* Tab 2: Competências */}
               <button
                 onClick={() => {
                   setActiveDrawer("competencies");
@@ -912,7 +931,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       </span>
                     </div>
                     <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "competencies" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "7 Gavetas de Domínio" : "7 Domain Drawers"}
+                      {lang === "pt" ? "Áreas de atuação" : "Areas of expertise"}
                     </span>
                   </div>
                 </div>
@@ -1510,185 +1529,121 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
               )}
 
               {activeDrawer === "competencies" && (
-                /* 7 COMPETENCY DRAWERS VIEW */
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn w-full items-start">
-                  {/* Left Column: The 7 Tactile Drawers */}
-                  <div className="flex flex-col gap-3.5">
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-[10px] uppercase tracking-widest font-extrabold text-wine font-mono px-2 py-0.5 rounded bg-wine/10 border border-wine/20">
-                          {lang === "pt" ? "7 GAVETAS DE DOMÍNIO" : "7 DOMAIN DRAWERS"}
-                        </span>
+                /* UNIFIED COMPETENCY DOSSIER VIEW */
+                <article className="grid grid-cols-1 xl:grid-cols-[1.1fr_1.15fr] gap-6 md:gap-8 animate-fadeIn w-full items-start relative">
+                  {/* Subtle background watermark */}
+                  <div className="absolute bottom-2 right-[48%] w-24 h-24 text-mustard/4 hidden md:block pointer-events-none select-none">
+                    <svg width="96" height="96" className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                    </svg>
+                  </div>
+
+                  {/* Left Side: Header, Problem / Business Impact, and Applied Case Studies */}
+                  <div className="flex flex-col gap-5 justify-between">
+                    <div className="flex flex-col gap-4">
+                      {/* Top Specialty Badge & Tagline */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-[10px] uppercase tracking-wider font-extrabold text-mustard font-mono px-2 py-0.5 rounded bg-mustard/10 border border-mustard/20">
+                            0{currentCompetency.number} • {lang === "pt" ? "DOMÍNIO QUANTITATIVO" : "QUANTITATIVE DOMAIN"}
+                          </span>
+                          <span className="text-[9px] font-mono text-txt-muted">
+                            {currentCompetency.marketTerms.length} {lang === "pt" ? "aplicações" : "applications"}
+                          </span>
+                        </div>
+                        <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
+                          {lang === "en" ? currentCompetency.titleEn : currentCompetency.title}
+                        </h3>
+                        <p className="font-serif italic text-xs md:text-sm text-olive font-semibold mt-1">
+                          {lang === "en" ? currentCompetency.taglineEn : currentCompetency.tagline}
+                        </p>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-wine font-serif mt-1">
-                        {lang === "pt" ? "Arsenal & Soluções de Mercado" : "Market Solutions & Technical Arsenal"}
-                      </h3>
-                      <p className="text-xs text-txt-muted mt-1 leading-relaxed">
-                        {lang === "pt"
-                          ? "Puxe uma das 7 gavetas para explorar os problemas de negócio resolvidos, jargões de mercado (ATS) e o ferramental estatístico."
-                          : "Select one of the 7 drawers to explore solved business problems, ATS market keywords, and applied statistical arsenals."}
-                      </p>
-                    </div>
 
-                    <div className="flex flex-col gap-2.5 md:max-h-[520px] md:overflow-y-auto pr-1">
-                      {competencies.map((comp) => {
-                        const isSelected = comp.id === selectedCompetencyId;
-                        return (
-                          <button
-                            key={comp.id}
-                            onClick={() => setSelectedCompetencyId(comp.id)}
-                            className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 group relative overflow-hidden ${
-                              isSelected
-                                ? "bg-gradient-to-r from-[#FAF8F5] via-surface to-[#F5EFE6] border-wine/50 shadow-md ring-1 ring-wine/20 translate-x-1"
-                                : "bg-surface/60 border-border-soft/60 hover:bg-surface hover:border-wine/30 hover:translate-x-0.5 shadow-xs"
-                            }`}
-                          >
-                            {/* Left Accent indicator */}
-                            {isSelected && (
-                              <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-wine"></div>
-                            )}
+                      {/* Bloco 1: O que resolve (Impacto de Negócio) */}
+                      <div className="bg-[#FAF8F2] border border-[#E4DFD3] rounded-xl p-4 md:p-5 shadow-xs relative overflow-hidden">
+                        <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-[#8A6535]"></div>
+                        <span className="font-mono text-[9px] font-extrabold text-stone-600 uppercase tracking-wider block mb-2">
+                          💼 {lang === "pt" ? "O QUE RESOLVE (IMPACTO DE NEGÓCIO)" : "WHAT IT SOLVES (BUSINESS IMPACT)"}
+                        </span>
+                        <p className="text-xs md:text-sm text-stone-700 leading-relaxed font-sans font-medium">
+                          {lang === "en" ? currentCompetency.businessImpactEn : currentCompetency.businessImpact}
+                        </p>
+                      </div>
 
-                            <div className="flex items-center gap-3 min-w-0 flex-1 pl-1">
-                              {/* Number Badge */}
-                              <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold flex-shrink-0 transition-colors ${
-                                isSelected ? "bg-wine text-white shadow-xs" : "bg-frost text-txt-muted border border-border-soft/60 group-hover:text-wine"
-                              }`}>
-                                0{comp.number}
-                              </div>
-
-                              <div className="flex flex-col min-w-0 flex-1">
-                                <span className={`text-xs md:text-sm font-bold leading-tight truncate ${
-                                  isSelected ? "text-wine" : "text-txt-main group-hover:text-wine"
-                                }`}>
-                                  {lang === "en" ? comp.titleEn : comp.title}
-                                </span>
-                                <span className="text-[10px] text-txt-muted truncate font-serif italic mt-0.5">
-                                  {lang === "en" ? comp.taglineEn : comp.tagline}
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* Indicator */}
-                            <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 transition-transform ${
-                              isSelected ? "text-wine translate-x-0.5" : "text-txt-muted/60 group-hover:text-wine"
-                            }`}>
-                              ➔
-                            </div>
-                          </button>
-                        );
-                      })}
+                      {/* Bloco 4: Casos Aplicados no Portfólio (se houver) */}
+                      {currentCompetency.relatedProjectIds && currentCompetency.relatedProjectIds.length > 0 && (
+                        <div className="border-t border-border-soft/60 pt-3 flex flex-col gap-2">
+                          <span className="font-mono text-[9.5px] font-extrabold text-txt-muted uppercase tracking-wider block">
+                            📂 {lang === "pt" ? "Estudos de Caso Aplicados no Portfólio:" : "Applied Case Studies in Portfolio:"}
+                          </span>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            {projects
+                              .filter((p) => currentCompetency.relatedProjectIds.includes(p.id))
+                              .map((p) => (
+                                <button
+                                  key={p.id}
+                                  onClick={() => {
+                                    setSelectedProjectId(p.id);
+                                    setActiveDrawer("projects");
+                                  }}
+                                  className="text-left p-3 rounded-xl border border-border-soft/80 bg-surface hover:bg-frost hover:border-wine/40 transition-all flex items-center justify-between gap-2.5 cursor-pointer shadow-xs group"
+                                >
+                                  <div className="flex flex-col min-w-0">
+                                    <span className="text-[9px] uppercase tracking-wider text-terracotta font-mono font-bold">
+                                      {lang === "en" ? p.categoryEn : p.category}
+                                    </span>
+                                    <span className="text-xs font-bold text-wine group-hover:text-terracotta transition-colors truncate">
+                                      {lang === "en" ? p.titleEn : p.title}
+                                    </span>
+                                  </div>
+                                  <span className="text-xs text-wine font-bold group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+                                    ➔
+                                  </span>
+                                </button>
+                              ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  {/* Right Column: Interior da Gaveta Aberta */}
-                  {(() => {
-                    const activeComp = competencies.find(c => c.id === selectedCompetencyId) || competencies[0];
-                    return (
-                      <div className="relative border border-border-soft bg-surface/90 p-5 md:p-6 rounded-2xl flex flex-col gap-5 shadow-[0_2px_12px_rgba(44,40,34,0.02)] overflow-hidden">
-                        
-                        {/* Top Brass Plaque & Drawer Title */}
-                        <div className="border-b border-border-soft/60 pb-4">
-                          <div className="flex items-center justify-between gap-2 mb-2">
-                            <span className="font-mono text-[9px] font-extrabold text-terracotta tracking-widest uppercase bg-terracotta/10 px-2 py-0.5 rounded border border-terracotta/20">
-                              {lang === "pt" ? `GAVETA 0${activeComp.number} • DOMÍNIO QUANTITATIVO` : `DRAWER 0${activeComp.number} • QUANTITATIVE DOMAIN`}
-                            </span>
-                            <span className="font-mono text-[9px] text-txt-muted">
-                              {activeComp.marketTerms.length} {lang === "pt" ? "termos de mercado" : "market terms"}
-                            </span>
-                          </div>
-
-                          <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-wine leading-tight">
-                            {lang === "en" ? activeComp.titleEn : activeComp.title}
-                          </h3>
-                          <p className="font-serif italic text-xs md:text-sm text-olive font-semibold mt-1">
-                            {lang === "en" ? activeComp.taglineEn : activeComp.tagline}
-                          </p>
-                        </div>
-
-                        {/* Bloco 1: O que resolve (Linguagem de Negócio) */}
-                        <div className="bg-[#FAF8F2] border border-[#E4DFD3] rounded-xl p-4 shadow-xs relative overflow-hidden">
-                          <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-[#8A6535]"></div>
-                          <span className="font-mono text-[9px] font-extrabold text-stone-600 uppercase tracking-wider block mb-1.5">
-                            💼 {lang === "pt" ? "O QUE RESOLVE (LINGUAGEM DE NEGÓCIO)" : "WHAT IT SOLVES (BUSINESS IMPACT)"}
+                  {/* Right Side: Aplicações de Negócio & Arsenal Técnico */}
+                  <div className="flex flex-col gap-5 bg-surface/80 border border-border-soft/90 p-5 md:p-6 rounded-2xl shadow-xs">
+                    {/* Bloco 2: Aplicações de Negócio */}
+                    <div className="flex flex-col gap-2.5">
+                      <span className="font-mono text-[9.5px] font-extrabold text-wine uppercase tracking-wider flex items-center gap-1.5">
+                        <span>🎯</span> {lang === "pt" ? "Aplicações de Negócio:" : "Business Applications:"}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {(lang === "en" && currentCompetency.marketTermsEn ? currentCompetency.marketTermsEn : currentCompetency.marketTerms).map((term) => (
+                          <span
+                            key={term}
+                            className="px-2.5 py-1 bg-[#EADFC9]/50 text-[#5C4D35] text-[10.5px] font-bold rounded-lg border border-[#D5C29D] font-mono leading-none shadow-2xs hover:bg-[#EADFC9]/80 transition-colors"
+                          >
+                            {term}
                           </span>
-                          <p className="text-xs md:text-sm text-stone-700 leading-relaxed font-sans font-medium">
-                            {lang === "en" ? activeComp.businessImpactEn : activeComp.businessImpact}
-                          </p>
-                        </div>
-
-                        {/* Bloco 2: Termos de Mercado (ATS & Recrutadores) */}
-                        <div className="flex flex-col gap-2">
-                          <span className="font-mono text-[9.5px] font-extrabold text-wine uppercase tracking-wider flex items-center gap-1.5">
-                            <span>🎯</span> {lang === "pt" ? "Termos de Mercado (ATS & Recrutadores):" : "Market Keywords (ATS & Recruiters):"}
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {(lang === "en" && activeComp.marketTermsEn ? activeComp.marketTermsEn : activeComp.marketTerms).map((term) => (
-                              <span
-                                key={term}
-                                className="px-2.5 py-1 bg-[#EADFC9]/50 text-[#5C4D35] text-[10.5px] font-bold rounded-lg border border-[#D5C29D] font-mono leading-none shadow-2xs hover:bg-[#EADFC9]/80 transition-colors"
-                              >
-                                {term}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Bloco 3: Arsenal Técnico & Estatístico */}
-                        <div className="flex flex-col gap-2">
-                          <span className="font-mono text-[9.5px] font-extrabold text-olive uppercase tracking-wider flex items-center gap-1.5">
-                            <span>🔬</span> {lang === "pt" ? "Arsenal Técnico & Estatístico:" : "Technical & Statistical Arsenal:"}
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {(lang === "en" && activeComp.technicalArsenalEn ? activeComp.technicalArsenalEn : activeComp.technicalArsenal).map((tech) => (
-                              <span
-                                key={tech}
-                                className="px-2.5 py-1 bg-surface text-wine text-[10.5px] font-bold rounded-lg border border-border-soft font-mono leading-none shadow-2xs hover:border-wine/40 transition-colors"
-                              >
-                                <MathText text={tech} />
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Bloco 4: Estudos de Caso Relacionados */}
-                        {activeComp.relatedProjectIds && activeComp.relatedProjectIds.length > 0 && (
-                          <div className="border-t border-border-soft/60 pt-3.5 mt-1 flex flex-col gap-2">
-                            <span className="font-mono text-[9px] font-extrabold text-txt-muted uppercase tracking-wider block">
-                              📂 {lang === "pt" ? "Estudos de Caso Aplicados no Portfólio:" : "Applied Case Studies in Portfolio:"}
-                            </span>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                              {projects
-                                .filter((p) => activeComp.relatedProjectIds.includes(p.id))
-                                .map((p) => (
-                                  <button
-                                    key={p.id}
-                                    onClick={() => {
-                                      setSelectedProjectId(p.id);
-                                      setActiveDrawer("projects");
-                                    }}
-                                    className="text-left p-3 rounded-xl border border-border-soft/70 bg-frost/60 hover:bg-frost hover:border-wine/40 transition-all flex items-center justify-between gap-2 cursor-pointer shadow-xs group"
-                                  >
-                                    <div className="flex flex-col min-w-0">
-                                      <span className="text-[9px] uppercase tracking-wider text-terracotta font-mono font-bold">
-                                        {lang === "en" ? p.categoryEn : p.category}
-                                      </span>
-                                      <span className="text-xs font-bold text-wine group-hover:text-terracotta transition-colors truncate">
-                                        {lang === "en" ? p.titleEn : p.title}
-                                      </span>
-                                    </div>
-                                    <span className="text-xs text-wine font-bold group-hover:translate-x-0.5 transition-transform flex-shrink-0">
-                                      ➔
-                                    </span>
-                                  </button>
-                                ))}
-                            </div>
-                          </div>
-                        )}
-
+                        ))}
                       </div>
-                    );
-                  })()}
-                </div>
+                    </div>
+
+                    {/* Bloco 3: Arsenal Técnico & Estatístico */}
+                    <div className="flex flex-col gap-2.5 border-t border-border-soft/60 pt-4">
+                      <span className="font-mono text-[9.5px] font-extrabold text-olive uppercase tracking-wider flex items-center gap-1.5">
+                        <span>🔬</span> {lang === "pt" ? "Arsenal Técnico & Estatístico:" : "Technical & Statistical Arsenal:"}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {(lang === "en" && currentCompetency.technicalArsenalEn ? currentCompetency.technicalArsenalEn : currentCompetency.technicalArsenal).map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-1 bg-surface text-wine text-[10.5px] font-bold rounded-lg border border-border-soft font-mono leading-none shadow-2xs hover:border-wine/40 transition-colors"
+                          >
+                            <MathText text={tech} />
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
               )}
 
               {activeDrawer === "stack" && (
@@ -1791,6 +1746,44 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 <button
                   onClick={handleNextProject}
                   className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-wine hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
+                >
+                  ▶
+                </button>
+              </div>
+            )}
+
+            {/* Carousel Slider Controls for Competencies mode */}
+            {activeDrawer === "competencies" && (
+              <div className="mt-6 md:mt-8 pt-4 border-t border-border-soft/30 flex items-center justify-center gap-6">
+                {/* Prev Button */}
+                <button
+                  onClick={handlePrevCompetency}
+                  className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-mustard hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
+                  title={lang === "pt" ? "Competência anterior" : "Previous competency"}
+                >
+                  ◀
+                </button>
+
+                {/* Dots / Indicators */}
+                <div className="flex gap-2.5 items-center">
+                  {competencies.map((c, idx) => (
+                    <button
+                      key={c.id}
+                      onClick={() => setSelectedCompetencyId(c.id)}
+                      className={`w-2.5 h-2.5 rounded-full transition-soft cursor-pointer ${idx === competencyIndex
+                          ? "bg-mustard scale-110"
+                          : "bg-border-soft hover:bg-mustard/65"
+                        }`}
+                      title={`0${c.number}. ${lang === "en" ? c.titleEn : c.title}`}
+                    />
+                  ))}
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNextCompetency}
+                  className="w-8 h-8 rounded-full border border-border-soft/85 bg-surface hover:bg-mustard hover:text-white transition-soft flex items-center justify-center text-xs font-bold text-txt-main shadow-xs cursor-pointer"
+                  title={lang === "pt" ? "Próxima competência" : "Next competency"}
                 >
                   ▶
                 </button>
