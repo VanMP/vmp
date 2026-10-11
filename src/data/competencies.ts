@@ -244,3 +244,4 @@ export const competencies: Competency[] = [
     relatedProjectIds: ["quantificador-semantico-app"]
   }
 ];
+
