@@ -61,6 +61,7 @@ export type Project = {
   outcome: string;
   outcomeEn: string;
   simulated: boolean;
+  dataTag?: "synthetic" | "real" | "anonymized" | "none";
   anonymizedDisclaimer?: string;
   anonymizedDisclaimerEn?: string;
   visualType: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
@@ -99,6 +100,7 @@ export const projects: Project[] = [
     outcome: "O algoritmo de agrupamento vetorial demonstrou alta precisão ao classificar 1.190 fragmentos com acurácia de 78,6% e erro de prevalência de apenas ±2,16%, isolando com 88,9% de precisão as amostras de ruído e mapeando a estrutura vetorial em 3D.",
     outcomeEn: "The vector clustering algorithm demonstrated high precision in classifying 1,190 text fragments with 78.6% accuracy and ±2.16% prevalence error, isolating noise with 88.9% precision and mapping 3D vector space.",
     simulated: true,
+    dataTag: "synthetic",
     visualType: "nlp-flow",
     slides: [
       {
@@ -222,7 +224,8 @@ export const projects: Project[] = [
     ],
     outcome: "A aplicação em Streamlit transformou uma rotina técnica complexa de PLN e agrupamento probabilístico em um software acessível de 1 clique, capacitando equipes a carregar dados qualitativos não estruturados e extrair relatórios executivos em tempo real.",
     outcomeEn: "The Streamlit application transformed a complex NLP and probabilistic clustering routine into an accessible 1-click software, enabling teams to upload unstructured qualitative data and generate executive reports in real time.",
-    simulated: true,
+    simulated: false,
+    dataTag: "none",
     visualType: "nlp-flow",
     slides: [
       {
@@ -281,6 +284,7 @@ export const projects: Project[] = [
     outcome: "A modelagem bayesiana calculou uma probabilidade de 90,9% de superioridade para a mecânica A, oferecendo suporte quantitativo para o lançamento da promoção mesmo diante de um p-valor frequentista estatisticamente inconclusivo para o tamanho amostral acumulado.",
     outcomeEn: "Bayesian modeling calculated a 90.9% probability of superiority for promotion strategy A, providing quantitative support for the rollout even with a frequentist p-value that remained statistically inconclusive due to current sample size limitations.",
     simulated: true,
+    dataTag: "real",
     visualType: "ab-bars",
     slides: [
       {
@@ -337,6 +341,7 @@ export const projects: Project[] = [
     outcome: "A otimização multivariada L-BFGS-B gerou um salto de +17,0% no lucro líquido mensal (de R$ 80,67M para R$ 94,41M na base analisada) ao explorar a elasticidade cruzada entre produtos e ajustar preços para cada segmento latente, com retenção de 97,7% do lucro mesmo após purga de 12 para 8 SKUs.",
     outcomeEn: "Multivariate L-BFGS-B optimization yielded a +17.0% net profit increase (from R$ 80.67M to R$ 94.41M in the analyzed baseline) by leveraging cross-price elasticity and segment preferences, while retaining 97.7% of maximum profit when pruning from 12 down to 8 active SKUs.",
     simulated: true,
+    dataTag: "anonymized",
     anonymizedDisclaimer: "Estudo real com dados descaracterizados, atributos mascarados e valores arredondados para preservar o sigilo comercial, mantendo a proporção aproximada de ganho observada (+17%) e o racional da modelagem.",
     anonymizedDisclaimerEn: "Real-world study with masked product attributes and rounded figures to preserve commercial confidentiality, maintaining the approximate observed profit gain (+17%) and modeling rationale.",
     visualType: "pricing",
@@ -512,6 +517,7 @@ export const projects: Project[] = [
     outcome: "A Decomposição de Shapley sobre o Pseudo-$R^2$ de McFadden avaliou todos os $2^3 = 8$ submodelos possíveis e resgatou a partição justa de variância a $100\\%$ ($55{,}0\\%$ Pull, $37{,}3\\%$ Mooring e $7{,}6\\%$ Push), enquanto a Key Driver Analysis bivariada controlada por demografia isolou os Odds Ratios puros por $+1\\,\\text{DP}$ sem distorção por multicolinearidade.",
     outcomeEn: "McFadden Pseudo-$R^2$ Shapley Decomposition evaluated all $2^3 = 8$ submodels, restoring a $100\\%$ fair variance partition ($55.0\\%$ Pull, $37.3\\%$ Mooring, $7.6\\%$ Push), while demographic-controlled bivariate Key Driver Analysis isolated pure odds ratios per $+1\\,\\text{SD}$ without collinearity distortion.",
     simulated: true,
+    dataTag: "anonymized",
     anonymizedDisclaimer: "Estudo real sobre migração de marca com variáveis e atributos mascarados para preservar o sigilo do cliente, mantendo integralmente a estrutura matemática, as matrizes de covariância e a interpretabilidade dos estimadores.",
     anonymizedDisclaimerEn: "Real-world brand migration study with masked attributes to preserve client confidentiality, preserving the exact mathematical structure, covariance matrices, and estimator interpretability.",
     visualType: "ab-bars",

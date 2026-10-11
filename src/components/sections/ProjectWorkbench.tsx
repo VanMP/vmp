@@ -323,7 +323,35 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
   const stackGroups = getStackGroups();
 
+  // Render badge for data type (synthetic, real, anonymized, or none)
+  const renderDataBadge = (project: Project) => {
+    if (project.dataTag === "none" || (!project.dataTag && !project.simulated)) {
+      return null;
+    }
 
+    if (project.dataTag === "synthetic") {
+      return (
+        <span className="font-mono text-[8px] font-extrabold tracking-wider px-2 py-0.5 rounded border border-terracotta/40 bg-terracotta/10 text-terracotta uppercase">
+          {lang === "pt" ? "DADOS SINTÉTICOS" : "SYNTHETIC DATA"}
+        </span>
+      );
+    }
+
+    if (project.dataTag === "real") {
+      return (
+        <span className="font-mono text-[8px] font-extrabold tracking-wider px-2 py-0.5 rounded border border-olive/40 bg-olive/10 text-olive uppercase">
+          {lang === "pt" ? "DADOS REAIS" : "REAL-WORLD DATA"}
+        </span>
+      );
+    }
+
+    // Default / "anonymized"
+    return (
+      <span className="font-mono text-[8px] font-extrabold tracking-wider px-2 py-0.5 rounded border border-brown/30 bg-brown/5 text-brown uppercase">
+        {lang === "pt" ? "DADOS DESCARACTERIZADOS" : "ANONYMIZED DATA"}
+      </span>
+    );
+  };
 
   return (
     <section className="px-6 py-4 md:px-8 md:py-6 w-full font-sans flex flex-col gap-6">
@@ -540,11 +568,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               <span className="font-mono text-[10px] font-extrabold text-terracotta tracking-widest uppercase">
                                 📂 {lang === "en" ? activeProject.categoryEn : activeProject.category}
                               </span>
-                              {activeProject.simulated && (
-                                <span className="font-mono text-[8px] font-bold px-2 py-0.5 rounded border border-[#8A6535]/30 bg-[#8A6535]/5 text-[#8A6535]">
-                                  {lang === "pt" ? "DADOS DESCARACTERIZADOS" : "ANONYMIZED DATA"}
-                                </span>
-                              )}
+                              {renderDataBadge(activeProject)}
                             </div>
 
                             <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-wine leading-tight">
@@ -1046,11 +1070,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                           <span className="text-[10px] uppercase tracking-wider font-extrabold text-terracotta font-sans">
                             {lang === "en" ? currentProject.categoryEn : currentProject.category}
                           </span>
-                          {currentProject.simulated && (
-                            <span className="text-[8px] tracking-wider px-2 py-0.5 rounded border border-brown/30 bg-brown/5 text-brown font-extrabold font-mono">
-                              {lang === "pt" ? "DADOS DESCARACTERIZADOS" : "ANONYMIZED DATA"}
-                            </span>
-                          )}
+                          {renderDataBadge(currentProject)}
                         </div>
                         <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
                           {lang === "en" ? currentProject.titleEn : currentProject.title}
