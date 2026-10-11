@@ -179,8 +179,8 @@ export const competencies: Competency[] = [
     tagline: "Arquiteturas supervisionadas, redes neurais, predição calibrada e Explainable AI",
     taglineEn: "Supervised architectures, neural networks, calibrated prediction, and Explainable AI",
     icon: "shield-check",
-    businessImpact: "Construir arquiteturas preditivas supervisionadas (árvores de gradiente e redes neurais densas) capazes de antecipar comportamentos, detectar anomalias e classificar eventos complexos de negócio em escala. O foco reside em unir alta acurácia preditiva à calibração rigorosa de probabilidades e otimização de matriz de custo — garantindo que cada linha de corte gere valor econômico direto e decisões auditáveis.",
-    businessImpactEn: "Building supervised predictive architectures (gradient boosted trees and dense neural networks) capable of anticipating behaviors, detecting anomalies, and classifying complex business events at scale. The focus lies in pairing high predictive accuracy with rigorous probability calibration and cost-matrix threshold tuning — ensuring every operational cutoff delivers direct financial value and auditability.",
+    businessImpact: "Construir arquiteturas preditivas supervisionadas (árvores de gradiente e redes neurais densas) capazes de antecipar comportamentos, detectar anomalias e classificar eventos complexos de negócio em escala. O foco reside em unir alta acurácia preditiva à calibração rigorosa de probabilidades e otimização de matriz de custo, garantindo que cada linha de corte gere valor econômico direto.",
+    businessImpactEn: "Building supervised predictive architectures (gradient boosted trees and dense neural networks) capable of anticipating behaviors, detecting anomalies, and classifying complex business events at scale. The focus lies in pairing high predictive accuracy with rigorous probability calibration and cost-matrix threshold tuning, ensuring every operational cutoff delivers direct financial value.",
     marketTerms: [
       "Explainable AI",
       "Modelagem Preditiva",
