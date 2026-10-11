@@ -59,30 +59,50 @@ export const competencies: Competency[] = [
   {
     id: "pricing-demand-portfolio",
     number: 2,
-    title: "Precificação, Demanda & Estratégia de Portfólio",
-    titleEn: "Pricing, Demand & Portfolio Strategy",
-    tagline: "Elasticidade cruzada, escolha discreta e otimização não-linear de prateleira",
-    taglineEn: "Cross-elasticity, discrete choice, and non-linear assortment optimization",
+    title: "Produto & Estratégia de Portfólio",
+    titleEn: "Product & Portfolio Strategy",
+    tagline: "Otimização de mix, escolha discreta, valoração de atributos e precificação",
+    taglineEn: "Mix optimization, discrete choice, attribute valuation, and pricing",
     icon: "currency-dollar",
-    businessImpact: "Encontrar o preço exato que maximiza a receita ou a margem da empresa considerando a reação dos concorrentes. Responder com precisão a perguntas como: \"se subirmos o preço em 6%, quanto volume perdemos?\" e \"quais produtos do nosso catálogo/menu podemos cortar sem que o cliente migre para a concorrência?\".",
-    businessImpactEn: "Pinpointing the exact price point that maximizes revenue or gross margin while anticipating competitor responses. Answering questions like: \"if we raise prices by 6%, how much volume do we shed?\" and \"which catalog/menu SKUs can we prune without losing customers to competitors?\".",
+    businessImpact: "Descobrir a combinação ideal de funcionalidades, versões e preços para maximizar a receita e a margem da empresa sem canibalizar as próprias vendas. Ajuda a definir quais produtos ou planos manter, cortar ou lançar, quantificando exatamente quanto o consumidor aceita pagar por cada diferencial e simulando a migração de clientes em diferentes cenários de concorrência.",
+    businessImpactEn: "Discovering the optimal combination of features, tiers, and price points to maximize company revenue and profit margins without self-cannibalization. Guides decisions on which products or plans to keep, prune, or launch by quantifying exact consumer willingness to pay for distinct attributes and simulating customer switching across competitive scenarios.",
     marketTerms: [
-      "Pricing Strategy",
-      "Price Elasticity of Demand",
-      "Discrete Choice Modeling",
-      "Conjoint Analysis (CBC)",
-      "Willingness to Pay (WTP)",
-      "Assortment Optimization",
-      "Menu Engineering",
-      "Market Share Simulation",
-      "Cannibalization Modeling"
+      "Estratégia de Precificação & Elasticidade de Demanda",
+      "Otimização de Portfólio & Mix de Produtos",
+      "Valoração de Funcionalidades & Pacotes (Bundling)",
+      "Simulação de Cenários Competitivos & Market Share",
+      "Análise de Canibalização entre Produtos/Planos",
+      "Estimativa de Disposição a Pagar (Willingness to Pay - WTP)",
+      "Racionalização de SKUs & Engenharia de Menu",
+      "Validação de Demanda para Novos Lançamentos"
+    ],
+    marketTermsEn: [
+      "Pricing Strategy & Price Elasticity of Demand",
+      "Portfolio & Product Mix Optimization",
+      "Feature Valuation & Product Bundling",
+      "Competitive Scenario Simulation & Market Share",
+      "Cannibalization Analysis Across Products/Tiers",
+      "Willingness to Pay Estimation (WTP)",
+      "SKU Rationalization & Menu Engineering",
+      "Demand Validation for New Product Launches"
     ],
     technicalArsenal: [
       "Modelos de Escolha Discreta com Classes Latentes (LC-MNL)",
-      "D-Optimal Experimental Design",
+      "Logit Multinomial & Modelos de Escolha Hierárquica",
+      "Decomposição de Utilidade Marginal (Part-Worth Utilities)",
+      "Matrizes de Elasticidade Própria e Cruzada de Demanda",
+      "Simulação Contrafactual de Partilha de Escolha (Choice Share)",
       "Otimização Numérica Não-Linear Restrita (L-BFGS-B / SciPy)",
-      "Matrizes de Elasticidade Cruzada de Demanda",
-      "Simulações Contrafactuais de Substituição de Escolha"
+      "Curvas de Sensibilidade de Preço & Demanda Compensada"
+    ],
+    technicalArsenalEn: [
+      "Discrete Choice Models with Latent Classes (LC-MNL)",
+      "Multinomial Logit & Hierarchical Choice Models",
+      "Marginal Utility Decomposition (Part-Worth Utilities)",
+      "Own-Price & Cross-Price Demand Elasticity Matrices",
+      "Counterfactual Choice Share Simulation",
+      "Constrained Non-Linear Numerical Optimization (L-BFGS-B / SciPy)",
+      "Price Sensitivity Curves & Compensated Demand"
     ],
     relatedProjectIds: ["conjoint-portfolio-optimization"]
   },
