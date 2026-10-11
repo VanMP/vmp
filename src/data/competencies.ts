@@ -152,6 +152,7 @@ export const competencies: Competency[] = [
       "Marketing Mix Modeling (MMM)",
       "Atribuição Causal & Eficácia de Canais",
       "Key Driver Analysis (Drivers de Marca & NPS)",
+      "Mapas de Posicionamento de Marca ou Produto",
       "Otimização & Alocação de Orçamento de Mídia",
       "Curvas de Saturação & Retornos Decrescentes",
       "Mensuração de Incrementalidade (Brand Lift)",
@@ -162,6 +163,7 @@ export const competencies: Competency[] = [
       "Marketing Mix Modeling (MMM)",
       "Causal Attribution & Channel Effectiveness",
       "Key Driver Analysis (Brand Drivers & NPS)",
+      "Brand & Product Positioning Maps",
       "Media Budget Optimization & Allocation",
       "Saturation Curves & Diminishing Returns",
       "Incrementality Measurement (Brand Lift)",
@@ -173,6 +175,7 @@ export const competencies: Competency[] = [
       "Transformações de Adstock (Decaimento Geométrico & Weibull)",
       "Curvas de Saturação Não-Lineares (Função de Hill)",
       "Diagnóstico de Multicolinearidade (VIF & Matriz de Condição)",
+      "Análise de Correspondência Múltipla (MCA)",
       "Regressão Regularizada Penalizada (Ridge, Lasso & ElasticNet)",
       "Modelos Aditivos Generalizados (GAM)",
       "Modelagem de Equações Estruturais (SEM)"
@@ -182,6 +185,7 @@ export const competencies: Competency[] = [
       "Adstock Transformations (Geometric & Weibull Decay)",
       "Non-Linear Saturation Curves (Hill Function)",
       "Multicollinearity Diagnosis (VIF & Condition Matrix)",
+      "Multiple Correspondence Analysis (MCA)",
       "Penalized Regularized Regression (Ridge, Lasso & ElasticNet)",
       "Generalized Additive Models (GAM)",
       "Structural Equation Modeling (SEM)"
