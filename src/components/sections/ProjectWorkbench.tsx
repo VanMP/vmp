@@ -1541,16 +1541,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                   {/* Left Side: Header, Problem / Business Impact, and Applied Case Studies */}
                   <div className="flex flex-col gap-5 justify-between">
                     <div className="flex flex-col gap-4">
-                      {/* Top Specialty Badge & Tagline */}
+                      {/* Competency Title & Tagline */}
                       <div>
-                        <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] uppercase tracking-wider font-extrabold text-mustard font-mono px-2 py-0.5 rounded bg-mustard/10 border border-mustard/20">
-                            0{currentCompetency.number} • {lang === "pt" ? "DOMÍNIO QUANTITATIVO" : "QUANTITATIVE DOMAIN"}
-                          </span>
-                          <span className="text-[9px] font-mono text-txt-muted">
-                            {currentCompetency.marketTerms.length} {lang === "pt" ? "aplicações" : "applications"}
-                          </span>
-                        </div>
                         <h3 className="text-2xl md:text-3xl font-bold text-wine font-serif leading-tight">
                           {lang === "en" ? currentCompetency.titleEn : currentCompetency.title}
                         </h3>
