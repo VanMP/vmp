@@ -3,6 +3,7 @@ import { projects, type Project } from "../../data/projects";
 import { methods, type Method } from "../../data/methods";
 import { stackItems, type StackItem } from "../../data/stack";
 import { applications, type Application } from "../../data/applications";
+import { competencies, type Competency } from "../../data/competencies";
 import { MathText } from "../common/MathText";
 
 function getProjectIcon(id: string, colorClass: string) {
@@ -161,9 +162,9 @@ const playDrawerSound = (type: "open" | "close") => {
 };
 
 export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps) {
-  const [activeDrawer, setActiveDrawer] = useState<"projects" | "applications" | "methods" | "stack">("projects");
+  const [activeDrawer, setActiveDrawer] = useState<"projects" | "competencies" | "stack">("projects");
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
-  const [selectedApplicationId, setSelectedApplicationId] = useState<string>("experimentation");
+  const [selectedCompetencyId, setSelectedCompetencyId] = useState<string>("experimentation-causal-decision");
 
   // Sidebar Collapse & Selector Drawer States
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(true);
@@ -172,7 +173,6 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
   // Selection States
   const [selectedProjectId, setSelectedProjectId] = useState<string>("nlp-text-intelligence");
-  const [selectedMethodId, setSelectedMethodId] = useState<string>("ab-tests");
   const [selectedStackName, setSelectedStackName] = useState<string>("Python");
 
   useEffect(() => {
@@ -255,7 +255,6 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
     setSelectedProjectId(projects[nextIdx].id);
   };
 
-  const currentMethod = methods.find((m) => m.id === selectedMethodId) || methods[0];
   const currentStackItem = stackItems.find((s) => s.name === selectedStackName) || stackItems[0];
 
   // Dynamic method translation helper
@@ -324,21 +323,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
 
   const stackGroups = getStackGroups();
 
-  // Group methods by Category (dynamic lang)
-  const methodGroups = {
-    [lang === "en" ? "Experimentation" : "Experimentação"]: methods.filter(
-      (m) => (lang === "en" ? m.groupEn : m.group) === (lang === "en" ? "Experimentation" : "Experimentação")
-    ),
-    [lang === "en" ? "Inference & Modeling" : "Inferência e modelagem"]: methods.filter(
-      (m) => (lang === "en" ? m.groupEn : m.group) === (lang === "en" ? "Inference & Modeling" : "Inferência e modelagem")
-    ),
-    [lang === "en" ? "Optimization & Quant Intelligence" : "Otimização e inteligência quantitativa"]: methods.filter(
-      (m) => (lang === "en" ? m.groupEn : m.group) === (lang === "en" ? "Optimization & Quant Intelligence" : "Otimização e inteligência quantitativa")
-    ),
-    [lang === "en" ? "NLP & Automation" : "PLN e automação"]: methods.filter(
-      (m) => (lang === "en" ? m.groupEn : m.group) === (lang === "en" ? "NLP & Automation" : "PLN e automação")
-    ),
-  };
+
 
   return (
     <section className="px-6 py-4 md:px-8 md:py-6 w-full font-sans flex flex-col gap-6">
@@ -876,69 +861,70 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </div>
               )}
 
-              {/* Tab 1.5: Aplicações */}
+              {/* Tab 2: Competências (7 Gavetas de Domínio) */}
               <button
                 onClick={() => {
-                  setActiveDrawer("applications");
+                  setActiveDrawer("competencies");
                   setDrawerOpen(false);
+                  if (sidebarCollapsed) setSidebarCollapsed(false);
                 }}
-                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "applications"
+                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "competencies"
                     ? "bg-mustard border-mustard text-white shadow-sm"
                     : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
                   } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-                title={lang === "pt" ? "Aplicações" : "Applications"}
+                title={lang === "pt" ? "Competências" : "Competencies"}
               >
                 <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
                   <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                   <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                    <span className="text-[11px] md:text-xs font-bold leading-tight">
-                      {lang === "pt" ? "Aplicações" : "Applications"}
-                    </span>
-                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "applications" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "Demandas de negócio" : "Business demands"}
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[11px] md:text-xs font-bold leading-tight">
+                        {lang === "pt" ? "Competências" : "Competencies"}
+                      </span>
+                      <span className="text-[8.5px] font-mono font-extrabold px-1.5 py-0.2 bg-white/20 rounded-full">
+                        7
+                      </span>
+                    </div>
+                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "competencies" ? "text-surface/80" : "text-txt-muted"}`}>
+                      {lang === "pt" ? "7 Gavetas de Domínio" : "7 Domain Drawers"}
                     </span>
                   </div>
                 </div>
                 {!sidebarCollapsed && (
-                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "applications" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
+                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "competencies" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
                     ➔
                   </span>
                 )}
               </button>
 
-              {/* Tab 2: Técnicas (Antigo Métodos) */}
-              <button
-                onClick={() => {
-                  setActiveDrawer("methods");
-                  setDrawerOpen(false);
-                }}
-                className={`text-left p-2.5 md:p-3 rounded-xl transition-soft flex items-center justify-between group border cursor-pointer flex-1 md:flex-initial ${activeDrawer === "methods"
-                    ? "bg-wine border-wine text-white shadow-sm"
-                    : "bg-surface/60 border-border-soft/60 hover:bg-surface text-txt-main hover:border-border-soft"
-                  } ${sidebarCollapsed ? "md:justify-center md:px-1.5" : ""}`}
-                title={lang === "pt" ? "Técnicas" : "Techniques"}
-              >
-                <div className="flex items-center gap-2 md:gap-3 mx-auto md:mx-0">
-                  <svg width="16" height="16" className="w-4 h-4 text-inherit flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  <div className={`flex flex-col text-left ${sidebarCollapsed ? "md:hidden" : "flex"}`}>
-                    <span className="text-[11px] md:text-xs font-bold leading-tight">
-                      {lang === "pt" ? "Técnicas" : "Techniques"}
-                    </span>
-                    <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "methods" ? "text-surface/80" : "text-txt-muted"}`}>
-                      {lang === "pt" ? "Abordagens estatísticas" : "Statistical approaches"}
-                    </span>
-                  </div>
+              {/* Sub-list of the 7 Competency Drawers inside sidebar when expanded */}
+              {!sidebarCollapsed && activeDrawer === "competencies" && (
+                <div className="hidden md:flex flex-col gap-1 pl-2 mt-1 max-h-[260px] overflow-y-auto border-l border-border-soft/60">
+                  {competencies.map((c) => {
+                    const isSelected = c.id === selectedCompetencyId;
+                    return (
+                      <button
+                        key={c.id}
+                        onClick={() => setSelectedCompetencyId(c.id)}
+                        className={`text-left text-xs px-2 py-1.5 rounded-lg transition-soft border-l-2 cursor-pointer flex items-center gap-2 ${isSelected
+                            ? "bg-mustard/15 border-mustard text-mustard font-bold"
+                            : "border-transparent hover:bg-surface/80 text-txt-muted font-medium"
+                          }`}
+                      >
+                        <span className={`font-mono text-[9px] font-bold px-1 py-0.5 rounded ${isSelected ? "bg-mustard text-white" : "bg-frost text-txt-muted"
+                          }`}>
+                          0{c.number}
+                        </span>
+                        <span className="truncate block">
+                          {lang === "en" ? c.titleEn : c.title}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
-                {!sidebarCollapsed && (
-                  <span className={`text-xs transition-transform duration-200 hidden md:inline ${activeDrawer === "methods" ? "translate-x-0.5" : "text-txt-muted group-hover:translate-x-0.5"}`}>
-                    ➔
-                  </span>
-                )}
-              </button>
+              )}
 
               {/* Tab 3: Ferramentas (Antigo Stack) */}
               <button
@@ -1013,6 +999,29 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       >
                         {getProjectIcon(p.id, isSelected ? "text-white" : "text-olive")}
                         <span>{lang === "en" ? p.shortTitleEn : p.shortTitle}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Mobile Competency Selector */}
+              {activeDrawer === "competencies" && (
+                <div className="md:hidden w-full overflow-x-auto pb-3 mb-4 flex gap-2 border-b border-border-soft/40 flex-nowrap scrollbar-none">
+                  {competencies.map((comp) => {
+                    const isSelected = comp.id === selectedCompetencyId;
+                    return (
+                      <button
+                        key={comp.id}
+                        onClick={() => setSelectedCompetencyId(comp.id)}
+                        className={`whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold border flex items-center gap-1.5 transition-soft flex-shrink-0 cursor-pointer ${
+                          isSelected
+                            ? "bg-mustard border-mustard text-white shadow-xs"
+                            : "bg-surface border-border-soft/60 text-txt-muted hover:text-txt-main"
+                        }`}
+                      >
+                        <span className="font-mono text-[10px] font-bold opacity-80">0{comp.number}.</span>
+                        <span className="truncate max-w-[160px]">{lang === "en" ? comp.titleEn : comp.title}</span>
                       </button>
                     );
                   })}
@@ -1480,212 +1489,185 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                 </article>
               )}
 
-              {activeDrawer === "applications" && (
-                /* APPLICATION SELECTION VIEW */
-                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
-                  {/* Application Category Lists */}
-                  <div className="flex flex-col gap-4">
+              {activeDrawer === "competencies" && (
+                /* 7 COMPETENCY DRAWERS VIEW */
+                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn w-full items-start">
+                  {/* Left Column: The 7 Tactile Drawers */}
+                  <div className="flex flex-col gap-3.5">
                     <div>
-                      <h3 className="text-xl font-bold text-wine font-serif">
-                        {lang === "pt" ? "Demandas de Negócio (Aplicações)" : "Business Applications"}
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] uppercase tracking-widest font-extrabold text-wine font-mono px-2 py-0.5 rounded bg-wine/10 border border-wine/20">
+                          {lang === "pt" ? "7 GAVETAS DE DOMÍNIO" : "7 DOMAIN DRAWERS"}
+                        </span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold text-wine font-serif mt-1">
+                        {lang === "pt" ? "Arsenal & Soluções de Mercado" : "Market Solutions & Technical Arsenal"}
                       </h3>
-                      <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
+                      <p className="text-xs text-txt-muted mt-1 leading-relaxed">
                         {lang === "pt"
-                          ? "Selecione um jargão ou caso de negócio para ver as abordagens técnicas aplicadas."
-                          : "Select a business use-case to see the applied technical approaches."}
+                          ? "Puxe uma das 7 gavetas para explorar os problemas de negócio resolvidos, jargões de mercado (ATS) e o ferramental estatístico."
+                          : "Select one of the 7 drawers to explore solved business problems, ATS market keywords, and applied statistical arsenals."}
                       </p>
                     </div>
-                    <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
-                      {(() => {
-                        const appCategories = lang === "en"
-                          ? ["Decision & Growth", "Product & Pricing", "Automation & Processing"]
-                          : ["Decisão & Crescimento", "Produto & Precificação", "Automação & Processamento"];
 
-                        const getAppGroups = () => {
-                          const groups: { [key: string]: Application[] } = {};
-                          appCategories.forEach(cat => {
-                            groups[cat] = applications.filter(app => (lang === "en" ? app.groupEn : app.group) === cat);
-                          });
-                          return groups;
-                        };
+                    <div className="flex flex-col gap-2.5 md:max-h-[520px] md:overflow-y-auto pr-1">
+                      {competencies.map((comp) => {
+                        const isSelected = comp.id === selectedCompetencyId;
+                        return (
+                          <button
+                            key={comp.id}
+                            onClick={() => setSelectedCompetencyId(comp.id)}
+                            className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 group relative overflow-hidden ${
+                              isSelected
+                                ? "bg-gradient-to-r from-[#FAF8F5] via-surface to-[#F5EFE6] border-wine/50 shadow-md ring-1 ring-wine/20 translate-x-1"
+                                : "bg-surface/60 border-border-soft/60 hover:bg-surface hover:border-wine/30 hover:translate-x-0.5 shadow-xs"
+                            }`}
+                          >
+                            {/* Left Accent indicator */}
+                            {isSelected && (
+                              <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-wine"></div>
+                            )}
 
-                        const appGroups = getAppGroups();
+                            <div className="flex items-center gap-3 min-w-0 flex-1 pl-1">
+                              {/* Number Badge */}
+                              <div className={`w-7 h-7 rounded-lg flex items-center justify-center font-mono text-xs font-bold flex-shrink-0 transition-colors ${
+                                isSelected ? "bg-wine text-white shadow-xs" : "bg-frost text-txt-muted border border-border-soft/60 group-hover:text-wine"
+                              }`}>
+                                0{comp.number}
+                              </div>
 
-                        return Object.entries(appGroups).map(([groupName, items]) => (
-                          <div key={groupName} className="flex flex-col gap-1.5">
-                            <span className="text-xs font-extrabold text-[#9C8538] uppercase tracking-widest block font-mono">
-                              {groupName}
-                            </span>
-                            <div className="flex flex-col gap-1">
-                              {items.map((app) => {
-                                const isSelected = app.id === selectedApplicationId;
-                                return (
-                                  <button
-                                    key={app.id}
-                                    onClick={() => setSelectedApplicationId(app.id)}
-                                    className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${
-                                      isSelected
-                                        ? "bg-mustard text-white border-mustard"
-                                        : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
-                                    }`}
-                                  >
-                                    {lang === "en" ? app.nameEn : app.name}
-                                  </button>
-                                );
-                              })}
+                              <div className="flex flex-col min-w-0 flex-1">
+                                <span className={`text-xs md:text-sm font-bold leading-tight truncate ${
+                                  isSelected ? "text-wine" : "text-txt-main group-hover:text-wine"
+                                }`}>
+                                  {lang === "en" ? comp.titleEn : comp.title}
+                                </span>
+                                <span className="text-[10px] text-txt-muted truncate font-serif italic mt-0.5">
+                                  {lang === "en" ? comp.taglineEn : comp.tagline}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                        ));
-                      })()}
+
+                            {/* Indicator */}
+                            <div className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 transition-transform ${
+                              isSelected ? "text-wine translate-x-0.5" : "text-txt-muted/60 group-hover:text-wine"
+                            }`}>
+                              ➔
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Right Details Panel for Application */}
+                  {/* Right Column: Interior da Gaveta Aberta */}
                   {(() => {
-                    const currentApp = applications.find(a => a.id === selectedApplicationId) || applications[0];
+                    const activeComp = competencies.find(c => c.id === selectedCompetencyId) || competencies[0];
                     return (
-                      <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
-                        {/* Decorative watermark */}
-                        <div className="absolute bottom-2 right-2 w-20 h-20 text-[#9C8538]/5 pointer-events-none select-none">
-                          <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                          </svg>
-                        </div>
-                        <div>
-                          <span className="text-xs uppercase tracking-wider font-extrabold text-[#9C8538] font-mono block mb-1">
-                            {lang === "en" ? currentApp.groupEn : currentApp.group}
-                          </span>
-                          <h4 className="text-xl md:text-2xl font-bold text-wine font-serif mb-2 leading-tight">
-                            {lang === "en" ? currentApp.nameEn : currentApp.name}
-                          </h4>
-                          <p className="text-sm md:text-base text-txt-muted leading-relaxed mb-6">
-                            {lang === "en" ? currentApp.summaryEn : currentApp.summary}
+                      <div className="relative border border-border-soft bg-surface/90 p-5 md:p-6 rounded-2xl flex flex-col gap-5 shadow-[0_2px_12px_rgba(44,40,34,0.02)] overflow-hidden">
+                        
+                        {/* Top Brass Plaque & Drawer Title */}
+                        <div className="border-b border-border-soft/60 pb-4">
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <span className="font-mono text-[9px] font-extrabold text-terracotta tracking-widest uppercase bg-terracotta/10 px-2 py-0.5 rounded border border-terracotta/20">
+                              {lang === "pt" ? `GAVETA 0${activeComp.number} • DOMÍNIO QUANTITATIVO` : `DRAWER 0${activeComp.number} • QUANTITATIVE DOMAIN`}
+                            </span>
+                            <span className="font-mono text-[9px] text-txt-muted">
+                              {activeComp.marketTerms.length} {lang === "pt" ? "termos de mercado" : "market terms"}
+                            </span>
+                          </div>
+
+                          <h3 className="font-serif text-2xl md:text-3xl font-extrabold text-wine leading-tight">
+                            {lang === "en" ? activeComp.titleEn : activeComp.title}
+                          </h3>
+                          <p className="font-serif italic text-xs md:text-sm text-olive font-semibold mt-1">
+                            {lang === "en" ? activeComp.taglineEn : activeComp.tagline}
                           </p>
                         </div>
 
-                        <div className="border-t border-border-soft/60 pt-4 mt-2">
-                          <span className="text-xs uppercase font-mono font-bold text-txt-main block mb-2.5">
-                            {lang === "pt" ? "Projetos Relacionados" : "Related Projects"}
+                        {/* Bloco 1: O que resolve (Linguagem de Negócio) */}
+                        <div className="bg-[#FAF8F2] border border-[#E4DFD3] rounded-xl p-4 shadow-xs relative overflow-hidden">
+                          <div className="absolute top-0 bottom-0 left-0 w-1.5 bg-[#8A6535]"></div>
+                          <span className="font-mono text-[9px] font-extrabold text-stone-600 uppercase tracking-wider block mb-1.5">
+                            💼 {lang === "pt" ? "O QUE RESOLVE (LINGUAGEM DE NEGÓCIO)" : "WHAT IT SOLVES (BUSINESS IMPACT)"}
                           </span>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {projects
-                              .filter((p) => currentApp.relatedProjectIds.includes(p.id))
-                              .map((p) => (
-                                <button
-                                  key={p.id}
-                                  onClick={() => {
-                                    setSelectedProjectId(p.id);
-                                    setActiveDrawer("projects");
-                                  }}
-                                  className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
-                                >
-                                  <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
-                                    {lang === "en" ? p.categoryEn : p.category}
-                                  </span>
-                                  <span className="text-xs md:text-sm font-bold text-wine line-clamp-2">
-                                    {lang === "en" ? p.titleEn : p.title}
-                                  </span>
-                                </button>
-                              ))}
+                          <p className="text-xs md:text-sm text-stone-700 leading-relaxed font-sans font-medium">
+                            {lang === "en" ? activeComp.businessImpactEn : activeComp.businessImpact}
+                          </p>
+                        </div>
+
+                        {/* Bloco 2: Termos de Mercado (ATS & Recrutadores) */}
+                        <div className="flex flex-col gap-2">
+                          <span className="font-mono text-[9.5px] font-extrabold text-wine uppercase tracking-wider flex items-center gap-1.5">
+                            <span>🎯</span> {lang === "pt" ? "Termos de Mercado (ATS & Recrutadores):" : "Market Keywords (ATS & Recruiters):"}
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {(lang === "en" && activeComp.marketTermsEn ? activeComp.marketTermsEn : activeComp.marketTerms).map((term) => (
+                              <span
+                                key={term}
+                                className="px-2.5 py-1 bg-[#EADFC9]/50 text-[#5C4D35] text-[10.5px] font-bold rounded-lg border border-[#D5C29D] font-mono leading-none shadow-2xs hover:bg-[#EADFC9]/80 transition-colors"
+                              >
+                                {term}
+                              </span>
+                            ))}
                           </div>
                         </div>
+
+                        {/* Bloco 3: Arsenal Técnico & Estatístico */}
+                        <div className="flex flex-col gap-2">
+                          <span className="font-mono text-[9.5px] font-extrabold text-olive uppercase tracking-wider flex items-center gap-1.5">
+                            <span>🔬</span> {lang === "pt" ? "Arsenal Técnico & Estatístico:" : "Technical & Statistical Arsenal:"}
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {(lang === "en" && activeComp.technicalArsenalEn ? activeComp.technicalArsenalEn : activeComp.technicalArsenal).map((tech) => (
+                              <span
+                                key={tech}
+                                className="px-2.5 py-1 bg-surface text-wine text-[10.5px] font-bold rounded-lg border border-border-soft font-mono leading-none shadow-2xs hover:border-wine/40 transition-colors"
+                              >
+                                <MathText text={tech} />
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Bloco 4: Estudos de Caso Relacionados */}
+                        {activeComp.relatedProjectIds && activeComp.relatedProjectIds.length > 0 && (
+                          <div className="border-t border-border-soft/60 pt-3.5 mt-1 flex flex-col gap-2">
+                            <span className="font-mono text-[9px] font-extrabold text-txt-muted uppercase tracking-wider block">
+                              📂 {lang === "pt" ? "Estudos de Caso Aplicados no Portfólio:" : "Applied Case Studies in Portfolio:"}
+                            </span>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                              {projects
+                                .filter((p) => activeComp.relatedProjectIds.includes(p.id))
+                                .map((p) => (
+                                  <button
+                                    key={p.id}
+                                    onClick={() => {
+                                      setSelectedProjectId(p.id);
+                                      setActiveDrawer("projects");
+                                    }}
+                                    className="text-left p-3 rounded-xl border border-border-soft/70 bg-frost/60 hover:bg-frost hover:border-wine/40 transition-all flex items-center justify-between gap-2 cursor-pointer shadow-xs group"
+                                  >
+                                    <div className="flex flex-col min-w-0">
+                                      <span className="text-[9px] uppercase tracking-wider text-terracotta font-mono font-bold">
+                                        {lang === "en" ? p.categoryEn : p.category}
+                                      </span>
+                                      <span className="text-xs font-bold text-wine group-hover:text-terracotta transition-colors truncate">
+                                        {lang === "en" ? p.titleEn : p.title}
+                                      </span>
+                                    </div>
+                                    <span className="text-xs text-wine font-bold group-hover:translate-x-0.5 transition-transform flex-shrink-0">
+                                      ➔
+                                    </span>
+                                  </button>
+                                ))}
+                            </div>
+                          </div>
+                        )}
+
                       </div>
                     );
                   })()}
-                </div>
-              )}
-
-              {activeDrawer === "methods" && (
-                /* METHOD SELECTION VIEW */
-                <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.4fr] gap-6 md:gap-8 animate-fadeIn">
-                  {/* Method Category Lists */}
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-wine font-serif">
-                        {lang === "pt" ? "Abordagens que utilizo" : "Approaches I use"}
-                      </h3>
-                      <p className="text-xs md:text-sm text-txt-muted mt-1 leading-relaxed">
-                        {lang === "pt"
-                          ? "Selecione uma metodologia abaixo para ver detalhes e casos em que foi aplicada."
-                          : "Select a methodology below to see details and cases where it was applied."}
-                      </p>
-                    </div>
-                    <div className="space-y-4 md:max-h-[380px] md:overflow-y-auto pr-2">
-                      {Object.entries(methodGroups).map(([groupName, items]) => (
-                        <div key={groupName} className="flex flex-col gap-1.5">
-                          <span className="text-xs font-extrabold text-brown uppercase tracking-widest block font-mono">
-                            {groupName}
-                          </span>
-                          <div className="flex flex-col gap-1">
-                            {items.map((m) => {
-                              const isSelected = m.id === selectedMethodId;
-                              return (
-                                <button
-                                  key={m.id}
-                                  onClick={() => setSelectedMethodId(m.id)}
-                                  className={`w-full text-left px-3 py-2 rounded-lg text-xs md:text-sm font-semibold border transition-soft cursor-pointer ${isSelected
-                                      ? "bg-wine text-white border-wine"
-                                      : "bg-surface/50 border-border-soft/40 hover:bg-surface text-txt-main"
-                                    }`}
-                                >
-                                  {lang === "en" ? m.nameEn : m.name}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right Details Panel for Method */}
-                  <div className="relative border border-border-soft bg-frost p-5 rounded-xl flex flex-col justify-between shadow-[0_1px_4px_rgba(44,40,34,0.015)] overflow-hidden min-h-[220px]">
-                    {/* Subtle Maple Leaf watermark */}
-                    <div className="absolute bottom-2 right-2 w-20 h-20 text-wine/3 pointer-events-none select-none">
-                      <svg width="80" height="80" className="w-full h-full rotate-45" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 3 C11.5 6, 9.5 6, 9 7.5 C8 7, 7 6, 6 6.5 C5 7, 6 8.5, 6 9.5 C4.5 9, 3 8.5, 2 9.5 C1 10.5, 2.5 12, 4 12.5 C3.5 13.5, 3 15, 4 16 C5 17, 6.5 15.5, 7.5 15 C7 16.5, 7 18.5, 8.5 19 C10 19.5, 10.5 17.5, 12 16.5 C13.5 17.5, 14 19.5, 15.5 19 C17 18.5, 17 16.5, 16.5 15 C17.5 15.5, 19 17, 20 16 C21 15, 20.5 13.5, 20 12.5 C21.5 12, 23 10.5, 22 9.5 C21 8.5, 19.5 9, 18 9.5 C18 8.5, 19 7, 18 6.5 C17 6, 16 7, 15 7.5 C14.5 6, 12.5 6, 12 3 Z" />
-                        <path d="M12 16.5 L12 21" stroke="currentColor" strokeWidth="1" fill="none" strokeLinecap="round" />
-                      </svg>
-                    </div>
-                    <div>
-                      <span className="text-xs uppercase tracking-wider font-extrabold text-brown font-mono block mb-1">
-                        {lang === "en" ? currentMethod.groupEn : currentMethod.group}
-                      </span>
-                      <h4 className="text-xl md:text-2xl font-bold text-wine font-serif mb-2 leading-tight">
-                        {lang === "en" ? currentMethod.nameEn : currentMethod.name}
-                      </h4>
-                      <p className="text-sm md:text-base text-txt-muted leading-relaxed mb-6">
-                        {lang === "en" ? currentMethod.summaryEn : currentMethod.summary}
-                      </p>
-                    </div>
-
-                    <div className="border-t border-border-soft/60 pt-4 mt-2">
-                      <span className="text-xs uppercase font-mono font-bold text-txt-main block mb-2.5">
-                        {lang === "pt" ? "Projetos Relacionados" : "Related Projects"}
-                      </span>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {projects
-                          .filter((p) => currentMethod.relatedProjectIds.includes(p.id))
-                          .map((p) => (
-                            <button
-                              key={p.id}
-                              onClick={() => {
-                                setSelectedProjectId(p.id);
-                                setActiveDrawer("projects");
-                              }}
-                              className="text-left p-3.5 rounded-lg border border-border-soft/60 bg-surface/60 hover:bg-surface hover:border-wine transition-soft flex flex-col gap-1 cursor-pointer"
-                            >
-                              <span className="text-[10px] uppercase tracking-wider text-txt-muted font-mono font-bold">
-                                {lang === "en" ? p.categoryEn : p.category}
-                              </span>
-                              <span className="text-xs md:text-sm font-bold text-wine line-clamp-2">
-                                {lang === "en" ? p.titleEn : p.title}
-                              </span>
-                            </button>
-                          ))}
-                      </div>
-                    </div>
-                  </div>
                 </div>
               )}
 

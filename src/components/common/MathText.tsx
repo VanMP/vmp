@@ -65,3 +65,4 @@ export const MathText: React.FC<MathTextProps> = ({
 };
 
 export default MathText;
+
