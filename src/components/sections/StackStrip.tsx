@@ -7,14 +7,12 @@ interface StackStripProps {
 export default function StackStrip({ lang = "pt" }: StackStripProps) {
   const tools = lang === "en"
     ? [
-        "Python", "R", "SQL", "Power BI", "Excel", "AWS", "Pandas", 
-        "Scikit-learn", "NLP", "LLMs", "LangChain", "LangGraph", "n8n", 
-        "APIs", "Markdown", "PowerPoint"
+        "Python", "R", "SQL", "Snowflake", "Google BigQuery", "Power BI", "Tableau", 
+        "Pandas", "Scikit-learn", "Statsmodels", "Prophet", "NLP", "Tidyverse", "ggplot2"
       ]
     : [
-        "Python", "R", "SQL", "Power BI", "Excel", "AWS", "Pandas", 
-        "Scikit-learn", "PLN", "Modelos de Linguagem (LLMs)", "LangChain", "LangGraph", "n8n", 
-        "APIs", "Markdown", "PowerPoint"
+        "Python", "R", "SQL", "Snowflake", "Google BigQuery", "Power BI", "Tableau", 
+        "Pandas", "Scikit-learn", "Statsmodels", "Prophet", "PLN", "Tidyverse", "ggplot2"
       ];
 
   return (

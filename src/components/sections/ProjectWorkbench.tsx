@@ -324,8 +324,8 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
   };
 
   const stackCategories = lang === "en"
-    ? ["Analysis", "Visualization", "Machine Learning / NLP", "Automation / AI", "Infra / Organization"]
-    : ["Análise", "Visualização", "Aprendizado de Máquina / PLN", "Automação / IA", "Infra / Organização"];
+    ? ["Python", "R", "Data Acquisition", "Visualization"]
+    : ["Python", "R", "Aquisição de Dados", "Visualização"];
 
   const getStackGroups = () => {
     const groups: { [key: string]: StackItem[] } = {};
