@@ -72,13 +72,13 @@ a:focus-visible {
   will-change: transform;
 }
 
-.marquee-track-stacks {
-  animation: marquee 25s linear infinite;
+.marquee-track-applications {
+  animation: marquee 55s linear infinite;
 }
 
 @media (min-width: 768px) {
-  .marquee-track-stacks {
-    animation: marquee 60s linear infinite;
+  .marquee-track-applications {
+    animation: marquee 135s linear infinite;
   }
 }
 
@@ -89,6 +89,16 @@ a:focus-visible {
 @media (min-width: 768px) {
   .marquee-track-methods {
     animation: marquee 140s linear infinite;
+  }
+}
+
+.marquee-track-stacks {
+  animation: marquee 35s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .marquee-track-stacks {
+    animation: marquee 85s linear infinite;
   }
 }
 

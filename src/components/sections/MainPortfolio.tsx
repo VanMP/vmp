@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TopRow from "./TopRow";
 import FormationBlock from "./FormationBlock";
 import ProjectWorkbench from "./ProjectWorkbench";
+import ApplicationsStrip from "./ApplicationsStrip";
 import MethodsStrip from "./MethodsStrip";
 import StackStrip from "./StackStrip";
 import Footer from "./Footer";
@@ -21,6 +22,8 @@ export default function MainPortfolio() {
       {/* Unified Project Workbench (Option B) */}
       <ProjectWorkbench lang={lang} />
       
+      {/* Tri-band Knowledge Marquees (Aplicações, Métodos, Stacks) */}
+      <ApplicationsStrip lang={lang} />
       <MethodsStrip lang={lang} />
       <StackStrip lang={lang} />
       <Footer 
