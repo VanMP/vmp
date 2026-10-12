@@ -57,6 +57,13 @@ export const stackItems: StackItem[] = [
     note: "Processamento de Linguagem Natural: extração de entidades (NER), embeddings semânticos, tokenização, regex e mineração de texto não estruturado.",
     noteEn: "Natural Language Processing: named entity recognition (NER), semantic embeddings, tokenization, regex, and unstructured text mining."
   },
+  {
+    name: "PyMC / Stan",
+    category: "Python",
+    categoryEn: "Python",
+    note: "Modelagem estatística bayesiana, amostragem MCMC (NUTS), estimativa de distribuições a posteriori e quantificação formal de incerteza em decisões críticas.",
+    noteEn: "Bayesian statistical modeling, MCMC sampling (NUTS), posterior parameter estimation, and formal uncertainty quantification for critical decision-making."
+  },
 
   // R
   {
@@ -139,5 +146,12 @@ export const stackItems: StackItem[] = [
     categoryEn: "Visualization",
     note: "Exploração visual de dados complexos, criação de painéis analíticos dinâmicos e comunicação de métricas estratégicas para liderança.",
     noteEn: "Visual data exploration, interactive business dashboards, and dynamic communication of strategic performance metrics."
+  },
+  {
+    name: "Streamlit",
+    category: "Visualização",
+    categoryEn: "Visualization",
+    note: "Construção de aplicações analíticas e simuladores interativos (precificação, cenários de negócio e modelos quantitativos) para tomada de decisão.",
+    noteEn: "Development of interactive analytical web applications and business simulators (pricing, scenario planning, and quantitative models) for decision-making."
   }
 ];

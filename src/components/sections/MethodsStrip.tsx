@@ -49,7 +49,14 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
     "Valores de Shapley (SHAP) & Gráficos PDP",
     "Embeddings Semânticos & Similaridade Cosseno",
     "Modelagem de Tópicos (LDA)",
-    "Reconhecimento de Entidades (NER)"
+    "Reconhecimento de Entidades (NER)",
+    "Matrizes Sanduíche Robustas (Huber-White / HC0-HC3)",
+    "Estimadores HAC (Newey-West)",
+    "Teste de Supressão de Conger",
+    "Regressão Censurada e Truncada (Tobit)",
+    "Pós-Estratificação Iterativa (Raking / IPW)",
+    "Pesos Inversos de Probabilidade (IPW)",
+    "Testes de Homocedasticidade & Linearidade Funcional"
   ];
 
   const methodsEn = [
@@ -96,7 +103,14 @@ export default function MethodsStrip({ lang = "pt" }: MethodsStripProps) {
     "Shapley Additive Explanations (SHAP) & PDP",
     "Semantic Embeddings & Cosine Similarity",
     "Topic Modeling (LDA)",
-    "Named Entity Recognition (NER)"
+    "Named Entity Recognition (NER)",
+    "Consistent Sandwich Covariance Matrices (Huber-White / HC0-HC3)",
+    "HAC Estimators (Newey-West)",
+    "Conger's Suppression Test",
+    "Censored & Truncated Regression (Tobit)",
+    "Iterative Post-Stratification (Raking / IPW)",
+    "Inverse Probability Weighting (IPW)",
+    "Homoskedasticity & Functional Linearity Testing"
   ];
 
   const items = lang === "en" ? methodsEn : methodsPt;

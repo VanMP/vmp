@@ -391,6 +391,52 @@ export const competencies: Competency[] = [
       "Semantic Key Entity Extraction"
     ],
     relatedProjectIds: ["nlp-text-intelligence", "quantificador-semantico-app"]
+  },
+  {
+    id: "assumptions-auditing-bias-correction",
+    number: 8,
+    title: "Auditoria de Premissas, Correção de Viés e Estimação Consistente em Dados Reais",
+    titleEn: "Assumption Auditing, Bias Correction & Consistent Estimation in Real Data",
+    tagline: "Diagnósticos de premissas, correção de viés de não-resposta e estimadores robustos",
+    taglineEn: "Assumption diagnostics, non-response bias correction, and robust estimators",
+    icon: "shield-check",
+    businessImpact: "Garantir que números, pesquisas e modelos reflitam a realidade econômica sem serem contaminados por distorções amostrais, abandono de respondentes ou quebra de pressupostos matemáticos. Audita criticamente as bases de dados e aplica correções estatísticas estritas para que a liderança tome decisões sobre dados confiáveis, prevenindo conclusões ilusórias causadas por variâncias instáveis, viés de seleção ou multicolinearidade severa.",
+    businessImpactEn: "Ensuring figures, market surveys, and models reflect true economic reality rather than being distorted by sample attrition, non-response bias, or violated mathematical assumptions. Rigorously audits data foundations and applies robust statistical corrections so leadership acts on trustworthy signals, eliminating false conclusions driven by heteroskedasticity, selection bias, or severe multicollinearity.",
+    marketTerms: [
+      "Isolamento de Elasticidade sem Distorções",
+      "Correção de Viés de Não-Resposta & Abandono",
+      "Calibração de Cotas & Amostras Desbalanceadas",
+      "Quantificação de Incerteza para Decisão Executiva",
+      "Auditoria Metodológica Independente",
+      "Demonstração de Qualidade de Modelos"
+    ],
+    marketTermsEn: [
+      "Distortion-Free Elasticity Isolation",
+      "Non-Response & Attrition Bias Correction",
+      "Quota Calibration & Imbalanced Sample Weighting",
+      "Uncertainty Quantification for Executive Decision-Making",
+      "Independent Methodological Auditing",
+      "Model Quality & Robustness Demonstration"
+    ],
+    technicalArsenal: [
+      "Matrizes de covariância sanduíche consistentes (Huber-White / HC0, HC1, HC2 e HC3) e estimadores HAC (Newey-West)",
+      "Diagnósticos Espectrais de Multicolinearidade (VIF)",
+      "Teste de Supressão de Conger",
+      "Regressão Censurada e Truncada (Tobit)",
+      "Pós-estratificação iterativa (Raking / IPW)",
+      "Pesos Inversos de Probabilidade (IPW)",
+      "Testes formais de homocedasticidade, normalidade residual e linearidade funcional"
+    ],
+    technicalArsenalEn: [
+      "Consistent Sandwich Covariance Matrices (Huber-White / HC0-HC3) & HAC Estimators (Newey-West)",
+      "Spectral Multicollinearity Diagnostics (VIF)",
+      "Conger's Suppression Test",
+      "Censored & Truncated Regression (Tobit Models)",
+      "Iterative Post-Stratification (Raking / IPW)",
+      "Inverse Probability Weighting (IPW)",
+      "Formal Tests for Homoskedasticity, Residual Normality & Functional Linearity"
+    ],
+    relatedProjectIds: ["collinearity-suppression-ppm", "bayesian-promotions"]
   }
 ];
 

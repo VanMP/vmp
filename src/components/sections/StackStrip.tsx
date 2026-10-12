@@ -6,7 +6,7 @@ interface StackStripProps {
 
 export default function StackStrip({ lang = "pt" }: StackStripProps) {
   const tools = [
-    "Python", "R", "SQL", "Snowflake", "Google BigQuery", "Power BI", "Tableau", 
+    "Python", "R", "SQL", "Snowflake", "Google BigQuery", "Power BI", "Tableau", "Streamlit",
     "Pandas", "NumPy", "SciPy", "Scikit-learn", "Statsmodels", "Prophet", 
     "Tidyverse", "dplyr", "tidyr", "ggplot2", "lme4", "survival", "forecast / fable", 
     "XGBoost", "LightGBM", "spaCy", "NLTK", "Transformers", "PyMC / Stan", 

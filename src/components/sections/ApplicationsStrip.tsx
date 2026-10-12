@@ -51,7 +51,13 @@ export default function ApplicationsStrip({ lang = "pt" }: ApplicationsStripProp
     "Reconhecimento de Entidades Nomeadas (NER)",
     "Modelagem de Tópicos & Agrupamento de Feedbacks",
     "Análise de Sentimento por Aspecto (ABSA)",
-    "Classificação Automatizada de Documentos e Chamados"
+    "Classificação Automatizada de Documentos e Chamados",
+    "Isolamento de Elasticidade sem Distorções",
+    "Correção de Viés de Não-Resposta & Abandono",
+    "Calibração de Cotas & Amostras Desbalanceadas",
+    "Quantificação de Incerteza para Decisão Executiva",
+    "Auditoria Metodológica Independente",
+    "Demonstração de Qualidade de Modelos"
   ];
 
   const applicationsEn = [
@@ -100,7 +106,13 @@ export default function ApplicationsStrip({ lang = "pt" }: ApplicationsStripProp
     "Named Entity Recognition (NER)",
     "Topic Modeling & Feedback Clustering",
     "Aspect-Based Sentiment Analysis (ABSA)",
-    "Automated Document & Ticket Classification"
+    "Automated Document & Ticket Classification",
+    "Distortion-Free Elasticity Isolation",
+    "Non-Response & Attrition Bias Correction",
+    "Quota Calibration & Imbalanced Sample Weighting",
+    "Uncertainty Quantification for Executive Decision-Making",
+    "Independent Methodological Auditing",
+    "Model Quality & Robustness Demonstration"
   ];
 
   const items = lang === "en" ? applicationsEn : applicationsPt;
@@ -154,3 +166,4 @@ export default function ApplicationsStrip({ lang = "pt" }: ApplicationsStripProp
     </section>
   );
 }
+

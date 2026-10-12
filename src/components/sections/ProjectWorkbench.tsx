@@ -927,7 +927,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                         {lang === "pt" ? "Competências" : "Competencies"}
                       </span>
                       <span className="text-[8.5px] font-mono font-extrabold px-1.5 py-0.2 bg-white/20 rounded-full">
-                        7
+                        {competencies.length}
                       </span>
                     </div>
                     <span className={`text-[9px] font-medium hidden md:block ${activeDrawer === "competencies" ? "text-surface/80" : "text-txt-muted"}`}>
