@@ -609,9 +609,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                                   {lang === "pt" ? "Metodologia:" : "Methods:"}
                                 </span>
                                 <div className="flex flex-wrap gap-1.5">
-                                  {activeProject.methods.map((m) => (
+                                  {(lang === "en" && activeProject.methodsEn ? activeProject.methodsEn : activeProject.methods).map((m) => (
                                     <span key={m} className="px-2.5 py-0.5 bg-[#EADFC9]/50 text-[#5C4D35] text-[10px] font-bold rounded border border-[#D5C29D] font-mono leading-none">
-                                      {getMethodName(m)}
+                                      {lang === "en" ? m : getMethodName(m)}
                                     </span>
                                   ))}
                                 </div>
@@ -1158,7 +1158,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               {lang === "pt" ? "Aplicações:" : "Applications:"}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
-                              {currentProject.applications.map((a) => (
+                              {(lang === "en" && currentProject.applicationsEn ? currentProject.applicationsEn : currentProject.applications).map((a) => (
                                 <span key={a} className="px-2.5 py-0.5 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
                                   {a}
                                 </span>
@@ -1171,7 +1171,7 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                               {lang === "pt" ? "Técnicas:" : "Techniques:"}
                             </span>
                             <div className="flex flex-wrap gap-1.5">
-                              {currentProject.techniques.map((t) => (
+                              {(lang === "en" && currentProject.techniquesEn ? currentProject.techniquesEn : currentProject.techniques).map((t) => (
                                 <span key={t} className="px-2.5 py-0.5 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
                                   <MathText text={t} />
                                 </span>
@@ -1195,9 +1195,9 @@ export default function ProjectWorkbench({ lang = "pt" }: ProjectWorkbenchProps)
                       ) : (
                         <div className="flex flex-col gap-3">
                           <div className="flex flex-wrap gap-1.5">
-                            {currentProject.methods.map((m) => (
+                            {(lang === "en" && currentProject.methodsEn ? currentProject.methodsEn : currentProject.methods).map((m) => (
                               <span key={m} className="px-2.5 py-1 bg-frost text-txt-muted text-[10px] rounded border border-border-soft/50 font-sans font-medium">
-                                {getMethodName(m)}
+                                {lang === "en" ? m : getMethodName(m)}
                               </span>
                             ))}
                           </div>

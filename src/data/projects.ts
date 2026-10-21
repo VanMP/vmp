@@ -56,6 +56,7 @@ export type Project = {
   problem: string;
   problemEn: string;
   methods: string[];
+  methodsEn?: string[];
   tools: string[];
   metrics: ProjectMetric[];
   outcome: string;
@@ -67,7 +68,9 @@ export type Project = {
   visualType: "ab-bars" | "time-series" | "survival" | "pricing" | "matrix" | "nlp-flow" | "rag-pipeline";
   slides?: ProjectSlide[];
   applications?: string[];
+  applicationsEn?: string[];
   techniques?: string[];
+  techniquesEn?: string[];
   notebookPt?: string;
   notebookEn?: string;
   simulatorUrl?: string;
@@ -87,8 +90,11 @@ export const projects: Project[] = [
     problem: "Análise e quantificação de textos não estruturados e sem categorias pré-definidas. Para validar o desempenho do algoritmo antes da aplicação prática, utilizou-se um dataset de estresse sintético focado em gestão municipal (contendo 15% de ruído/spam e 25% de frases vagas sem palavras-chave), cenário onde classificadores tradicionais falham em capturar contexto e a leitura manual é inviável.",
     problemEn: "Analysis and quantification of unstructured text without pre-defined categories. A synthetic stress dataset focused on municipal management (containing 15% noise/spam and 25% implicit statements) was used to validate algorithm performance prior to practical deployment.",
     methods: ["Processamento de Linguagem Natural", "Embeddings multilíngues", "Redução de dimensionalidade", "Modelagem por Mistura de Gaussianas", "Agentes e LLMs locais", "Métricas de validação"],
+    methodsEn: ["Natural Language Processing", "Multilingual Embeddings", "Dimensionality Reduction", "Gaussian Mixture Modeling", "Local LLMs & Agents", "Validation Metrics"],
     applications: ["Clusterização Não Categórica", "Quantificação de Opinião Pública", "Filtro de Ruído & Off-Topic", "Rotulagem Semântica por LLM"],
+    applicationsEn: ["Non-Categorical Clustering", "Public Opinion Quantification", "Noise & Off-Topic Filtering", "LLM Semantic Labeling"],
     techniques: ["Embeddings BERT Multilíngue (MiniLM-L12-v2)", "Redução de Dimensionalidade (UMAP)", "Mistura de Gaussianas (GMM)", "Rotulagem por Llama 3.1 Local", "Métricas de Validação (ARI/F1-Score)"],
+    techniquesEn: ["Multilingual BERT Embeddings (MiniLM-L12-v2)", "Dimensionality Reduction (UMAP)", "Gaussian Mixture Models (GMM)", "Local Llama 3.1 Labeling", "Validation Metrics (ARI/F1-Score)"],
     tools: ["Python", "Sentence-Transformers", "UMAP", "Scikit-Learn", "Ollama (Llama 3.1)", "Plotly", "HTML/CSS"],
     metrics: [
       { label: "Acurácia Global", labelEn: "Global Accuracy", value: "78,6%", note: "Pós-Refinamento", noteEn: "Post-Refinement" },
@@ -213,8 +219,11 @@ export const projects: Project[] = [
     problem: "Para operar a pipeline de inteligência de texto no dia a dia sem depender de código ou scripts Python manuais, desenvolveu-se uma ferramenta em Streamlit que permite a qualquer usuário carregar sua própria base em CSV, configurar os parâmetros semânticos (embeddings, UMAP, GMM e prompt do Llama 3.1) e obter a quantificação executiva em segundos.",
     problemEn: "To run the text intelligence pipeline daily without relying on manual Python scripts, a Streamlit tool was created allowing users to upload any CSV dataset, adjust parameters, and get executive 3D reports in seconds.",
     methods: ["Engenharia de Software em IA", "Desenvolvimento de Aplicações Web", "Streamlit", "Automação de Pipelines", "Execução On-Premise", "Visualização Interativa"],
+    methodsEn: ["AI Software Engineering", "Web Application Development", "Streamlit", "Pipeline Automation", "On-Premise Execution", "Interactive Visualization"],
     applications: ["Software de Inteligência de Texto", "Automação de Workflow de IA", "Interface No-Code para Data Science", "Análise Agnóstica de CSVs"],
+    applicationsEn: ["Text Intelligence Software", "AI Workflow Automation", "No-Code Data Science UI", "Agnostic CSV Ingestion & Analysis"],
     techniques: ["UI Interativa com Streamlit", "Ingestão Dinâmica de CSV", "Conexão com Ollama Local", "Geração de Relatórios HTML Autônomos", "Parametrização de Modelos"],
+    techniquesEn: ["Interactive UI with Streamlit", "Dynamic CSV Ingestion", "Local Ollama Integration", "Autonomous HTML Report Generation", "Model Parameter Tuning"],
     tools: ["Streamlit", "Python", "Ollama (Llama 3.1)", "Plotly", "Pandas", "Sentence-Transformers"],
     metrics: [
       { label: "Ingestão de Dados", labelEn: "Data Ingestion", value: "CSV Genérico", note: "Qualquer dataset", noteEn: "Any CSV dataset" },
@@ -270,8 +279,11 @@ export const projects: Project[] = [
     problem: "Faltando dois meses para a Black Friday, o e-commerce precisava definir a estratégia de anúncios para uma base de 100 mil usuários, escolhendo entre duas opções: Campanha A (conversão maior, margem menor) e Campanha B (conversão menor, margem maior).\n\nA Análise frequentista comum foi inconclusiva, com um p-valor de 0.18. Neste projeto, criei um material para apoiar a decisão pela campanha mais vantajosa, utilizando modelagem Bayesiana e simulações de Monte Carlo para quantificar o risco financeiro exato de cada decisão, transformando incerteza em lucro esperado real.",
     problemEn: "Two months before Black Friday, the e-commerce needed to define the ad strategy for a base of 100,000 users, choosing between two options: Campaign A (higher conversion, lower margin) and Campaign B (lower conversion, higher margin).\n\nThe standard frequentist analysis was inconclusive, with a p-value of 0.18. In this project, I created material to support the decision for the most advantageous campaign, using Bayesian modeling and Monte Carlo simulations to quantify the exact financial risk of each decision, transforming uncertainty into actual expected profit.",
     methods: ["Testes A/B", "Eventos raros", "Inferência bayesiana", "Teste Z", "Intervalos de credibilidade", "Projeção de lucro"],
+    methodsEn: ["A/B Testing", "Rare Events", "Bayesian Inference", "Z-Test", "Credible Intervals", "Profit Projection"],
     applications: ["Testes A/B", "Modelagem de eventos raros", "Otimização de margem de lucro", "Análise de risco financeiro"],
+    applicationsEn: ["A/B Testing", "Rare Event Modeling", "Profit Margin Optimization", "Financial Risk Analysis"],
     techniques: ["Inferência Bayesiana", "Distribuição Conjugada Beta-Binomial", "Simulação de Monte Carlo", "Distribuição do Lift Relativo", "Lucro Esperado Coletivo", "Função de Perda Esperada (Risk Analysis)"],
+    techniquesEn: ["Bayesian Inference", "Beta-Binomial Conjugate Distribution", "Monte Carlo Simulation", "Relative Lift Distribution", "Expected Collective Profit", "Expected Loss Function (Risk Analysis)"],
     tools: ["R", "Python", "NumPy", "Pandas", "SciPy (stats)", "Seaborn", "LaTeX"],
     metrics: [
       { label: "Conversão A", labelEn: "Conversion A", value: "2,04%", note: "Desconto direto", noteEn: "Direct discount" },
@@ -329,8 +341,11 @@ export const projects: Project[] = [
     problem: "Determinação da elasticidade-preço da demanda e definição de preços e mix de produtos capazes de maximizar o lucro total da empresa. O portfólio possuía dois perfis claros de clientes (sensíveis a preço vs. focados em qualidade/especificações). Foi necessário modelar as classes latentes, quantificar a disposição a pagar por atributo e otimizar simultaneamente os preços de todos os SKUs sob elasticidade cruzada e fuga para opt-out.",
     problemEn: "Determining demand price elasticity and setting optimal pricing and product mix to maximize total profit. With two distinct customer segments (price-sensitive vs. quality-driven), Latent Class modeling (EM) and L-BFGS-B multivariate optimization were deployed to capture WTP and optimize all SKU prices under cross-elasticity and opt-out constraints.",
     methods: ["Choice-Based Conjoint (CBC)", "Classes Latentes (LC-MNL)", "Algoritmo Expectation-Maximization (EM)", "Otimização Não-Linear (L-BFGS-B)", "Disposição a Pagar (WTP)", "Elasticidade Cruzada", "Otimização de Assortment (Purga)"],
+    methodsEn: ["Choice-Based Conjoint (CBC)", "Latent Classes (LC-MNL)", "Expectation-Maximization (EM) Algorithm", "Non-Linear Optimization (L-BFGS-B)", "Willingness to Pay (WTP)", "Cross-Price Elasticity", "Assortment Optimization (Pruning)"],
     applications: ["Pesquisa Conjoint", "Precificação Ótima Multivariada", "Canibalização de Prateleira", "Segmentação por Classes Latentes", "Purga Estratégica de Assortment", "Simulação de Concorrência e Mix"],
+    applicationsEn: ["Conjoint Research", "Multivariate Optimal Pricing", "Shelf Cannibalization", "Latent Class Segmentation", "Strategic Assortment Pruning", "Competitive & Mix Simulation"],
     techniques: ["Pesquisa Conjoint (CBC)", "Desenho D-Optimal", "Logit Condicional de McFadden", "Estimador EM com Regularização L2", "Solver L-BFGS-B sob Limites de Markup", "Simulação de Escolha Softmax com Opt-Out", "Varredura Combinatória de SKUs"],
+    techniquesEn: ["Choice-Based Conjoint (CBC)", "D-Optimal Design", "McFadden Conditional Logit", "EM Estimator with L2 Regularization", "L-BFGS-B Solver under Markup Bounds", "Softmax Choice Simulation with Opt-Out", "Combinatorial SKU Scanning"],
     tools: ["Python", "SciPy (optimize)", "Pandas", "NumPy", "Statsmodels", "Matplotlib / Seaborn", "Streamlit"],
     metrics: [
       { label: "Crescimento no Lucro", labelEn: "Profit Growth", value: "+17,0%", note: "+R$ 13,74M/mês (L-BFGS-B)", noteEn: "+R$ 13.74M/mo (L-BFGS-B)" },
@@ -498,13 +513,22 @@ export const projects: Project[] = [
     problem: "Em modelos comportamentais empíricos, dimensões preditoras são frequentemente intrinsecamente correlacionadas. Ao ajustar a regressão logística hierárquica clássica, a inclusão da percepção de atratividade externa (Pull) causou o colapso estatístico das dores do produto (Push), despencando seu Odds Ratio de $1{,}81$ ($p<0{,}001$) para $0{,}86$ ($p=0{,}361$), gerando uma espúria inversão de sinal (como se defeitos aumentassem a retenção). O diagnóstico convencional via VIF falhou totalmente ($\\text{VIF} < 2{,}1$), pois a patologia decorria da sobreposição triangular informacional com o desfecho ($r=0{,}689$), exigindo provas formais de supressão de Conger, reamostragem por bootstrap e partição cooperativa de variância via Shapley.",
     problemEn: "In empirical behavioral models, predictors often share severe latent correlation. When estimating standard hierarchical logistic regression, adding competitor attraction (Pull) triggered the statistical collapse of product pain points (Push), plummeting its Odds Ratio from $1.81$ ($p<0.001$) down to $0.86$ ($p=0.361$) with an anomalous sign reversal. Standard VIF diagnostics completely missed the issue ($\\text{VIF} < 2.1$), as variance absorption was driven by triangular covariance with the outcome ($r=0.689$), necessitating Conger's analytical suppression proof, non-parametric bootstrap testing, and cooperative Shapley variance partitioning.",
     methods: ["Diagnóstico de Supressão Clássica", "Critério Analítico de Conger (1974)", "Bootstrap Não-Paramétrico (B=1.000)", "Decomposição de Shapley (LMG / Dominância)", "Pseudo-R² de McFadden", "Regressão Logística Binária Hierárquica", "Logit Bivariado Ajustado por Covariáveis", "Modelagem Push-Pull-Mooring (PPM)"],
+    methodsEn: ["Classical Suppression Diagnostics", "Conger's Analytical Criterion (1974)", "Non-Parametric Bootstrap (B=1,000)", "Shapley Decomposition (LMG / Dominance)", "McFadden Pseudo-R²", "Hierarchical Binary Logistic Regression", "Covariate-Adjusted Bivariate Logit", "Push-Pull-Mooring (PPM) Modeling"],
     applications: ["Diagnóstico de Multicolinearidade Oculta", "Decomposição de Poder Preditivo a 100%", "Modelagem de Churn e Migração de Marca", "Key Driver Analysis Descontaminada", "Resgate de Regressores Suprimidos"],
+    applicationsEn: ["Hidden Multicollinearity Diagnostics", "100% Predictive Power Decomposition", "Churn & Brand Migration Modeling", "Decontaminated Key Driver Analysis", "Suppressed Regressor Recovery"],
     techniques: [
       "Teste de Colapso de Beta por Bootstrap Não-Paramétrico",
       "Key Driver Analysis",
       "Regressão Estrutural Hierárquica",
       "Decomposição de Shapley (Análise de Dominância)",
       "Critério Analítico de Conger (1974)"
+    ],
+    techniquesEn: [
+      "Non-Parametric Bootstrap Beta-Collapse Test",
+      "Key Driver Analysis",
+      "Hierarchical Structural Regression",
+      "Shapley Decomposition (Dominance Analysis)",
+      "Conger's Analytical Criterion (1974)"
     ],
     tools: ["Python", "Statsmodels", "SciPy (stats)", "NumPy", "Pandas", "Scikit-Learn", "Matplotlib / Seaborn"],
     metrics: [
